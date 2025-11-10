@@ -14,12 +14,36 @@
 
 namespace Modules\Currencies\Support;
 
+use InvalidArgumentException;
+
+/**
+ * Currency Converter Factory
+ * 
+ * Creates currency converter instances based on configuration.
+ * Follows the Factory pattern for object creation.
+ */
 class CurrencyConverterFactory
 {
-    public static function create()
+    /**
+     * Create a currency converter instance.
+     *
+     * @return object
+     * @throws \InvalidArgumentException
+     */
+    public static function create(): object
     {
-        $class = 'Modules\Currencies\Support\Drivers\\' . config('fi.currencyConversionDriver');
+        $driver = config('fi.currencyConversionDriver');
+        
+        if (empty($driver)) {
+            throw new InvalidArgumentException('Currency conversion driver not configured');
+        }
 
-        return new $class;
+        $className = 'Modules\Currencies\Support\Drivers\\' . $driver;
+
+        if (!class_exists($className)) {
+            throw new InvalidArgumentException("Currency converter driver '{$driver}' not found");
+        }
+
+        return new $className();
     }
 }
