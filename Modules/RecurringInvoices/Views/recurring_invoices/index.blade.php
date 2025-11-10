@@ -13,7 +13,7 @@
 
         <div class="pull-right">
             <div class="btn-group">
-                {!! Form::open(['method' => 'GET', 'id' => 'filter']) !!}
+                <form method="GET" id="filter">
                 {!! Form::select('company_profile', $companyProfiles, request('company_profile'), ['class' => 'recurring_invoice_filter_options form-control inline']) !!}
                 {!! Form::select('status', $statuses, request('status'), ['class' => 'recurring_invoice_filter_options form-control inline']) !!}
                 </form>

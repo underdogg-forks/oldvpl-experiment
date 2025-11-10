@@ -2,7 +2,8 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['import.map.submit', $importType], 'class' => 'form-horizontal']) !!}
+    <form method="POST" action="{{ route('import.map.submit', $importType) }}" class="form-horizontal">
+    @csrf
 
     <section class="content-header">
         <h1 class="pull-left">

@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($taxRate, ['route' => ['taxRates.update', $taxRate->id]]) !!}
+        <form method="POST" action="{{ route('taxRates.update', $taxRate->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'taxRates.store']) !!}
+        <form method="POST" action="{{ route('taxRates.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">

@@ -2,7 +2,8 @@
 
 @section('content')
 
-    {!! Form::open(['route' => 'import.upload', 'files' => true]) !!}
+    <form method="POST" action="{{ route('import.upload') }}" enctype="multipart/form-data">
+    @csrf
 
     <section class="content-header">
         <h1 class="pull-left">

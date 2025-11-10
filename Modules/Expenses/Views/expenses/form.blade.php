@@ -19,9 +19,12 @@
 @section('content')
 
     @if ($editMode == true)
-        {!! Form::model($expense, ['route' => ['expenses.update', $expense->id], 'files' => true]) !!}
+        <form method="POST" action="{{ route('expenses.update', $expense->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'expenses.store', 'files' => true]) !!}
+        <form method="POST" action="{{ route('expenses.store') }}" enctype="multipart/form-data">
+            @csrf
     @endif
 
     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">

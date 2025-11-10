@@ -2,10 +2,13 @@
 
 @section('content')
 
-    @if ($editMode)
-        {!! Form::model($client, ['route' => ['clients.update', $client->id]]) !!}
+    @if ($editMode == true)
+        <form method="POST" action="{{ route('clients.update', $client->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'clients.store']) !!}
+        <form method="POST" action="{{ route('clients.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">

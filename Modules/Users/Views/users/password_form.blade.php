@@ -8,7 +8,8 @@
       });
     </script>
 
-    {!! Form::open(['route' => ['users.password.update', $user->id]]) !!}
+    <form method="POST" action="{{ route('users.password.update', $user->id) }}">
+    @csrf
 
     <section class="content-header">
         <h1 class="pull-left">

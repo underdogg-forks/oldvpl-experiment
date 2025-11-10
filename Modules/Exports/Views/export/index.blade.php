@@ -21,7 +21,8 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab-clients" class="tab-pane active">
-                            {!! Form::open(['route' => ['export.export', 'Clients'], 'id' => 'client-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Clients') }}" id="client-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
@@ -31,7 +32,8 @@
                             </form>
                         </div>
                         <div id="tab-quotes" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Quotes'], 'id' => 'quote-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Quotes') }}" id="quote-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
@@ -41,7 +43,8 @@
                             </form>
                         </div>
                         <div id="tab-quote-items" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'QuoteItems'], 'id' => 'quote-item-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'QuoteItems') }}" id="quote-item-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
@@ -51,7 +54,8 @@
                             </form>
                         </div>
                         <div id="tab-invoices" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Invoices'], 'id' => 'invoice-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Invoices') }}" id="invoice-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
@@ -61,7 +65,8 @@
                             </form>
                         </div>
                         <div id="tab-invoice-items" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'InvoiceItems'], 'id' => 'invoice-item-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'InvoiceItems') }}" id="invoice-item-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
@@ -71,7 +76,8 @@
                             </form>
                         </div>
                         <div id="tab-payments" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Payments'], 'id' => 'payment-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Payments') }}" id="payment-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
@@ -81,7 +87,8 @@
                             </form>
                         </div>
                         <div id="tab-expenses" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Expenses'], 'id' => 'export-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Expenses') }}" id="export-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
                                 {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}

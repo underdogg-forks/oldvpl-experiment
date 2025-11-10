@@ -21,9 +21,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($user, ['route' => ['users.update', $user->id, 'admin']]) !!}
+        <form method="POST" action="{{ route('users.update', $user->id, 'admin') }}">
+    @csrf
+    @method('PUT')
     @else
-        {!! Form::open(['route' => ['users.store', 'admin']]) !!}
+        <form method="POST" action="{{ route('users.store', 'admin') }}">
+    @csrf
     @endif
 
     <section class="content-header">

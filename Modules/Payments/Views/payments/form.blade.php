@@ -10,9 +10,12 @@
 @section('content')
 
     @if ($editMode == true)
-        {!! Form::model($payment, ['route' => ['payments.update', $payment->id]]) !!}
+        <form method="POST" action="{{ route('payments.update', $payment->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'payments.store']) !!}
+        <form method="POST" action="{{ route('payments.store') }}">
+            @csrf
     @endif
 
     {!! Form::hidden('invoice_id') !!}

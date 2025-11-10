@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($customField, ['route' => ['customFields.update', $customField->id]]) !!}
+        <form method="POST" action="{{ route('customFields.update', $customField->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'customFields.store']) !!}
+        <form method="POST" action="{{ route('customFields.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">

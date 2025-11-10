@@ -22,7 +22,8 @@
                 </div>
                 <div class="card-body p-5">
 
-                    {!! Form::open() !!}
+                    <form method="POST">
+    @csrf
 
                     @include('layouts._alerts')
 

@@ -8,7 +8,8 @@
 
     <section class="content">
 
-        {!! Form::open(['route' => 'setup.postDbconfig', 'class' => 'form-install']) !!}
+        <form method="POST" action="{{ route('setup.postDbconfig') }}" class="form-install">
+    @csrf
 
         <div class="row">
             <div class="col-md-12">

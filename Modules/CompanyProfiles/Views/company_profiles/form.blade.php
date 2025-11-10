@@ -17,9 +17,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($companyProfile, ['route' => ['companyProfiles.update', $companyProfile->id], 'files' => true]) !!}
+        <form method="POST" action="{{ route('companyProfiles.update', $companyProfile->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'companyProfiles.store', 'files' => true]) !!}
+        <form method="POST" action="{{ route('companyProfiles.store') }}" enctype="multipart/form-data">
+            @csrf
     @endif
 
     <section class="content-header">

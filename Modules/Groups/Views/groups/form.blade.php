@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($group, ['route' => ['groups.update', $group->id]]) !!}
+        <form method="POST" action="{{ route('groups.update', $group->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'groups.store']) !!}
+        <form method="POST" action="{{ route('groups.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">

@@ -18,9 +18,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($user, ['route' => ['users.update', $user->id, 'client']]) !!}
+        <form method="POST" action="{{ route('users.update', $user->id, 'client') }}">
+    @csrf
+    @method('PUT')
     @else
-        {!! Form::open(['route' => ['users.store', 'client']]) !!}
+        <form method="POST" action="{{ route('users.store', 'client') }}">
+    @csrf
     @endif
 
     <section class="content-header">

@@ -8,7 +8,8 @@
 
     <section class="content">
 
-        {!! Form::open(['route' => 'setup.postAccount', 'class' => 'form-install']) !!}
+        <form method="POST" action="{{ route('setup.postAccount') }}" class="form-install">
+    @csrf
 
         <div class="row">
 

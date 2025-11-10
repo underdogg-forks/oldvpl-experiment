@@ -48,7 +48,7 @@
                         class="fa fa-trash"></i> @lang('ip.delete')</a>
 
             <div class="btn-group">
-                {!! Form::open(['method' => 'GET', 'id' => 'filter']) !!}
+                <form method="GET" id="filter">
                 {!! Form::select('company_profile', $companyProfiles, request('company_profile'), ['class' => 'expense_filter_options form-control inline']) !!}
                 {!! Form::select('status', $statuses, request('status'), ['class' => 'expense_filter_options form-control inline']) !!}
                 {!! Form::select('category', $categories, request('category'), ['class' => 'expense_filter_options form-control inline']) !!}
