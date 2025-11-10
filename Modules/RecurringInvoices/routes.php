@@ -3,21 +3,21 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
 use Modules\RecurringInvoices\Controllers\RecurringInvoiceController;
+use Modules\RecurringInvoices\Controllers\RecurringInvoiceCopyController;
 use Modules\RecurringInvoices\Controllers\RecurringInvoiceCreateController;
 use Modules\RecurringInvoices\Controllers\RecurringInvoiceEditController;
-use Modules\RecurringInvoices\Controllers\RecurringInvoiceRecalculateController;
-use Modules\RecurringInvoices\Controllers\RecurringInvoiceCopyController;
 use Modules\RecurringInvoices\Controllers\RecurringInvoiceItemController;
+use Modules\RecurringInvoices\Controllers\RecurringInvoiceRecalculateController;
 
 Route::group(['middleware' => ['web', 'auth.admin']], function () {
     Route::group(['prefix' => 'recurring_invoices'], function () {

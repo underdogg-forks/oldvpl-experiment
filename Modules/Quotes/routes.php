@@ -3,23 +3,23 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
 use Modules\Quotes\Controllers\QuoteController;
+use Modules\Quotes\Controllers\QuoteCopyController;
 use Modules\Quotes\Controllers\QuoteCreateController;
 use Modules\Quotes\Controllers\QuoteEditController;
-use Modules\Quotes\Controllers\QuoteRecalculateController;
-use Modules\Quotes\Controllers\QuoteCopyController;
-use Modules\Quotes\Controllers\QuoteToInvoiceController;
-use Modules\Quotes\Controllers\QuoteMailController;
 use Modules\Quotes\Controllers\QuoteItemController;
+use Modules\Quotes\Controllers\QuoteMailController;
+use Modules\Quotes\Controllers\QuoteRecalculateController;
+use Modules\Quotes\Controllers\QuoteToInvoiceController;
 
 Route::group(['middleware' => ['web', 'auth.admin']], function () {
     Route::group(['prefix' => 'quotes'], function () {

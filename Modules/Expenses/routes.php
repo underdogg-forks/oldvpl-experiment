@@ -1,9 +1,9 @@
 <?php
 
+use Modules\Expenses\Controllers\ExpenseBillController;
 use Modules\Expenses\Controllers\ExpenseController;
 use Modules\Expenses\Controllers\ExpenseCreateController;
 use Modules\Expenses\Controllers\ExpenseEditController;
-use Modules\Expenses\Controllers\ExpenseBillController;
 use Modules\Expenses\Controllers\ExpenseLookupController;
 
 Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'expenses'], function () {

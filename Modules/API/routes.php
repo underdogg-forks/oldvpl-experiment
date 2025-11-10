@@ -3,20 +3,20 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-use Modules\API\Controllers\ApiKeyController;
 use Modules\API\Controllers\ApiClientController;
-use Modules\API\Controllers\ApiQuoteController;
 use Modules\API\Controllers\ApiInvoiceController;
+use Modules\API\Controllers\ApiKeyController;
 use Modules\API\Controllers\ApiPaymentController;
+use Modules\API\Controllers\ApiQuoteController;
 
 Route::group(['prefix' => 'api', 'middleware' => 'web'], function () {
     Route::group(['middleware' => 'auth.admin'], function () {

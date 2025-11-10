@@ -3,21 +3,21 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
 use Modules\ClientCenter\Controllers\ClientCenterDashboardController;
+use Modules\ClientCenter\Controllers\ClientCenterInvoiceController;
+use Modules\ClientCenter\Controllers\ClientCenterPaymentController;
 use Modules\ClientCenter\Controllers\ClientCenterPublicInvoiceController;
 use Modules\ClientCenter\Controllers\ClientCenterPublicQuoteController;
-use Modules\ClientCenter\Controllers\ClientCenterInvoiceController;
 use Modules\ClientCenter\Controllers\ClientCenterQuoteController;
-use Modules\ClientCenter\Controllers\ClientCenterPaymentController;
 
 Route::group(['prefix' => 'client_center', 'middleware' => 'web'], function () {
     Route::get('/', [ClientCenterDashboardController::class, 'redirectToLogin']);
