@@ -8,3 +8,5 @@ yarn-error.log
 /public/storage
 /public/assets
 /public/mix-manifest.json
+.phpunit.cache/
+.phpunit.result.cache
