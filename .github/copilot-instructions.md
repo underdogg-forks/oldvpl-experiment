@@ -1,173 +1,143 @@
-# GitHub Copilot Instructions for InvoicePlane
+# Copilot Instructions for InvoicePlane
 
 ## Project Overview
 
-InvoicePlane is a self-hosted open source invoicing application built with Laravel 5.5. This is version 2.0.0 Alpha, based on FusionInvoice 2018-8.
+InvoicePlane is a self-hosted open source application for managing invoices, clients, and payments. This version (2.0.0 Alpha 1) is built on Laravel 5.5 and is the official successor of FusionInvoice.
 
-## Technology Stack
+**Technology Stack:**
+- **Backend:** PHP 7.0+ with Laravel 5.5 framework
+- **Frontend:** Bootstrap 4, jQuery, CoreUI
+- **Build Tools:** Composer (PHP dependencies), NPM (JavaScript dependencies), Grunt (asset compilation)
+- **Database:** MySQL (configured via Doctrine DBAL)
 
-- **Framework:** Laravel 5.5
-- **PHP Version:** >= 7.0.0
-- **Database:** MySQL/MariaDB
-- **Frontend Build:** Laravel Mix (Webpack)
-- **CSS Framework:** Bootstrap 4 + CoreUI
-- **JavaScript Libraries:** jQuery, jQuery UI, Moment.js
-
-## Code Style & Standards
+## Code Style Guidelines
 
 ### PHP
-- Follow PSR-2 coding standards
-- Use meaningful variable and function names
-- Add PHPDoc comments for classes and methods
-- Namespace: `IP\` for application code, `Addons\` for custom addons
+- Follow **PSR-1** and **PSR-2** standards for all PHP code
+- Use `$under_score` formatting for variables and functions, NOT `$camelCase`
+- Use short array syntax: `['item', 'item2']` instead of `array('item', 'item2')`
+- Code is checked using PHPCS with PSR-2 ruleset (see `phpcs.xml`)
 
 ### JavaScript
-- Use ES6+ syntax where possible
-- Keep global namespace clean
-- Use jQuery for DOM manipulation (existing codebase convention)
+- Follow Standard JavaScript Code Formatting (https://standardjs.com/)
+- **Use semicolons** (differs from standard)
+- Main scripts are located in the assets directory
 
-### CSS/SASS
-- Follow BEM naming convention for custom styles
-- Place custom styles in `resources/assets/sass/_custom.scss`
-- Use Bootstrap variables for consistency
+### CSS/Styles
+- Write styles in **Sass (SCSS syntax)**
+- Do NOT add vendor prefixes manually (autoprefixer handles this during compilation)
+- Core styles are managed in this repository
+- Theme-specific styles belong in the InvoicePlane-Themes repository
 
 ## Project Structure
 
 ```
-InvoicePlane/
-├── app/                      # Application code (namespace: IP\)
-│   ├── Http/                 # Controllers, Middleware, Requests
-│   ├── Events/               # Event classes
-│   ├── Composers/            # View composers
-│   └── Support/              # Helper classes
-├── config/                   # Configuration files
-├── database/                 # Migrations, seeds, factories
-├── public/                   # Document root (web server points here)
-│   ├── assets/               # Compiled assets (auto-generated)
-│   └── index.php             # Application entry point
-├── resources/
-│   ├── assets/               # Source assets (SASS, JS)
-│   │   ├── sass/             # SASS files
-│   │   └── js/               # JavaScript source files
-│   └── views/                # Blade templates
-├── custom/                   # Custom addons and overrides
-│   ├── addons/               # Custom addon modules
-│   └── overrides/            # Override core files
-├── storage/                  # Application storage (logs, cache, uploads)
-└── webpack.mix.js            # Laravel Mix configuration
+app/              - Application code (PSR-4: IP\)
+custom/addons/    - Custom addons (PSR-4: Addons\)
+assets/           - Source SCSS and JS files
+resources/        - Views and language files
+config/           - Laravel configuration files
+database/         - Migrations, seeds, and factories
+tests/            - PHPUnit tests (Feature and Unit)
+storage/          - Application storage (must be writable)
 ```
 
 ## Development Workflow
 
-### Asset Compilation
+### Installing Dependencies
 
-- **Source files:**
-  - SASS: `resources/assets/sass/`
-  - JavaScript: `resources/assets/js/`
+**PHP Dependencies:**
+```bash
+composer install
+```
 
-- **Build commands:**
-  - Development: `npm run dev`
-  - Production: `npm run production`
-  - Watch mode: `npm run watch`
+**JavaScript Dependencies:**
+```bash
+npm install
+```
 
-- **Output:** Compiled assets go to `public/assets/`
+### Building Assets
 
-### Adding Dependencies
+**Development mode** (with watch):
+```bash
+grunt dev
+```
 
-1. **JavaScript:** Add to `resources/assets/js/dependencies.js` and rebuild
-2. **PHP:** Use `composer require package/name`
-3. **CSS/SASS:** Import in appropriate SASS file
+**Production build** (minified):
+```bash
+grunt build
+```
 
-### Database Changes
+### Running Tests
 
-- Create migrations: `php artisan make:migration description`
-- Run migrations: `php artisan migrate`
-- Rollback: `php artisan migrate:rollback`
+**PHPUnit Tests:**
+```bash
+vendor/bin/phpunit
+```
 
-## Important Conventions
+**Code Style Check:**
+```bash
+vendor/bin/phpcs
+```
 
-### Views
-- Located in `resources/views/`
-- Use Blade templating engine
-- Naming: `controller.action.blade.php`
+### Environment Setup
 
-### Routes
-- Defined in `routes/web.php`
-- Use resourceful routing where appropriate
+1. Copy `.env.example` to `.env`
+2. Configure database credentials in `config/database.php` or `.env`
+3. Ensure `storage/` directory and subdirectories are writable
+4. Run application setup via `http://your-domain.com/index.php/setup`
 
-### Controllers
-- Located in `app/Http/Controllers/`
-- One controller per resource (recommended)
-- Return views or JSON responses
+## Contribution Guidelines
 
-### Models
-- Follow Laravel's Eloquent ORM conventions
-- Define relationships clearly
-- Use accessors and mutators for data transformation
+### Version Control
 
-### Events & Listeners
-- Events in `app/Events/`
-- Listeners in `app/Listeners/`
-- Register in `app/Providers/EventServiceProvider.php`
+- Uses **SemVer** (Semantic Versioning)
+- Bugfixes → minor versions (e.g., v1.5.6)
+- New features → feature versions (e.g., v1.6.0)
+- Development happens on version-specific branches (e.g., `v1.6.0`, `v2.0.0`)
+- Never commit directly to `master` branch
 
-## Custom Features
+### Before Contributing
 
-### Addons System
-- Custom addons go in `custom/addons/`
-- Use namespace `Addons\YourAddon\`
-- Follow PSR-4 autoloading
+1. Check the [issue tracker](https://development.invoiceplane.com) for existing issues
+2. Reference issue IDs in all commits (e.g., "IP-317: Fix invoice calculation")
+3. Rebase from the target branch before creating pull requests
+4. Ensure code follows style guidelines
+5. Run tests and linters before submitting
 
-### Overrides
-- File overrides in `custom/overrides/`
-- Avoid modifying core files directly
+## Key Dependencies
 
-### Multi-Company Support
-- Application supports multiple company profiles
-- Be mindful of company context in queries
+**Backend:**
+- Laravel Framework 5.5
+- Doctrine DBAL (database abstraction)
+- DomPDF (PDF generation)
+- Payment integrations: Stripe, PayPal, Mollie
+
+**Frontend:**
+- Bootstrap 4 & CoreUI
+- jQuery, jQuery UI
+- Chosen.js (select enhancement)
+- Bootstrap DatePicker
+- Moment.js (date handling)
 
 ## Testing
 
-- Run tests: `php artisan test` or `vendor/bin/phpunit`
-- Test location: `tests/`
-- Write tests for new features
+- Tests are in `tests/` directory
+- Two test suites: Feature and Unit
+- Configuration in `phpunit.xml`
+- Test environment uses array drivers for cache/session/queue
 
-## Security Considerations
+## Important Notes
 
-- Always validate and sanitize user input
-- Use Laravel's built-in CSRF protection
-- Use query builder or Eloquent to prevent SQL injection
-- Never expose sensitive configuration in version control
-
-## Common Tasks
-
-### Adding a New Feature
-1. Create migration for database changes
-2. Create/update models
-3. Create controller and routes
-4. Create views
-5. Add necessary assets
-6. Write tests
-7. Update documentation
-
-### Modifying Styles
-1. Edit SASS files in `resources/assets/sass/`
-2. Run `npm run dev` or `npm run watch`
-3. Test changes in browser
-
-### Debugging
-- Enable debug mode in `.env`: `APP_DEBUG=true`
-- Check logs in `storage/logs/`
-- Use Laravel Telescope (if installed) for deeper insights
-
-## Resources
-
-- [Laravel 5.5 Documentation](https://laravel.com/docs/5.5)
-- [Bootstrap 4 Documentation](https://getbootstrap.com/docs/4.1/)
-- [CoreUI Documentation](https://coreui.io/docs/)
-- [InvoicePlane Community](https://community.invoiceplane.com/)
+- This is an **alpha version** - expect breaking changes
+- The application requires a web server with PHP 7.0+
+- Ensure proper file permissions for `storage/` directory
+- Database configuration is in `config/database.php`
+- The application is based on FusionInvoice 2018-8
 
 ## Getting Help
 
-- Community Forums: https://community.invoiceplane.com/
-- Development Wiki: https://devwiki.invoiceplane.com/
-- Issue Tracker: https://development.invoiceplane.com/
+- [Official Wiki](https://wiki.invoiceplane.com/)
+- [Community Forums](https://community.invoiceplane.com/)
+- [Development Wiki](https://devwiki.invoiceplane.com/)
+- [Slack Channel](https://invoiceplane-slack.herokuapp.com/)
