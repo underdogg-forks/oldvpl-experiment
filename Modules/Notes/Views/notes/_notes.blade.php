@@ -32,8 +32,15 @@
       $(document).on('click', '.delete-note', function () {
         noteId = $(this).data('note-id');
         $('#note-' + noteId).hide();
-        $.post("{{ route('notes.delete') }}", {
-          id: noteId
+        $.ajax({
+          url: "{{ route('notes.delete') }}",
+          type: 'DELETE',
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          data: {
+            id: noteId
+          }
         });
       });
       @endif

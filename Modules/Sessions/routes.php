@@ -17,5 +17,5 @@ use Modules\Sessions\Controllers\SessionController;
 Route::group(['middleware' => 'web'], function () {
     Route::get('login', [SessionController::class, 'login'])->name('session.login');
     Route::post('login', [SessionController::class, 'attempt'])->name('session.attempt');
-    Route::get('logout', [SessionController::class, 'logout'])->name('session.logout');
+    Route::post('logout', [SessionController::class, 'logout'])->name('session.logout');
 });

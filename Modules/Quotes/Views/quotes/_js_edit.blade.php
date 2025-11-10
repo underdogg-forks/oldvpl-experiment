@@ -38,8 +38,15 @@
     $('.btn-delete-quote-item').click(function () {
       if (!confirm('{!! trans('ip.delete_record_warning') !!}')) return false;
       id = $(this).data('item-id');
-      $.post('{{ route('quote-item.delete') }}', {
-        id: id
+      $.ajax({
+        url: '{{ route('quote-item.delete') }}',
+        type: 'DELETE',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+          id: id
+        }
       }).done(function () {
         $('#tr-item-' + id).remove();
         $('#div-totals').load('{{ route('quoteEdit.refreshTotals') }}', {
