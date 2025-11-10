@@ -56,8 +56,11 @@
 
                         <div class="form-group">
                             <label>@lang('ip.payment_method')</label>
-                            {!! Form::select('payment_method_id', $paymentMethods, null, ['id' =>
-                            'payment_method_id', 'class' => 'form-control']) !!}
+                            <select name="payment_method_id" id="payment_method_id" class="form-control">
+    @foreach($paymentMethods as $key => $value)
+        <option value="{{ $key }}" {{ old('payment_method_id', $editMode ? $payment->payment_method_id : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">

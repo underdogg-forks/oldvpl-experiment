@@ -30,7 +30,11 @@
 
 <div class="form-group">
     <label>@lang('ip.dashboard_totals_option'): </label>
-    {!! Form::select('setting[widgetQuoteSummaryDashboardTotals]', $dashboardTotalOptions, config('fi.widgetQuoteSummaryDashboardTotals'), ['class' => 'form-control', 'id' => 'quote-dashboard-total-setting']) !!}
+    <select name="setting[widgetQuoteSummaryDashboardTotals]" id="quote-dashboard-total-setting" class="form-control">
+    @foreach($dashboardTotalOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[widgetQuoteSummaryDashboardTotals]', config('fi.widgetQuoteSummaryDashboardTotals') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="row" id="div-quote-dashboard-totals-date-range">

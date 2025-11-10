@@ -34,7 +34,11 @@
 
 <div class="form-group">
     <label>@lang('ip.email_send_method'): </label>
-    {!! Form::select('setting[mailDriver]', $emailSendMethods, config('fi.mailDriver'), ['id' => 'mailDriver', 'class' => 'form-control']) !!}
+    <select name="setting[mailDriver]" id="mailDriver" class="form-control">
+    @foreach($emailSendMethods as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[mailDriver]', config('fi.mailDriver') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="row smtp-option email-option">
@@ -67,13 +71,21 @@
     <div class="col-md-3">
         <div class="form-group smtp-option email-option">
             <label>@lang('ip.smtp_encryption'): </label>
-            {!! Form::select('setting[mailEncryption]', $emailEncryptions, config('fi.mailEncryption'), ['class' => 'form-control']) !!}
+            <select name="setting[mailEncryption]" class="form-control">
+    @foreach($emailEncryptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[mailEncryption]', config('fi.mailEncryption') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group smtp-option email-option">
             <label>@lang('ip.allow_self_signed_cert'): </label>
-            {!! Form::select('setting[mailAllowSelfSignedCertificate]', $yesNoArray, config('fi.mailAllowSelfSignedCertificate'), ['class' => 'form-control']) !!}
+            <select name="setting[mailAllowSelfSignedCertificate]" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[mailAllowSelfSignedCertificate]', config('fi.mailAllowSelfSignedCertificate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 </div>
@@ -89,7 +101,11 @@
     <div class="col-md-3">
         <div class="form-group smtp-option sendmail-option phpmail-option email-option">
             <label>@lang('ip.always_attach_pdf'): </label>
-            {!! Form::select('setting[attachPdf]', $yesNoArray, config('fi.attachPdf'), ['id' => 'attachPdf', 'class' => 'form-control']) !!}
+            <select name="setting[attachPdf]" id="attachPdf" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[attachPdf]', config('fi.attachPdf') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-3">

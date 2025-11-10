@@ -56,12 +56,20 @@
 
                         <div class="form-group">
                             <label class="">{{ trans('ip.tax_1') }}: </label>
-                            {!! Form::select('tax_rate_id', $taxRates, null, ['class' => 'form-control']) !!}
+                            <select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', $editMode ? $itemLookup->tax_rate_id : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">
                             <label class="">{{ trans('ip.tax_2') }}: </label>
-                            {!! Form::select('tax_rate_2_id', $taxRates, null, ['class' => 'form-control']) !!}
+                            <select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', $editMode ? $itemLookup->tax_rate_2_id : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                     </div>

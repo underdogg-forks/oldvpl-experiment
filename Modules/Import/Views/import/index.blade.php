@@ -31,7 +31,11 @@
 
                         <div class="form-group">
                             <label>@lang('ip.what_to_import')</label>
-                            {!! Form::select('import_type', $importTypes, null, ['class' => 'form-control']) !!}
+                            <select name="import_type" class="form-control">
+    @foreach($importTypes as $key => $value)
+        <option value="{{ $key }}" {{ old('import_type') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">

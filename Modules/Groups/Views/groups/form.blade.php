@@ -63,7 +63,11 @@
 
                         <div class="form-group">
                             <label>@lang('ip.reset_number'): </label>
-                            {!! Form::select('reset_number', $resetNumberOptions, null, ['id' => 'reset_number', 'class' => 'form-control']) !!}
+                            <select name="reset_number" id="reset_number" class="form-control">
+    @foreach($resetNumberOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('reset_number', $editMode ? $group->reset_number : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                     </div>

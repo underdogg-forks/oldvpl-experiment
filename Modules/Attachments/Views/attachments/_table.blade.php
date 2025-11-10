@@ -54,7 +54,11 @@
                 <td>
                     <div class="row">
                         <div class="col-md-4">
-                            {!! Form::select('', $object->attachment_permission_options, $attachment->client_visibility, ['class' => 'form-control client-visibility', 'data-attachment-id' => $attachment->id]) !!}
+                            <select name="" class="form-control client-visibility" data-attachment-id="{{ $attachment->id }}">
+    @foreach($object->attachment_permission_options as $opt_key => $opt_value)
+        <option value="{{ $opt_key }}" {{ $attachment->client_visibility == $opt_key ? 'selected' : '' }}>{{ $opt_value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
                 </td>

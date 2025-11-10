@@ -63,7 +63,11 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.company_profile'):</label>
-                                    {!! Form::select('company_profile_id', $companyProfiles, null, ['id' => 'company_profile_id', 'class' => 'form-control'])  !!}
+                                    <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +76,11 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.year'):</label>
-                                    {!! Form::select('year', $years, date('Y'), ['id' => 'year', 'class' => 'form-control']) !!}
+                                    <select name="year" id="year" class="form-control">
+    @foreach($years as $key => $value)
+        <option value="{{ $key }}" {{ old('year', date('Y') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>

@@ -20,7 +20,11 @@
         <div class="pull-right">
             <div class="btn-group">
                 <form method="GET" id="filter">
-                {!! Form::select('userType', $userTypes, request('userType'), ['class' => 'user_filter_options form-control inline']) !!}
+                <select name="userType" class="user_filter_options form-control inline">
+    @foreach($userTypes as $key => $value)
+        <option value="{{ $key }}" {{ old('userType', request('userType') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                 </form>
             </div>
 

@@ -3,7 +3,11 @@
     <div class="col-md-12">
         <div class="form-group">
             <label>@lang('ip.display_profile_image'): </label>
-            {!! Form::select('setting[displayProfileImage]', $yesNoArray, config('fi.displayProfileImage'), ['class' => 'form-control']) !!}
+            <select name="setting[displayProfileImage]" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[displayProfileImage]', config('fi.displayProfileImage') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -17,24 +21,31 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label>@lang('ip.enabled'): </label>
-                {!! Form::select('setting[widgetEnabled' . $widget . ']', $yesNoArray, config('fi.widgetEnabled' .
-                $widget), ['id' => 'widgetEnabled' . $widget, 'class' => 'form-control']) !!}
+                <select name="{{ setting[widgetEnabled" . $widget . "]" }}" id="{{ widgetEnabled" . $widget }}" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old(setting[widgetEnabled" . $widget . "]", config('fi.widgetEnabled' . $widget)) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label>@lang('ip.display_order'): </label>
-                {!! Form::select('setting[widgetDisplayOrder' . $widget . ']', $displayOrderArray,
-                config('fi.widgetDisplayOrder' . $widget),
-                ['id' => 'widgetDisplayOrder' . $widget, 'class' => 'form-control']) !!}
+                <select name="{{ setting[widgetDisplayOrder" . $widget . "]" }}" id="{{ widgetDisplayOrder" . $widget }}" class="form-control">
+    @foreach($displayOrderArray as $key => $value)
+        <option value="{{ $key }}" {{ old(setting[widgetDisplayOrder" . $widget . "]", config('fi.widgetDisplayOrder' . $widget)) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-group">
                 <label>@lang('ip.column_width'): </label>
-                {!! Form::select('setting[widgetColumnWidth' . $widget . ']', $colWidthArray,
-                config('fi.widgetColumnWidth' . $widget), ['id' => 'widgetColumnWidth' . $widget, 'class' =>
-                'form-control']) !!}
+                <select name="{{ setting[widgetColumnWidth" . $widget . "]" }}" id="{{ widgetColumnWidth" . $widget }}" class="form-control">
+    @foreach($colWidthArray as $key => $value)
+        <option value="{{ $key }}" {{ old(setting[widgetColumnWidth" . $widget . "]", config('fi.widgetColumnWidth' . $widget)) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
             </div>
         </div>
     </div>

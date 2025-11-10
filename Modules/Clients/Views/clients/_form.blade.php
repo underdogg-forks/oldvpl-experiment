@@ -37,7 +37,10 @@
     <div class="col-md-4" id="col-client-active">
         <div class="form-group">
             <label>@lang('ip.active'):</label>
-            {!! Form::select('active', ['0' => trans('ip.no'), '1' => trans('ip.yes')], ((isset($editMode) and $editMode) ? null : 1), ['id' => 'active', 'class' => 'form-control']) !!}
+            <select name="active" id="active" class="form-control">
+        <option value="0" {{ old('active', ((isset($editMode) == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('active', ((isset($editMode) == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
         </div>
     </div>
 </div>
@@ -108,13 +111,21 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_currency'): </label>
-            {!! Form::select('currency_code', $currencies, ((isset($client)) ? $client->currency_code : config('fi.baseCurrency')), ['id' => 'currency_code', 'class' => 'form-control']) !!}
+            <select name="currency_code" id="currency_code" class="form-control">
+    @foreach($currencies as $key => $value)
+        <option value="{{ $key }}" {{ old('currency_code', ((isset($client) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.language'): </label>
-            {!! Form::select('language', $languages, ((isset($client)) ? $client->language : config('fi.language')), ['id' => 'language', 'class' => 'form-control']) !!}
+            <select name="language" id="language" class="form-control">
+    @foreach($languages as $key => $value)
+        <option value="{{ $key }}" {{ old('language', ((isset($client) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 </div>

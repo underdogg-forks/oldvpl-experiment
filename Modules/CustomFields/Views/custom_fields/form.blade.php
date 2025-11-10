@@ -44,7 +44,11 @@
                             @if ($editMode == true)
                                 <input type="text" name="tbl_name" value="{{ old('tbl_name', $tableNames[$customField->tbl_name]) }}" id="tbl_name" class="form-control" readonly>
                             @else
-                                {!! Form::select('tbl_name', $tableNames, null, ['id' => 'tbl_name', 'class' => 'form-control']) !!}
+                                <select name="tbl_name" id="tbl_name" class="form-control">
+    @foreach($tableNames as $key => $value)
+        <option value="{{ $key }}" {{ old('tbl_name', $editMode ? $customField->tbl_name : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             @endif
                         </div>
 
@@ -55,7 +59,11 @@
 
                         <div class="form-group">
                             <label>@lang('ip.field_type'): </label>
-                            {!! Form::select('field_type', $fieldTypes, null, ['id' => 'field_type', 'class' => 'form-control']) !!}
+                            <select name="field_type" id="field_type" class="form-control">
+    @foreach($fieldTypes as $key => $value)
+        <option value="{{ $key }}" {{ old('field_type', $editMode ? $customField->field_type : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">

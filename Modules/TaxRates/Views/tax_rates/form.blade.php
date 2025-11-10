@@ -61,24 +61,30 @@
                         <div class="form-group">
                             <label>@lang('ip.calculate_as_vat_gst'):</label>
                             @if ($editMode and $taxRate->in_use)
-                                {!! Form::select('calculate_vat', ['0' => trans('ip.no'), '1' => trans('ip.yes')],
-                                null, ['class' => 'form-control', 'readonly' => 'readonly', 'disabled' =>
-                                'disabled']) !!}
+                                <select name="calculate_vat" class="form-control">
+        <option value="0" {{ old('calculate_vat', $editMode ? $taxRate->calculate_vat : '') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('calculate_vat', $editMode ? $taxRate->calculate_vat : '') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
                             @else
-                                {!! Form::select('calculate_vat', ['0' => trans('ip.no'), '1' => trans('ip.yes')],
-                                null, ['class' => 'form-control']) !!}
+                                <select name="calculate_vat" class="form-control">
+        <option value="0" {{ old('calculate_vat', $editMode ? $taxRate->calculate_vat : '') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('calculate_vat', $editMode ? $taxRate->calculate_vat : '') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
                             @endif
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.compound'):</label>
                             @if ($editMode and $taxRate->in_use)
-                                {!! Form::select('is_compound', ['0' => trans('ip.no'), '1' => trans('ip.yes')],
-                                null, ['class' => 'form-control', 'readonly' => 'readonly', 'disabled' =>
-                                'disabled']) !!}
+                                <select name="is_compound" class="form-control">
+        <option value="0" {{ old('is_compound', $editMode ? $taxRate->is_compound : '') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('is_compound', $editMode ? $taxRate->is_compound : '') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
                             @else
-                                {!! Form::select('is_compound', ['0' => trans('ip.no'), '1' => trans('ip.yes')],
-                                null, ['class' => 'form-control']) !!}
+                                <select name="is_compound" class="form-control">
+        <option value="0" {{ old('is_compound', $editMode ? $taxRate->is_compound : '') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('is_compound', $editMode ? $taxRate->is_compound : '') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
                             @endif
 
                             <span class="help-block">@lang('ip.compound_tax_note')</span>

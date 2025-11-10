@@ -27,7 +27,11 @@
                         <label class="col-sm-3 control-label">@lang('ip.group')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::select('group_id', $groups, config('fi.invoiceGroup'), ['id' => 'to_invoice_group_id', 'class' => 'form-control']) !!}
+                            <select name="group_id" id="to_invoice_group_id" class="form-control">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('group_id', config('fi.invoiceGroup') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 

@@ -132,13 +132,21 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('ip.default_invoice_template'):</label>
-                                    {!! Form::select('invoice_template', $invoiceTemplates, ((isset($companyProfile)) ? $companyProfile->invoice_template : config('fi.invoiceTemplate')), ['id' => 'invoice_template', 'class' => 'form-control']) !!}
+                                    <select name="invoice_template" id="invoice_template" class="form-control">
+    @foreach($invoiceTemplates as $key => $value)
+        <option value="{{ $key }}" {{ old('invoice_template', ((isset($companyProfile) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('ip.default_quote_template'):</label>
-                                    {!! Form::select('quote_template', $quoteTemplates, ((isset($companyProfile)) ? $companyProfile->quote_template : config('fi.quoteTemplate')), ['id' => 'invoice_template', 'class' => 'form-control']) !!}
+                                    <select name="quote_template" id="invoice_template" class="form-control">
+    @foreach($quoteTemplates as $key => $value)
+        <option value="{{ $key }}" {{ old('quote_template', ((isset($companyProfile) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>

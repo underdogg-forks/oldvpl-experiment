@@ -25,7 +25,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_clients')</button>
@@ -36,7 +40,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_quotes')</button>
@@ -47,7 +55,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_quote_items')</button>
@@ -58,7 +70,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_invoices')</button>
@@ -69,7 +85,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_invoice_items')</button>
@@ -80,7 +100,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_payments')</button>
@@ -91,7 +115,11 @@
     @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_expenses')</button>

@@ -3,14 +3,22 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_invoice_template'): </label>
-            {!! Form::select('setting[invoiceTemplate]', $invoiceTemplates, config('fi.invoiceTemplate'), ['class' => 'form-control']) !!}
+            <select name="setting[invoiceTemplate]" class="form-control">
+    @foreach($invoiceTemplates as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[invoiceTemplate]', config('fi.invoiceTemplate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_group'): </label>
-            {!! Form::select('setting[invoiceGroup]', $groups, config('fi.invoiceGroup'), ['class' => 'form-control']) !!}
+            <select name="setting[invoiceGroup]" class="form-control">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[invoiceGroup]', config('fi.invoiceGroup') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -24,7 +32,11 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_status_filter'): </label>
-            {!! Form::select('setting[invoiceStatusFilter]', $invoiceStatuses, config('fi.invoiceStatusFilter'), ['class' => 'form-control']) !!}
+            <select name="setting[invoiceStatusFilter]" class="form-control">
+    @foreach($invoiceStatuses as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[invoiceStatusFilter]', config('fi.invoiceStatusFilter') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -44,25 +56,39 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.automatic_email_on_recur'): </label>
-            {!! Form::select('setting[automaticEmailOnRecur]', ['0' => trans('ip.no'), '1' => trans('ip.yes')], config('fi.automaticEmailOnRecur'), ['class' => 'form-control']) !!}
+            <select name="setting[automaticEmailOnRecur]" class="form-control">
+        <option value="0" {{ old('setting[automaticEmailOnRecur]', config('fi.automaticEmailOnRecur') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('setting[automaticEmailOnRecur]', config('fi.automaticEmailOnRecur') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.automatic_email_payment_receipts'): </label>
-            {!! Form::select('setting[automaticEmailPaymentReceipts]', ['0' => trans('ip.no'), '1' => trans('ip.yes')], config('fi.automaticEmailPaymentReceipts'), ['class' => 'form-control']) !!}
+            <select name="setting[automaticEmailPaymentReceipts]" class="form-control">
+        <option value="0" {{ old('setting[automaticEmailPaymentReceipts]', config('fi.automaticEmailPaymentReceipts') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('setting[automaticEmailPaymentReceipts]', config('fi.automaticEmailPaymentReceipts') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.online_payment_method'): </label>
-            {!! Form::select('setting[onlinePaymentMethod]', $paymentMethods, config('fi.onlinePaymentMethod'), ['class' => 'form-control']) !!}
+            <select name="setting[onlinePaymentMethod]" class="form-control">
+    @foreach($paymentMethods as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[onlinePaymentMethod]', config('fi.onlinePaymentMethod') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.allow_payments_without_balance'): </label>
-            {!! Form::select('setting[allowPaymentsWithoutBalance]', $yesNoArray, config('fi.allowPaymentsWithoutBalance'), ['class' => 'form-control']) !!}
+            <select name="setting[allowPaymentsWithoutBalance]" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[allowPaymentsWithoutBalance]', config('fi.allowPaymentsWithoutBalance') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 </div>
@@ -71,7 +97,11 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.if_invoice_is_emailed_while_draft'): </label>
-            {!! Form::select('setting[resetInvoiceDateEmailDraft]', $invoiceWhenDraftOptions, config('fi.resetInvoiceDateEmailDraft'), ['class' => 'form-control']) !!}
+            <select name="setting[resetInvoiceDateEmailDraft]" class="form-control">
+    @foreach($invoiceWhenDraftOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[resetInvoiceDateEmailDraft]', config('fi.resetInvoiceDateEmailDraft') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-6"></div>

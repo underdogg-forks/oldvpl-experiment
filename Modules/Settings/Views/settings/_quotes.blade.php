@@ -3,14 +3,22 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_quote_template'): </label>
-            {!! Form::select('setting[quoteTemplate]', $quoteTemplates, config('fi.quoteTemplate'), ['class' => 'form-control']) !!}
+            <select name="setting[quoteTemplate]" class="form-control">
+    @foreach($quoteTemplates as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[quoteTemplate]', config('fi.quoteTemplate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_group'): </label>
-            {!! Form::select('setting[quoteGroup]', $groups, config('fi.quoteGroup'), ['class' => 'form-control']) !!}
+            <select name="setting[quoteGroup]" class="form-control">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[quoteGroup]', config('fi.quoteGroup') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -24,7 +32,11 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_status_filter'): </label>
-            {!! Form::select('setting[quoteStatusFilter]', $quoteStatuses, config('fi.quoteStatusFilter'), ['class' => 'form-control']) !!}
+            <select name="setting[quoteStatusFilter]" class="form-control">
+    @foreach($quoteStatuses as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[quoteStatusFilter]', config('fi.quoteStatusFilter') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -32,12 +44,20 @@
 
 <div class="form-group">
     <label>@lang('ip.convert_quote_when_approved'): </label>
-    {!! Form::select('setting[convertQuoteWhenApproved]', $yesNoArray, config('fi.convertQuoteWhenApproved'), ['class' => 'form-control']) !!}
+    <select name="setting[convertQuoteWhenApproved]" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[convertQuoteWhenApproved]', config('fi.convertQuoteWhenApproved') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="form-group">
     <label>@lang('ip.convert_quote_setting'): </label>
-    {!! Form::select('setting[convertQuoteTerms]', $convertQuoteOptions, config('fi.convertQuoteTerms'), ['class' => 'form-control']) !!}
+    <select name="setting[convertQuoteTerms]" class="form-control">
+    @foreach($convertQuoteOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[convertQuoteTerms]', config('fi.convertQuoteTerms') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="form-group">
@@ -54,7 +74,11 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.if_quote_is_emailed_while_draft'): </label>
-            {!! Form::select('setting[resetQuoteDateEmailDraft]', $quoteWhenDraftOptions, config('fi.resetQuoteDateEmailDraft'), ['class' => 'form-control']) !!}
+            <select name="setting[resetQuoteDateEmailDraft]" class="form-control">
+    @foreach($quoteWhenDraftOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[resetQuoteDateEmailDraft]', config('fi.resetQuoteDateEmailDraft') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-6"></div>

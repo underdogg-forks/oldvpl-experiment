@@ -68,7 +68,11 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.company_profile'):</label>
-                                    {!! Form::select('company_profile_id', $companyProfiles, null, ['id' => 'company_profile_id', 'class' => 'form-control'])  !!}
+                                    <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +92,10 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.exclude_unpaid_invoices'):</label>
-                                    {!! Form::select('exclude_unpaid_invoices', ['0' => trans('ip.no'), '1' => trans('ip.yes')], null, ['id' => 'exclude_unpaid_invoices', 'class' => 'form-control'])  !!}
+                                    <select name="exclude_unpaid_invoices" id="exclude_unpaid_invoices" class="form-control">
+        <option value="0" {{ old('exclude_unpaid_invoices') == '0' ? 'selected' : '' }}>{{ trans('ip.no') }}</option>
+        <option value="1" {{ old('exclude_unpaid_invoices') == '1' ? 'selected' : '' }}>{{ trans('ip.yes') }}</option>
+    </select>
                                 </div>
                             </div>
                         </div>

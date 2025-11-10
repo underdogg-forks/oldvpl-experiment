@@ -56,7 +56,11 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>* @lang('ip.company_profile'): </label>
-                                    {!! Form::select('company_profile_id', $companyProfiles, (($editMode) ? $expense->company_profile_id : config('fi.defaultCompanyProfile')), ['id' => 'company_profile_id', 'class' => 'form-control']) !!}
+                                    <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id', (($editMode) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
 

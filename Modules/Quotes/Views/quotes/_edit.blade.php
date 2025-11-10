@@ -150,8 +150,16 @@
                                     <td><textarea name="description" class="form-control" rows="1">{{ old('description') }}</textarea></td>
                                     <td><input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control"></td>
                                     <td><input type="text" name="price" value="{{ old('price') }}" class="form-control"></td>
-                                    <td>{!! Form::select('tax_rate_id', $taxRates, config('fi.itemTaxRate'), ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::select('tax_rate_2_id', $taxRates, config('fi.itemTax2Rate'), ['class' => 'form-control']) !!}</td>
+                                    <td><select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', config('fi.itemTaxRate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
+                                    <td><select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', config('fi.itemTax2Rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -165,8 +173,16 @@
                                         <td><textarea name="description" class="form-control" rows="1">{{ old('description', $item->description) }}</textarea></td>
                                         <td><input type="text" name="quantity" value="{{ old('quantity', $item->formatted_quantity) }}" class="form-control"></td>
                                         <td><input type="text" name="price" value="{{ old('price', $item->formatted_numeric_price) }}" class="form-control"></td>
-                                        <td>{!! Form::select('tax_rate_id', $taxRates, $item->tax_rate_id, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::select('tax_rate_2_id', $taxRates, $item->tax_rate_2_id, ['class' => 'form-control']) !!}</td>
+                                        <td><select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', $item->tax_rate_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
+                                        <td><select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', $item->tax_rate_2_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
                                         <td style="text-align: right; padding-right: 25px;">{{ $item->amount->formatted_subtotal }}</td>
                                         <td>
                                             <a class="btn btn-xs btn-default btn-delete-quote-item"
@@ -284,8 +300,11 @@
 
                     <div class="form-group">
                         <label>@lang('ip.currency')</label>
-                        {!! Form::select('currency_code', $currencies, $quote->currency_code, ['id' =>
-                        'currency_code', 'class' => 'form-control input-sm']) !!}
+                        <select name="currency_code" id="currency_code" class="form-control input-sm">
+    @foreach($currencies as $key => $value)
+        <option value="{{ $key }}" {{ old('currency_code', $quote->currency_code) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                     <div class="form-group">
@@ -303,14 +322,20 @@
 
                     <div class="form-group">
                         <label>@lang('ip.status')</label>
-                        {!! Form::select('quote_status_id', $statuses, $quote->quote_status_id,
-                        ['id' => 'quote_status_id', 'class' => 'form-control input-sm']) !!}
+                        <select name="quote_status_id" id="quote_status_id" class="form-control input-sm">
+    @foreach($statuses as $key => $value)
+        <option value="{{ $key }}" {{ old('quote_status_id', $quote->quote_status_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.template')</label>
-                        {!! Form::select('template', $templates, $quote->template,
-                        ['id' => 'template', 'class' => 'form-control input-sm']) !!}
+                        <select name="template" id="template" class="form-control input-sm">
+    @foreach($templates as $key => $value)
+        <option value="{{ $key }}" {{ old('template', $quote->template) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                 </div>

@@ -46,7 +46,11 @@
                     @if ($invoices)
                         <div class="form-group">
                             <label class="control-label">* @lang('ip.label_invoice'):</label>
-                            {!! Form::select('invoice_id', $invoices, null, ['id' => 'invoice_id', 'class' => 'form-control']) !!}
+                            <select name="invoice_id" id="invoice_id" class="form-control">
+    @foreach($invoices as $key => $value)
+        <option value="{{ $key }}" {{ old('invoice_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">

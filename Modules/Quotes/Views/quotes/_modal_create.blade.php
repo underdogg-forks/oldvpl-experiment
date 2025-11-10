@@ -38,8 +38,11 @@
                         <label class="col-sm-3 control-label">@lang('ip.company_profile')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::select('company_profile_id', $companyProfiles, config('fi.defaultCompanyProfile'),
-                            ['id' => 'company_profile_id', 'class' => 'form-control']) !!}
+                            <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id', config('fi.defaultCompanyProfile') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 
@@ -47,7 +50,11 @@
                         <label class="col-sm-3 control-label">@lang('ip.group')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::select('group_id', $groups, config('fi.quoteGroup'), ['id' => 'create_group_id', 'class' => 'form-control']) !!}
+                            <select name="group_id" id="create_group_id" class="form-control">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('group_id', config('fi.quoteGroup') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 

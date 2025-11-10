@@ -51,7 +51,9 @@
                         @if (!$editMode)
                             <div class="form-group">
                                 <label>@lang('ip.client'):</label>
-                                {!! Form::select('client_id', ['' => ''] + $clients, null, ['class' => 'form-control', 'id' => 'client_id']) !!}
+                                <select name="client_id" id="client_id" class="form-control">
+        <option value="" {{ old('client_id', $editMode ? $user->client_id : '') == '' ? 'selected' : '' }}></option>
+    </select>
                             </div>
                         @endif
 
