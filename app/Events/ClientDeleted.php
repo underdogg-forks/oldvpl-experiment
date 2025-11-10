@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Clients\Models\Client;
+use Modules\Clients\Models\Client;
 use Illuminate\Queue\SerializesModels;
 
 class ClientDeleted extends Event

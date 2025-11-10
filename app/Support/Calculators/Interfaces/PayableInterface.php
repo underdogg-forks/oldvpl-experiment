@@ -12,7 +12,7 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Support\Calculators\Interfaces;
+namespace App\Support\Calculators\Interfaces;
 
 interface PayableInterface
 {

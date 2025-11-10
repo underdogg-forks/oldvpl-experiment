@@ -171,7 +171,7 @@ return [
         /*
          * Application Service Providers...
          */
-        IP\Providers\AppServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
 
     ],
 

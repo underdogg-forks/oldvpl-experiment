@@ -12,7 +12,7 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Support\Statuses;
+namespace App\Support\Statuses;
 
 abstract class AbstractStatuses
 {

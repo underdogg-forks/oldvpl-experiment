@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\CompanyProfileCreated;
-use IP\Modules\CustomFields\Models\CompanyProfileCustom;
+use App\Events\CompanyProfileCreated;
+use Modules\CustomFields\Models\CompanyProfileCustom;
 
 class CompanyProfileCreatedListener
 {

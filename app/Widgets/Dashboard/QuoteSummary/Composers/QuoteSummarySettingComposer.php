@@ -1,6 +1,6 @@
 <?php
 
-namespace IP\Widgets\Dashboard\QuoteSummary\Composers;
+namespace App\Widgets\Dashboard\QuoteSummary\Composers;
 
 class QuoteSummarySettingComposer
 {

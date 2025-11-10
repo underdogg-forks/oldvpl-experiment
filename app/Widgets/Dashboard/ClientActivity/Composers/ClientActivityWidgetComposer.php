@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Widgets\Dashboard\ClientActivity\Composers;
+namespace App\Widgets\Dashboard\ClientActivity\Composers;
 
-use IP\Modules\Activity\Models\Activity;
+use Modules\Activity\Models\Activity;
 
 class ClientActivityWidgetComposer
 {

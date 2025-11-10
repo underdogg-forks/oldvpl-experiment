@@ -1,11 +1,11 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\InvoiceDeleted;
-use IP\Modules\Expenses\Models\Expense;
-use IP\Modules\Groups\Models\Group;
-use IP\Modules\Quotes\Models\Quote;
+use App\Events\InvoiceDeleted;
+use Modules\Expenses\Models\Expense;
+use Modules\Groups\Models\Group;
+use Modules\Quotes\Models\Quote;
 
 class InvoiceDeletedListener
 {

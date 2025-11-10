@@ -12,10 +12,10 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Support;
+namespace App\Support;
 
-use IP\Events\InvoiceHTMLCreating;
-use IP\Events\QuoteHTMLCreating;
+use App\Events\InvoiceHTMLCreating;
+use App\Events\QuoteHTMLCreating;
 
 class HTML
 {

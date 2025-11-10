@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\RecurringInvoiceItemSaving;
-use IP\Modules\RecurringInvoices\Models\RecurringInvoiceItem;
+use App\Events\RecurringInvoiceItemSaving;
+use Modules\RecurringInvoices\Models\RecurringInvoiceItem;
 
 class RecurringInvoiceItemSavingListener
 {

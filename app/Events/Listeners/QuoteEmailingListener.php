@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\QuoteEmailing;
-use IP\Support\DateFormatter;
+use App\Events\QuoteEmailing;
+use App\Support\DateFormatter;
 
 class QuoteEmailingListener
 {

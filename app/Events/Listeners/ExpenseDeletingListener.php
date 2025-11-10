@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\ExpenseDeleting;
+use App\Events\ExpenseDeleting;
 
 class ExpenseDeletingListener
 {

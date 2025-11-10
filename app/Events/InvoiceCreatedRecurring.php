@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Invoices\Models\Invoice;
-use IP\Modules\RecurringInvoices\Models\RecurringInvoice;
+use Modules\Invoices\Models\Invoice;
+use Modules\RecurringInvoices\Models\RecurringInvoice;
 use Illuminate\Queue\SerializesModels;
 
 class InvoiceCreatedRecurring extends Event

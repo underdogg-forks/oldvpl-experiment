@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Widgets\Dashboard\QuoteSummary\Composers;
+namespace App\Widgets\Dashboard\QuoteSummary\Composers;
 
-use IP\Modules\Quotes\Models\QuoteAmount;
-use IP\Support\CurrencyFormatter;
+use Modules\Quotes\Models\QuoteAmount;
+use App\Support\CurrencyFormatter;
 use Illuminate\Support\Facades\DB;
 
 class QuoteSummaryWidgetComposer

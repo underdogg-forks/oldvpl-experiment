@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Widgets\Dashboard\InvoiceSummary\Controllers;
+namespace App\Widgets\Dashboard\InvoiceSummary\Controllers;
 
-use IP\Http\Controllers\Controller;
-use IP\Modules\Settings\Models\Setting;
+use App\Http\Controllers\Controller;
+use Modules\Settings\Models\Setting;
 
 class WidgetController extends Controller
 {

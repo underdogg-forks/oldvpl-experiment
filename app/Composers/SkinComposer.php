@@ -12,7 +12,7 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Composers;
+namespace App\Composers;
 
 class SkinComposer
 {

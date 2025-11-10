@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\ExpenseCreated;
-use IP\Modules\CustomFields\Models\ExpenseCustom;
+use App\Events\ExpenseCreated;
+use Modules\CustomFields\Models\ExpenseCustom;
 
 class ExpenseCreatedListener
 {

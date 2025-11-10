@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\PaymentCreating;
+use App\Events\PaymentCreating;
 
 class PaymentCreatingListener
 {

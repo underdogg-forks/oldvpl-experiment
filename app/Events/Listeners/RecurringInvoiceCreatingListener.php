@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\RecurringInvoiceCreating;
-use IP\Modules\Currencies\Support\CurrencyConverterFactory;
+use App\Events\RecurringInvoiceCreating;
+use Modules\Currencies\Support\CurrencyConverterFactory;
 
 class RecurringInvoiceCreatingListener
 {

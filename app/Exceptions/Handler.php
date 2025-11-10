@@ -1,16 +1,16 @@
 <?php
 
-namespace IP\Exceptions;
+namespace App\Exceptions;
 
-use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
      *
-     * @var array
+     * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
         //
@@ -19,39 +19,41 @@ class Handler extends ExceptionHandler
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $dontFlash = [
+        'current_password',
         'password',
         'password_confirmation',
     ];
 
     /**
-     * Report or log an exception.
+     * Register the exception handling callbacks for the application.
      *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function register(): void
     {
-        parent::report($exception);
+        $this->reportable(function (Throwable $e) {
+            //
+        });
     }
 
     /**
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \Exception               $exception
-     * @return \Illuminate\Http\Response
+     * @param  \Throwable $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $e)
     {
-        if ($exception instanceof \Illuminate\Database\QueryException) {
-            return response()->json(['exception' => $exception->getMessage()]);
+        if ($e instanceof \Illuminate\Database\QueryException) {
+            return response()->json(['exception' => $e->getMessage()]);
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }

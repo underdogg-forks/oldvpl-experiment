@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use IP\Modules\Currencies\Models\Currency;
-use IP\Modules\PaymentMethods\Models\PaymentMethod;
-use IP\Modules\Settings\Models\Setting;
+use Modules\Currencies\Models\Currency;
+use Modules\PaymentMethods\Models\PaymentMethod;
+use Modules\Settings\Models\Setting;
 
 /**
  * Migration for Version 2.0.0-Alpha.2

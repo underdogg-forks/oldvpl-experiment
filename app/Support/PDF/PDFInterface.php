@@ -12,7 +12,7 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Support\PDF;
+namespace App\Support\PDF;
 
 interface PDFInterface
 {

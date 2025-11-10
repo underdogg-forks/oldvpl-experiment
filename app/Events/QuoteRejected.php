@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Quotes\Models\Quote;
+use Modules\Quotes\Models\Quote;
 use Illuminate\Queue\SerializesModels;
 
 class QuoteRejected extends Event

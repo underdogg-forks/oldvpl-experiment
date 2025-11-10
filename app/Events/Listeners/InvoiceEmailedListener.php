@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\InvoiceEmailed;
-use IP\Support\Statuses\InvoiceStatuses;
+use App\Events\InvoiceEmailed;
+use App\Support\Statuses\InvoiceStatuses;
 
 class InvoiceEmailedListener
 {

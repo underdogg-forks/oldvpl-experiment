@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\QuoteEmailed;
-use IP\Support\Statuses\QuoteStatuses;
+use App\Events\QuoteEmailed;
+use App\Support\Statuses\QuoteStatuses;
 
 class QuoteEmailedListener
 {

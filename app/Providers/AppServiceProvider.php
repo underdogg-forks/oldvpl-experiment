@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Providers;
+namespace App\Providers;
 
-use IP\Support\Directory;
+use App\Support\Directory;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
@@ -47,11 +47,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->view->addLocation(base_path('custom/templates'));
         $this->app->view->addLocation(storage_path());
 
-        $this->app->register('IP\Providers\AddonServiceProvider');
-        $this->app->register('IP\Providers\ComposerServiceProvider');
-        $this->app->register('IP\Providers\ConfigServiceProvider');
-        $this->app->register('IP\Providers\DashboardWidgetServiceProvider');
-        $this->app->register('IP\Providers\EventServiceProvider');
+        $this->app->register('App\Providers\AddonServiceProvider');
+        $this->app->register('App\Providers\ComposerServiceProvider');
+        $this->app->register('App\Providers\ConfigServiceProvider');
+        $this->app->register('App\Providers\DashboardWidgetServiceProvider');
+        $this->app->register('App\Providers\EventServiceProvider');
         // $this->app->register('Collective\Html\HtmlServiceProvider');
     }
 
@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->booting(function () {
             $loader = AliasLoader::getInstance();
-            $loader->alias('Sortable', 'IP\Traits\Sortable');
+            $loader->alias('Sortable', 'App\Traits\Sortable');
         });
     }
 }

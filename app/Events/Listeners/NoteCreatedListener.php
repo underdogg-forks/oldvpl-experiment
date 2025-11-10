@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\NoteCreated;
-use IP\Modules\MailQueue\Support\MailQueue;
+use App\Events\NoteCreated;
+use Modules\MailQueue\Support\MailQueue;
 
 class NoteCreatedListener
 {

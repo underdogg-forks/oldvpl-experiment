@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Invoices\Models\InvoiceItem;
+use Modules\Invoices\Models\InvoiceItem;
 use Illuminate\Queue\SerializesModels;
 
 class InvoiceItemSaving extends Event

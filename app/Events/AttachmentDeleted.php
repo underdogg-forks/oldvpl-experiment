@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Attachments\Models\Attachment;
+use Modules\Attachments\Models\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class AttachmentDeleted extends Event

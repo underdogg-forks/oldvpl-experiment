@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\ClientCreated;
-use IP\Modules\CustomFields\Models\ClientCustom;
+use App\Events\ClientCreated;
+use Modules\CustomFields\Models\ClientCustom;
 
 class ClientCreatedListener
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\CompanyProfiles\Models\CompanyProfile;
+use Modules\CompanyProfiles\Models\CompanyProfile;
 use Illuminate\Queue\SerializesModels;
 
 class CompanyProfileCreating extends Event
