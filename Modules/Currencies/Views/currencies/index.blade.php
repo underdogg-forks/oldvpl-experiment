@@ -58,7 +58,7 @@
                                                 <li><a href="{{ route('currencies.edit', [$currency->id]) }}"><i
                                                                 class="fa fa-edit"></i> @lang('ip.edit')</a></li>
                                                 <li>
-                                                    <a href="#" onclick="event.preventDefault(); if(confirm('@lang('ip.delete_record_warning')')) { document.getElementById('delete-form-{{ $currency->id }}').submit(); }">
+                                                    <a href="#" onclick="event.preventDefault(); if(confirm({{ json_encode(trans('ip.delete_record_warning')) }})) { document.getElementById('delete-form-{{ $currency->id }}').submit(); }">
                                                         <i class="fa fa-trash-o"></i> @lang('ip.delete')
                                                     </a>
                                                     <form id="delete-form-{{ $currency->id }}" action="{{ route('currencies.delete', [$currency->id]) }}" method="POST" style="display: none;">
