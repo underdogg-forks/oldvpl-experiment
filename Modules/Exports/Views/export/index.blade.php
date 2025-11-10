@@ -28,7 +28,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_clients')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-quotes" class="tab-pane">
                             {!! Form::open(['route' => ['export.export', 'Quotes'], 'id' => 'quote-export-form', 'target' => '_blank']) !!}
@@ -38,7 +38,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_quotes')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-quote-items" class="tab-pane">
                             {!! Form::open(['route' => ['export.export', 'QuoteItems'], 'id' => 'quote-item-export-form', 'target' => '_blank']) !!}
@@ -48,7 +48,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_quote_items')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-invoices" class="tab-pane">
                             {!! Form::open(['route' => ['export.export', 'Invoices'], 'id' => 'invoice-export-form', 'target' => '_blank']) !!}
@@ -58,7 +58,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_invoices')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-invoice-items" class="tab-pane">
                             {!! Form::open(['route' => ['export.export', 'InvoiceItems'], 'id' => 'invoice-item-export-form', 'target' => '_blank']) !!}
@@ -68,7 +68,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_invoice_items')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-payments" class="tab-pane">
                             {!! Form::open(['route' => ['export.export', 'Payments'], 'id' => 'payment-export-form', 'target' => '_blank']) !!}
@@ -78,7 +78,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_payments')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-expenses" class="tab-pane">
                             {!! Form::open(['route' => ['export.export', 'Expenses'], 'id' => 'export-export-form', 'target' => '_blank']) !!}
@@ -88,7 +88,7 @@
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_expenses')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -78,7 +78,7 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 
     <section class="content">
         @include('notes._notes', ['object' => $payment, 'model' => 'Modules\Payments\Models\Payment', 'showPrivateCheckbox' => true])

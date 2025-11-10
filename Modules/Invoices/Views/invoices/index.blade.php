@@ -31,7 +31,7 @@
                 {!! Form::open(['method' => 'GET', 'id' => 'filter']) !!}
                 {!! Form::select('company_profile', $companyProfiles, request('company_profile'), ['class' => 'invoice_filter_options form-control inline']) !!}
                 {!! Form::select('status', $statuses, request('status'), ['class' => 'invoice_filter_options form-control inline']) !!}
-                {!! Form::close() !!}
+                </form>
             </div>
             <a href="javascript:void(0)" class="btn btn-primary create-invoice"><i
                         class="fa fa-plus"></i> @lang('ip.new')</a>

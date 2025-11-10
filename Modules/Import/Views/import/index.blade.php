@@ -52,5 +52,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

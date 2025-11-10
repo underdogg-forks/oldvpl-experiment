@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($currency, ['route' => ['currencies.update', $currency->id]]) !!}
+        <form method="POST" action="{{ route('currencies.update', $currency->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'currencies.store']) !!}
+        <form method="POST" action="{{ route('currencies.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">
@@ -38,7 +41,7 @@
 
                         <div class="form-group">
                             <label>@lang('ip.name'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $editMode ? $currency->name : '') }}">
                             <p class="help-block">@lang('ip.help_currency_name')</p>
                         </div>
 
@@ -47,11 +50,9 @@
                                 <div class="form-group">
                                     <label>@lang('ip.code'): </label>
                                     @if ($editMode and $currency->in_use)
-                                        {!! Form::text('code', null, ['id' => 'code', 'class' => 'form-control',
-                                        'readonly' => 'readonly']) !!}
+                                        <input type="text" name="code" id="code" class="form-control" value="{{ old('code', $currency->code) }}" readonly>
                                     @else
-                                        {!! Form::text('code', null, ['id' => 'code', 'class' => 'form-control'])
-                                        !!}
+                                        <input type="text" name="code" id="code" class="form-control" value="{{ old('code', $editMode ? $currency->code : '') }}">
                                     @endif
 
                                     <p class="help-block">@lang('ip.help_currency_code')</p>
@@ -60,16 +61,17 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('ip.symbol'): </label>
-                                    {!! Form::text('symbol', null, ['id' => 'symbol', 'class' => 'form-control'])
-                                    !!}
+                                    <input type="text" name="symbol" id="symbol" class="form-control" value="{{ old('symbol', $editMode ? $currency->symbol : '') }}">
                                     <p class="help-block">@lang('ip.help_currency_symbol')</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('ip.symbol_placement'): </label>
-                                    {!! Form::select('placement', ['before' => trans('ip.before_amount'), 'after'
-                                    => trans('ip.after_amount')], null, ['class' => 'form-control']) !!}
+                                    <select name="placement" class="form-control">
+                                        <option value="before" {{ old('placement', $editMode ? $currency->placement : '') == 'before' ? 'selected' : '' }}>{{ trans('ip.before_amount') }}</option>
+                                        <option value="after" {{ old('placement', $editMode ? $currency->placement : '') == 'after' ? 'selected' : '' }}>{{ trans('ip.after_amount') }}</option>
+                                    </select>
                                     <p class="help-block">@lang('ip.help_currency_symbol_placement')</p>
                                 </div>
                             </div>
@@ -79,15 +81,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('ip.decimal_point'): </label>
-                                    {!! Form::text('decimal', null, ['id' => 'decimal', 'class' => 'form-control'])
-                                    !!}
+                                    <input type="text" name="decimal" id="decimal" class="form-control" value="{{ old('decimal', $editMode ? $currency->decimal : '') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('ip.thousands_separator'): </label>
-                                    {!! Form::text('thousands', null, ['id' => 'thousands', 'class' =>
-                                    'form-control']) !!}
+                                    <input type="text" name="thousands" id="thousands" class="form-control" value="{{ old('thousands', $editMode ? $currency->thousands : '') }}">
                                 </div>
                             </div>
                         </div>
@@ -102,5 +102,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop
