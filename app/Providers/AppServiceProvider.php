@@ -52,7 +52,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register('App\Providers\ConfigServiceProvider');
         $this->app->register('App\Providers\DashboardWidgetServiceProvider');
         $this->app->register('App\Providers\EventServiceProvider');
-        // $this->app->register('Collective\Html\HtmlServiceProvider');
     }
 
     /**

@@ -14,7 +14,6 @@
 
 namespace App\Support;
 
-use Collective\Html\FormFacade;
 use Modules\Clients\Models\Client;
 
 class Contacts
@@ -31,9 +30,16 @@ class Contacts
     public function contactDropdownTo()
     {
         $allContacts = $this->getAllContacts();
-        $selectedContacts = $this->getSelectedContactsTo();
+        $selectedContacts = $this->getSelectedContactsTo()->toArray();
 
-        return FormFacade::select('to', $allContacts, $selectedContacts, ['id' => 'to', 'multiple' => 'multiple', 'class' => 'form-control']);
+        $html = '<select name="to" id="to" multiple class="form-control">';
+        foreach ($allContacts as $email => $label) {
+            $selected = in_array($email, $selectedContacts) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($email) . '"' . $selected . '>' . htmlspecialchars($label) . '</option>';
+        }
+        $html .= '</select>';
+        
+        return $html;
     }
 
     private function getAllContacts()
@@ -72,7 +78,14 @@ class Contacts
         $allContacts = $this->getAllContacts();
         $selectedContacts = $this->getSelectedContactsCc();
 
-        return FormFacade::select('cc', $allContacts, $selectedContacts, ['id' => 'cc', 'multiple' => 'multiple', 'class' => 'form-control']);
+        $html = '<select name="cc" id="cc" multiple class="form-control">';
+        foreach ($allContacts as $email => $label) {
+            $selected = in_array($email, $selectedContacts) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($email) . '"' . $selected . '>' . htmlspecialchars($label) . '</option>';
+        }
+        $html .= '</select>';
+        
+        return $html;
     }
 
     public function getSelectedContactsCc()
@@ -94,7 +107,14 @@ class Contacts
         $allContacts = $this->getAllContacts();
         $selectedContacts = $this->getSelectedContactsBcc();
 
-        return FormFacade::select('bcc', $allContacts, $selectedContacts, ['id' => 'bcc', 'multiple' => 'multiple', 'class' => 'form-control']);
+        $html = '<select name="bcc" id="bcc" multiple class="form-control">';
+        foreach ($allContacts as $email => $label) {
+            $selected = in_array($email, $selectedContacts) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($email) . '"' . $selected . '>' . htmlspecialchars($label) . '</option>';
+        }
+        $html .= '</select>';
+        
+        return $html;
     }
 
     public function getSelectedContactsBcc()

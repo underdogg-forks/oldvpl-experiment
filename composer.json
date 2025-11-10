@@ -12,7 +12,6 @@
         "ifsnop/mysqldump-php": "^2.12",
         "knplabs/knp-snappy": "^1.4",
         "laravel/framework": "^10.0",
-        "laravelcollective/html": "^6.4",
         "mollie/mollie-api-php": "^2.0",
         "paypal/paypal-checkout-sdk": "^1.0",
         "sonata-project/exporter": "^3.0",
