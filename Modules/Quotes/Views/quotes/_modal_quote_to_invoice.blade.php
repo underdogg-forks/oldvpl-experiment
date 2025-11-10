@@ -19,7 +19,7 @@
                         <label class="col-sm-3 control-label">@lang('ip.date')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::text('invoice_date', $invoice_date, ['id' => 'to_invoice_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="invoice_date" value="{{ old('invoice_date', $invoice_date) }}" id="to_invoice_date" class="form-control">
                         </div>
                     </div>
 

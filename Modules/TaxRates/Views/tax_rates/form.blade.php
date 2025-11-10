@@ -45,17 +45,15 @@
 
                         <div class="form-group">
                             <label>@lang('ip.tax_rate_name'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" value="{{ old('name', $editMode ? $taxRate->name : '') }}" id="name" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.tax_rate_percent'): </label>
                             @if ($editMode and $taxRate->in_use)
-                                {!! Form::text('percent', (($editMode) ? $taxRate->formatted_numeric_percent : null),
-                                ['id' => 'percent', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                <input type="text" name="percent" value="{{ old('percent', (($editMode) }}" id="percent" class="form-control" readonly>
                             @else
-                                {!! Form::text('percent', (($editMode) ? $taxRate->formatted_numeric_percent : null),
-                                ['id' => 'percent', 'class' => 'form-control']) !!}
+                                <input type="text" name="percent" value="{{ old('percent', (($editMode) }}" id="percent" class="form-control">
                             @endif
 
                         </div>

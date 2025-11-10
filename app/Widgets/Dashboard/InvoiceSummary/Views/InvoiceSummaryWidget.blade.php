@@ -116,12 +116,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-                        {!! Form::text('setting_widgetInvoiceSummaryDashboardTotalsFromDate', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-from-date']) !!}
+                        <input type="text" name="setting_widgetInvoiceSummaryDashboardTotalsFromDate" value="{{ old('setting_widgetInvoiceSummaryDashboardTotalsFromDate', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate') }}" id="invoice-dashboard-total-setting-from-date" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-                        {!! Form::text('setting_widgetInvoiceSummaryDashboardTotalsToDate', config('fi.widgetInvoiceSummaryDashboardTotalsToDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-to-date']) !!}
+                        <input type="text" name="setting_widgetInvoiceSummaryDashboardTotalsToDate" value="{{ old('setting_widgetInvoiceSummaryDashboardTotalsToDate', config('fi.widgetInvoiceSummaryDashboardTotalsToDate') }}" id="invoice-dashboard-total-setting-to-date" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">

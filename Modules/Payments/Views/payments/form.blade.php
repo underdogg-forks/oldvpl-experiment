@@ -18,7 +18,7 @@
             @csrf
     @endif
 
-    {!! Form::hidden('invoice_id') !!}
+    <input type="hidden" name="invoice_id" value="{{ old('invoice_id') }}">
 
     <section class="content-header">
         <h1 class="pull-left">
@@ -27,7 +27,7 @@
 
         <div class="pull-right">
             <a href="{{ route('payments.index') }}" class="btn btn-default">Cancel</a>
-            {!! Form::submit(trans('ip.save'), ['class' => 'btn btn-primary']) !!}
+            <button type="submit" class="btn btn-primary">{{ trans('ip.save' }}</button>
         </div>
         <div class="clearfix"></div>
     </section>
@@ -46,14 +46,12 @@
 
                         <div class="form-group">
                             <label>@lang('ip.amount'): </label>
-                            {!! Form::text('amount', $payment->formatted_numeric_amount, ['id' => 'amount',
-                            'class' => 'form-control']) !!}
+                            <input type="text" name="amount" value="{{ old('amount', $payment->formatted_numeric_amount) }}" id="amount" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.payment_date'): </label>
-                            {!! Form::text('paid_at', $payment->formatted_paid_at, ['id' => 'paid_at', 'class'
-                            => 'form-control']) !!}
+                            <input type="text" name="paid_at" value="{{ old('paid_at', $payment->formatted_paid_at) }}" id="paid_at" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -64,7 +62,7 @@
 
                         <div class="form-group">
                             <label>@lang('ip.note')</label>
-                            {!! Form::textarea('note', null, ['id' => 'note', 'class' => 'form-control']) !!}
+                            <textarea name="note" id="note" class="form-control">{{ old('note', $editMode ? $payment->note : '') }}</textarea>
                         </div>
 
                         @if ($customFields->count())

@@ -36,10 +36,10 @@
 <div class="row" id="div-quote-dashboard-totals-date-range">
     <div class="col-md-2">
         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-        {!! Form::text('setting[widgetQuoteSummaryDashboardTotalsFromDate]', config('fi.widgetQuoteSummaryDashboardTotalsFromDate'), ['class' => 'form-control', 'id' => 'quote-dashboard-total-setting-from-date']) !!}
+        <input type="text" name="setting[widgetQuoteSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetQuoteSummaryDashboardTotalsFromDate]', config('fi.widgetQuoteSummaryDashboardTotalsFromDate') }}" id="quote-dashboard-total-setting-from-date" class="form-control">
     </div>
     <div class="col-md-2">
         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-        {!! Form::text('setting[widgetQuoteSummaryDashboardTotalsToDate]', config('fi.widgetQuoteSummaryDashboardTotalsToDate'), ['class' => 'form-control', 'id' => 'quote-dashboard-total-setting-to-date']) !!}
+        <input type="text" name="setting[widgetQuoteSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetQuoteSummaryDashboardTotalsToDate]', config('fi.widgetQuoteSummaryDashboardTotalsToDate') }}" id="quote-dashboard-total-setting-to-date" class="form-control">
     </div>
 </div>

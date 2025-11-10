@@ -114,12 +114,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-                        {!! Form::text('setting_widgetQuoteSummaryDashboardTotalsFromDate', config('fi.widgetQuoteSummaryDashboardTotalsFromDate'), ['class' => 'form-control', 'id' => 'quote-dashboard-total-setting-from-date']) !!}
+                        <input type="text" name="setting_widgetQuoteSummaryDashboardTotalsFromDate" value="{{ old('setting_widgetQuoteSummaryDashboardTotalsFromDate', config('fi.widgetQuoteSummaryDashboardTotalsFromDate') }}" id="quote-dashboard-total-setting-from-date" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-                        {!! Form::text('setting_widgetQuoteSummaryDashboardTotalsToDate', config('fi.widgetQuoteSummaryDashboardTotalsToDate'), ['class' => 'form-control', 'id' => 'quote-dashboard-total-setting-to-date']) !!}
+                        <input type="text" name="setting_widgetQuoteSummaryDashboardTotalsToDate" value="{{ old('setting_widgetQuoteSummaryDashboardTotalsToDate', config('fi.widgetQuoteSummaryDashboardTotalsToDate') }}" id="quote-dashboard-total-setting-to-date" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">

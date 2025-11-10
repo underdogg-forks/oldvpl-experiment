@@ -11,7 +11,7 @@
         </h1>
         <div class="pull-right">
             @if (!config('app.demo'))
-                {!! Form::submit(trans('ip.submit'), ['class' => 'btn btn-primary']) !!}
+                <button type="submit" class="btn btn-primary">{{ trans('ip.submit' }}</button>
             @endif
         </div>
         <div class="clearfix"></div>
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label>@lang('ip.select_file_to_import')</label>
                             @if (!config('app.demo'))
-                                {!! Form::file('import_file') !!}
+                                <input type="file" name="import_file">
                             @else
                                 Imports are disabled in the demo.
                             @endif

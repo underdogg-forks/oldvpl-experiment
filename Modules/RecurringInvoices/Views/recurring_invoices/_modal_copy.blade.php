@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.client')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('client_name', $recurringInvoice->client->unique_name, ['id' => 'copy_client_name', 'class' => 'form-control client-lookup', 'autocomplete' => 'off']) !!}
+                            <input type="text" name="client_name" value="{{ old('client_name', $recurringInvoice->client->unique_name) }}" id="copy_client_name" class="form-control client-lookup" autocomplete="off">
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.start_date')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('next_date', date(config('fi.dateFormat')), ['id' => 'copy_next_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="next_date" value="{{ old('next_date', date(config('fi.dateFormat') }}" id="copy_next_date" class="form-control">
                         </div>
                     </div>
 
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.stop_date')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('stop_date', null, ['id' => 'copy_stop_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="stop_date" value="{{ old('stop_date') }}" id="copy_stop_date" class="form-control">
                         </div>
                     </div>
 

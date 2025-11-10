@@ -40,21 +40,21 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.subject')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('subject', $subject, ['id' => 'subject', 'class' => 'form-control']) !!}
+                            <input type="text" name="subject" value="{{ old('subject', $subject) }}" id="subject" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.body')</label>
                         <div class="col-sm-9">
-                            {!! Form::textarea('body', $body, ['id' => 'body', 'class' => 'form-control']) !!}
+                            <textarea name="body" id="body" class="form-control">{{ old('body', $body) }}</textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.attach_pdf')</label>
                         <div class="col-sm-9">
-                            {!! Form::checkbox('attach_pdf', 1, config('fi.attachPdf'), ['id' => 'attach_pdf']) !!}
+                            <input type="checkbox" name="attach_pdf" value="1" {{ old('attach_pdf', config('fi.attachPdf') ? 'checked' : '' }} id="attach_pdf">
                         </div>
                     </div>
 

@@ -36,10 +36,10 @@
 <div class="row" id="div-invoice-dashboard-totals-date-range">
     <div class="col-md-2">
         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-        {!! Form::text('setting[widgetInvoiceSummaryDashboardTotalsFromDate]', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-from-date']) !!}
+        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsFromDate]', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate') }}" id="invoice-dashboard-total-setting-from-date" class="form-control">
     </div>
     <div class="col-md-2">
         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-        {!! Form::text('setting[widgetInvoiceSummaryDashboardTotalsToDate]', config('fi.widgetInvoiceSummaryDashboardTotalsToDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-to-date']) !!}
+        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsToDate]', config('fi.widgetInvoiceSummaryDashboardTotalsToDate') }}" id="invoice-dashboard-total-setting-to-date" class="form-control">
     </div>
 </div>

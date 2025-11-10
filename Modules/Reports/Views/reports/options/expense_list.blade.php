@@ -77,9 +77,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.date_range'):</label>
-                                    {!! Form::hidden('from_date', null, ['id' => 'from_date']) !!}
-                                    {!! Form::hidden('to_date', null, ['id' => 'to_date']) !!}
-                                    {!! Form::text('date_range', null, ['id' => 'date_range', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="hidden" name="from_date" value="" id="from_date">
+                                    <input type="hidden" name="to_date" value="" id="to_date">
+                                    <input type="text" name="date_range" value="{{ old('date_range') }}" id="date_range" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>

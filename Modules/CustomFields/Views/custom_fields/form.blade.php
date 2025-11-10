@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label>@lang('ip.table_name'): </label>
                             @if ($editMode == true)
-                                {!! Form::text('tbl_name', $tableNames[$customField->tbl_name], ['id' => 'tbl_name', 'readonly' => 'readonly', 'class' => 'form-control']) !!}
+                                <input type="text" name="tbl_name" value="{{ old('tbl_name', $tableNames[$customField->tbl_name]) }}" id="tbl_name" class="form-control" readonly>
                             @else
                                 {!! Form::select('tbl_name', $tableNames, null, ['id' => 'tbl_name', 'class' => 'form-control']) !!}
                             @endif
@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <label>@lang('ip.field_label'): </label>
-                            {!! Form::text('field_label', null, ['id' => 'field_label', 'class' => 'form-control']) !!}
+                            <input type="text" name="field_label" value="{{ old('field_label', $editMode ? $customField->field_label : '') }}" id="field_label" class="form-control">
                         </div>
 
                         <div class="form-group">
@@ -60,7 +60,7 @@
 
                         <div class="form-group">
                             <label>@lang('ip.field_meta'): </label>
-                            {!! Form::text('field_meta', null, ['id' => 'field_meta', 'class' => 'form-control']) !!}
+                            <input type="text" name="field_meta" value="{{ old('field_meta', $editMode ? $customField->field_meta : '') }}" id="field_meta" class="form-control">
                             <span class="help-block">@lang('ip.field_meta_description')</span>
                         </div>
 

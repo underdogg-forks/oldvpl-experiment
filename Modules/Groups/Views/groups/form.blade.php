@@ -41,23 +41,23 @@
 
                         <div class="form-group">
                             <label>@lang('ip.name'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" value="{{ old('name', $editMode ? $group->name : '') }}" id="name" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.format'): </label>
-                            {!! Form::text('format', null, ['id' => 'format', 'class' => 'form-control']) !!}
+                            <input type="text" name="format" value="{{ old('format', $editMode ? $group->format : '') }}" id="format" class="form-control">
                             <span class="help-block">@lang('ip.available_fields'): {NUMBER} {YEAR} {MONTH} {MONTHSHORTNAME} {WEEK}</span>
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.next_number'): </label>
-                            {!! Form::text('next_id', isset($group->next_id) ? $group->next_id : 1, ['id' => 'next_id', 'class' => 'form-control']) !!}
+                            <input type="text" name="next_id" value="{{ old('next_id', isset($group->next_id) }}" id="next_id" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.left_pad'): </label>
-                            {!! Form::text('left_pad', isset($group->left_pad) ? $group->left_pad : 0, ['id' => 'left_pad', 'class' => 'form-control']) !!}
+                            <input type="text" name="left_pad" value="{{ old('left_pad', isset($group->left_pad) }}" id="left_pad" class="form-control">
                             <span class="help-block">@lang('ip.left_pad_description')</span>
                         </div>
 

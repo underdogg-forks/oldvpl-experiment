@@ -89,7 +89,7 @@
                             <h3 class="box-title">@lang('ip.summary')</h3>
                         </div>
                         <div class="box-body">
-                            {!! Form::text('summary', $quote->summary, ['id' => 'summary', 'class' => 'form-control']) !!}
+                            <input type="text" name="summary" value="{{ old('summary', $quote->summary) }}" id="summary" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -142,14 +142,14 @@
                                 <tr id="new-item" style="display: none;">
                                     <td>
                                         <input type="hidden" name="quote_id" value="{{ $quote->id }}">
-                                        {!! Form::hidden('id', '') !!}
-                                        {!! Form::text('name', null, ['class' => 'form-control']) !!}<br>
+                                        <input type="hidden" name="id" value="">
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control"><br>
                                         <label><input type="checkbox" name="save_item_as_lookup"
                                                       tabindex="999"> @lang('ip.save_item_as_lookup')</label>
                                     </td>
-                                    <td>{!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 1]) !!}</td>
-                                    <td>{!! Form::text('quantity', null, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::text('price', null, ['class' => 'form-control']) !!}</td>
+                                    <td><textarea name="description" class="form-control" rows="1">{{ old('description') }}</textarea></td>
+                                    <td><input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control"></td>
+                                    <td><input type="text" name="price" value="{{ old('price') }}" class="form-control"></td>
                                     <td>{!! Form::select('tax_rate_id', $taxRates, config('fi.itemTaxRate'), ['class' => 'form-control']) !!}</td>
                                     <td>{!! Form::select('tax_rate_2_id', $taxRates, config('fi.itemTax2Rate'), ['class' => 'form-control']) !!}</td>
                                     <td></td>
@@ -160,11 +160,11 @@
                                         <td>
                                             <input type="hidden" name="quote_id" value="{{ $quote->id }}">
                                             <input type="hidden" name="id" value="{{ $item->id }}">
-                                            {!! Form::text('name', $item->name, ['class' => 'form-control item-lookup']) !!}
+                                            <input type="text" name="name" value="{{ old('name', $item->name) }}" class="form-control item-lookup">
                                         </td>
-                                        <td>{!! Form::textarea('description', $item->description, ['class' => 'form-control', 'rows' => 1]) !!}</td>
-                                        <td>{!! Form::text('quantity', $item->formatted_quantity, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::text('price', $item->formatted_numeric_price, ['class' => 'form-control']) !!}</td>
+                                        <td><textarea name="description" class="form-control" rows="1">{{ old('description', $item->description) }}</textarea></td>
+                                        <td><input type="text" name="quantity" value="{{ old('quantity', $item->formatted_quantity) }}" class="form-control"></td>
+                                        <td><input type="text" name="price" value="{{ old('price', $item->formatted_numeric_price) }}" class="form-control"></td>
                                         <td>{!! Form::select('tax_rate_id', $taxRates, $item->tax_rate_id, ['class' => 'form-control']) !!}</td>
                                         <td>{!! Form::select('tax_rate_2_id', $taxRates, $item->tax_rate_2_id, ['class' => 'form-control']) !!}</td>
                                         <td style="text-align: right; padding-right: 25px;">{{ $item->amount->formatted_subtotal }}</td>
@@ -202,14 +202,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>@lang('ip.terms_and_conditions')</label>
-                                            {!! Form::textarea('terms', $quote->terms, ['id' => 'terms', 'class' => 'form-control', 'rows' => 5]) !!}
+                                            <textarea name="terms" id="terms" class="form-control" rows="5">{{ old('terms', $quote->terms) }}</textarea>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>@lang('ip.footer')</label>
-                                            {!! Form::textarea('footer', $quote->footer, ['id' => 'footer', 'class' => 'form-control', 'rows' => 5]) !!}
+                                            <textarea name="footer" id="footer" class="form-control" rows="5">{{ old('footer', $quote->footer) }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -260,28 +260,24 @@
 
                     <div class="form-group">
                         <label>@lang('ip.quote') #</label>
-                        {!! Form::text('number', $quote->number, ['id' => 'number', 'class' =>
-                        'form-control
-                        input-sm']) !!}
+                        <input type="text" name="number" value="{{ old('number', $quote->number) }}" id="number" class="form-control
+                        input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.date')</label>
-                        {!! Form::text('quote_date', $quote->formatted_quote_date, ['id' =>
-                        'quote_date', 'class' => 'form-control input-sm']) !!}
+                        <input type="text" name="quote_date" value="{{ old('quote_date', $quote->formatted_quote_date) }}" id="quote_date" class="form-control input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.expires')</label>
-                        {!! Form::text('expires_at', $quote->formatted_expires_at, ['id' => 'expires_at', 'class'
-                        => 'form-control input-sm']) !!}
+                        <input type="text" name="expires_at" value="{{ old('expires_at', $quote->formatted_expires_at) }}" id="expires_at" class="form-control input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.discount')</label>
                         <div class="input-group">
-                            {!! Form::text('discount', $quote->formatted_numeric_discount, ['id' =>
-                            'discount', 'class' => 'form-control input-sm']) !!}
+                            <input type="text" name="discount" value="{{ old('discount', $quote->formatted_numeric_discount) }}" id="discount" class="form-control input-sm">
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
@@ -295,8 +291,7 @@
                     <div class="form-group">
                         <label>@lang('ip.exchange_rate')</label>
                         <div class="input-group">
-                            {!! Form::text('exchange_rate', $quote->exchange_rate, ['id' =>
-                            'exchange_rate', 'class' => 'form-control input-sm']) !!}
+                            <input type="text" name="exchange_rate" value="{{ old('exchange_rate', $quote->exchange_rate) }}" id="exchange_rate" class="form-control input-sm">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm" id="btn-update-exchange-rate" type="button"
                                         data-toggle="tooltip" data-placement="left"

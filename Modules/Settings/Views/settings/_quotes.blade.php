@@ -17,7 +17,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.quotes_expire_after'): </label>
-            {!! Form::text('setting[quotesExpireAfter]', config('fi.quotesExpireAfter'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[quotesExpireAfter]" value="{{ old('setting[quotesExpireAfter]', config('fi.quotesExpireAfter') }}" class="form-control">
         </div>
     </div>
 
@@ -42,12 +42,12 @@
 
 <div class="form-group">
     <label>@lang('ip.default_terms'): </label>
-    {!! Form::textarea('setting[quoteTerms]', config('fi.quoteTerms'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[quoteTerms]" class="form-control" rows="5">{{ old('setting[quoteTerms]', config('fi.quoteTerms') }}</textarea>
 </div>
 
 <div class="form-group">
     <label>@lang('ip.default_footer'): </label>
-    {!! Form::textarea('setting[quoteFooter]', config('fi.quoteFooter'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[quoteFooter]" class="form-control" rows="5">{{ old('setting[quoteFooter]', config('fi.quoteFooter') }}</textarea>
 </div>
 
 <div class="row">

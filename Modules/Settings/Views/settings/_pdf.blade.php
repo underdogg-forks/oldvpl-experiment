@@ -49,5 +49,5 @@
 
 <div class="form-group wkhtmltopdf-option">
     <label>@lang('ip.binary_path'): </label>
-    {!! Form::text('setting[pdfBinaryPath]', config('fi.pdfBinaryPath'), ['class' => 'form-control']) !!}
+    <input type="text" name="setting[pdfBinaryPath]" value="{{ old('setting[pdfBinaryPath]', config('fi.pdfBinaryPath') }}" class="form-control">
 </div>

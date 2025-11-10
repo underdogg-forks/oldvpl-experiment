@@ -41,13 +41,13 @@
     <div class="col-md-9">
         <div class="form-group smtp-option email-option">
             <label>@lang('ip.smtp_host_address'): </label>
-            {!! Form::text('setting[mailHost]', config('fi.mailHost'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[mailHost]" value="{{ old('setting[mailHost]', config('fi.mailHost') }}" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group smtp-option email-option">
             <label>@lang('ip.smtp_host_port'): </label>
-            {!! Form::text('setting[mailPort]', config('fi.mailPort'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[mailPort]" value="{{ old('setting[mailPort]', config('fi.mailPort') }}" class="form-control">
         </div>
     </div>
 </div>
@@ -55,13 +55,13 @@
     <div class="col-md-3">
         <div class="form-group smtp-option email-option">
             <label>@lang('ip.smtp_username'): </label>
-            {!! Form::text('setting[mailUsername]', config('fi.mailUsername'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[mailUsername]" value="{{ old('setting[mailUsername]', config('fi.mailUsername') }}" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group smtp-option email-option">
             <label>@lang('ip.smtp_password'): </label>
-            {!! Form::password('setting[mailPassword]', ['id' => 'mailPassword', 'class' => 'form-control']) !!}
+            <input type="password" name="setting[mailPassword]" id="mailPassword" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
@@ -81,7 +81,7 @@
 <div class="form-group sendmail-option email-option">
     <div class="form-group">
         <label>@lang('ip.sendmail_path'): </label>
-        {!! Form::text('setting[mailSendmail]', config('fi.mailSendmail'), ['class' => 'form-control']) !!}
+        <input type="text" name="setting[mailSendmail]" value="{{ old('setting[mailSendmail]', config('fi.mailSendmail') }}" class="form-control">
     </div>
 </div>
 
@@ -95,19 +95,19 @@
     <div class="col-md-3">
         <div class="form-group smtp-option sendmail-option phpmail-option email-option">
             <label>@lang('ip.reply_to_address'): </label>
-            {!! Form::text('setting[mailReplyToAddress]', config('fi.mailReplyToAddress'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[mailReplyToAddress]" value="{{ old('setting[mailReplyToAddress]', config('fi.mailReplyToAddress') }}" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group smtp-option sendmail-option phpmail-option email-option">
             <label>@lang('ip.always_cc'): </label>
-            {!! Form::text('setting[mailDefaultCc]', config('fi.mailDefaultCc'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[mailDefaultCc]" value="{{ old('setting[mailDefaultCc]', config('fi.mailDefaultCc') }}" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group smtp-option sendmail-option phpmail-option email-option">
             <label>@lang('ip.always_bcc'): </label>
-            {!! Form::text('setting[mailDefaultBcc]', config('fi.mailDefaultBcc'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[mailDefaultBcc]" value="{{ old('setting[mailDefaultBcc]', config('fi.mailDefaultBcc') }}" class="form-control">
         </div>
     </div>
 </div>
@@ -116,7 +116,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.quote_email_subject'): </label>
-            {!! Form::text('setting[quoteEmailSubject]', config('fi.quoteEmailSubject'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[quoteEmailSubject]" value="{{ old('setting[quoteEmailSubject]', config('fi.quoteEmailSubject') }}" class="form-control">
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#quote-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -125,7 +125,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.invoice_email_subject'): </label>
-            {!! Form::text('setting[invoiceEmailSubject]', config('fi.invoiceEmailSubject'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[invoiceEmailSubject]" value="{{ old('setting[invoiceEmailSubject]', config('fi.invoiceEmailSubject') }}" class="form-control">
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#invoice-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -137,7 +137,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.default_quote_email_body'): </label>
-            {!! Form::textarea('setting[quoteEmailBody]', config('fi.quoteEmailBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[quoteEmailBody]" class="form-control" rows="5">{{ old('setting[quoteEmailBody]', config('fi.quoteEmailBody') }}</textarea>
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#quote-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -146,7 +146,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.default_invoice_email_body'): </label>
-            {!! Form::textarea('setting[invoiceEmailBody]', config('fi.invoiceEmailBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[invoiceEmailBody]" class="form-control" rows="5">{{ old('setting[invoiceEmailBody]', config('fi.invoiceEmailBody') }}</textarea>
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#invoice-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -158,7 +158,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.overdue_email_subject'): </label>
-            {!! Form::text('setting[overdueInvoiceEmailSubject]', config('fi.overdueInvoiceEmailSubject'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[overdueInvoiceEmailSubject]" value="{{ old('setting[overdueInvoiceEmailSubject]', config('fi.overdueInvoiceEmailSubject') }}" class="form-control">
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#invoice-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -167,7 +167,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.upcoming_payment_notice_email_subject'): </label>
-            {!! Form::text('setting[upcomingPaymentNoticeEmailSubject]', config('fi.upcomingPaymentNoticeEmailSubject'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[upcomingPaymentNoticeEmailSubject]" value="{{ old('setting[upcomingPaymentNoticeEmailSubject]', config('fi.upcomingPaymentNoticeEmailSubject') }}" class="form-control">
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#invoice-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -179,7 +179,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.default_overdue_invoice_email_body'): </label>
-            {!! Form::textarea('setting[overdueInvoiceEmailBody]', config('fi.overdueInvoiceEmailBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[overdueInvoiceEmailBody]" class="form-control" rows="5">{{ old('setting[overdueInvoiceEmailBody]', config('fi.overdueInvoiceEmailBody') }}</textarea>
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#invoice-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -188,7 +188,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.upcoming_payment_notice_email_body'): </label>
-            {!! Form::textarea('setting[upcomingPaymentNoticeEmailBody]', config('fi.upcomingPaymentNoticeEmailBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[upcomingPaymentNoticeEmailBody]" class="form-control" rows="5">{{ old('setting[upcomingPaymentNoticeEmailBody]', config('fi.upcomingPaymentNoticeEmailBody') }}</textarea>
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#invoice-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -200,14 +200,14 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.overdue_invoice_reminder_frequency'): </label>
-            {!! Form::text('setting[overdueInvoiceReminderFrequency]', config('fi.overdueInvoiceReminderFrequency'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[overdueInvoiceReminderFrequency]" value="{{ old('setting[overdueInvoiceReminderFrequency]', config('fi.overdueInvoiceReminderFrequency') }}" class="form-control">
             <span class="help-block">@lang('ip.overdue_invoice_reminder_frequency_help')</span>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.upcoming_payment_notice_frequency'): </label>
-            {!! Form::text('setting[upcomingPaymentNoticeFrequency]', config('fi.upcomingPaymentNoticeFrequency'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[upcomingPaymentNoticeFrequency]" value="{{ old('setting[upcomingPaymentNoticeFrequency]', config('fi.upcomingPaymentNoticeFrequency') }}" class="form-control">
             <span class="help-block">@lang('ip.upcoming_payment_notice_frequency_help')</span>
         </div>
     </div>
@@ -217,7 +217,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.quote_approved_email_body'): </label>
-            {!! Form::textarea('setting[quoteApprovedEmailBody]', config('fi.quoteApprovedEmailBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[quoteApprovedEmailBody]" class="form-control" rows="5">{{ old('setting[quoteApprovedEmailBody]', config('fi.quoteApprovedEmailBody') }}</textarea>
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#quote-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -226,7 +226,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.quote_rejected_email_body'): </label>
-            {!! Form::textarea('setting[quoteRejectedEmailBody]', config('fi.quoteRejectedEmailBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[quoteRejectedEmailBody]" class="form-control" rows="5">{{ old('setting[quoteRejectedEmailBody]', config('fi.quoteRejectedEmailBody') }}</textarea>
             <span class="help-block"><a
                         href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#quote-email-template"
                         target="_blank">@lang('ip.available_fields')</a></span>
@@ -236,7 +236,7 @@
 
 <div class="form-group">
     <label>@lang('ip.payment_receipt_email_subject'): </label>
-    {!! Form::text('setting[paymentReceiptEmailSubject]', config('fi.paymentReceiptEmailSubject'), ['class' => 'form-control']) !!}
+    <input type="text" name="setting[paymentReceiptEmailSubject]" value="{{ old('setting[paymentReceiptEmailSubject]', config('fi.paymentReceiptEmailSubject') }}" class="form-control">
     <span class="help-block"><a
                 href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#payment-receipt-email-template"
                 target="_blank">@lang('ip.available_fields')</a></span>
@@ -244,7 +244,7 @@
 
 <div class="form-group">
     <label>@lang('ip.default_payment_receipt_body'): </label>
-    {!! Form::textarea('setting[paymentReceiptBody]', config('fi.paymentReceiptBody'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[paymentReceiptBody]" class="form-control" rows="5">{{ old('setting[paymentReceiptBody]', config('fi.paymentReceiptBody') }}</textarea>
     <span class="help-block"><a
                 href="https://wiki.invoiceplane.com/en/2.0/customization/email-templates#payment-receipt-email-template"
                 target="_blank">@lang('ip.available_fields')</a></span>

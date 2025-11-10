@@ -30,7 +30,7 @@
             @lang('ip.company_profile_form')
         </h1>
         <div class="pull-right">
-            {!! Form::submit(trans('ip.save'), ['class' => 'btn btn-primary']) !!}
+            <button type="submit" class="btn btn-primary">{{ trans('ip.save' }}</button>
         </div>
         <div class="clearfix"></div>
     </section>
@@ -49,37 +49,37 @@
 
                         <div class="form-group">
                             <label>@lang('ip.company'): </label>
-                            {!! Form::text('company', null, ['id' => 'company', 'class' => 'form-control']) !!}
+                            <input type="text" name="company" value="{{ old('company', $editMode ? $companyProfile->company : '') }}" id="company" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.address'): </label>
-                            {!! Form::textarea('address', null, ['id' => 'address', 'class' => 'form-control', 'rows' => 4]) !!}
+                            <textarea name="address" id="address" class="form-control" rows="4">{{ old('address', $editMode ? $companyProfile->address : '') }}</textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.city'): </label>
-                                    {!! Form::text('city', null, ['id' => 'city', 'class' => 'form-control']) !!}
+                                    <input type="text" name="city" value="{{ old('city', $editMode ? $companyProfile->city : '') }}" id="city" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.state'): </label>
-                                    {!! Form::text('state', null, ['id' => 'state', 'class' => 'form-control']) !!}
+                                    <input type="text" name="state" value="{{ old('state', $editMode ? $companyProfile->state : '') }}" id="state" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.postal_code'): </label>
-                                    {!! Form::text('zip', null, ['id' => 'zip', 'class' => 'form-control']) !!}
+                                    <input type="text" name="zip" value="{{ old('zip', $editMode ? $companyProfile->zip : '') }}" id="zip" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.country'): </label>
-                                    {!! Form::text('country', null, ['id' => 'country', 'class' => 'form-control']) !!}
+                                    <input type="text" name="country" value="{{ old('country', $editMode ? $companyProfile->country : '') }}" id="country" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -88,25 +88,25 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.phone'): </label>
-                                    {!! Form::text('phone', null, ['id' => 'phone', 'class' => 'form-control']) !!}
+                                    <input type="text" name="phone" value="{{ old('phone', $editMode ? $companyProfile->phone : '') }}" id="phone" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.fax'): </label>
-                                    {!! Form::text('fax', null, ['id' => 'fax', 'class' => 'form-control']) !!}
+                                    <input type="text" name="fax" value="{{ old('fax', $editMode ? $companyProfile->fax : '') }}" id="fax" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.mobile'): </label>
-                                    {!! Form::text('mobile', null, ['id' => 'mobile', 'class' => 'form-control']) !!}
+                                    <input type="text" name="mobile" value="{{ old('mobile', $editMode ? $companyProfile->mobile : '') }}" id="mobile" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.web'): </label>
-                                    {!! Form::text('web', null, ['id' => 'web', 'class' => 'form-control']) !!}
+                                    <input type="text" name="web" value="{{ old('web', $editMode ? $companyProfile->web : '') }}" id="web" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                                    id="btn-delete-logo">@lang('ip.remove_logo')</a>
                                             @endif
                                         </div>
-                                        {!! Form::file('logo') !!}
+                                        <input type="file" name="logo">
                                     @else
                                         Disabled for demo
                                     @endif

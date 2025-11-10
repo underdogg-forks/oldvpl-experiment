@@ -10,7 +10,7 @@
     <div class="col-md-4" id="col-client-name">
         <div class="form-group">
             <label>* @lang('ip.client_name'):</label>
-            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+            <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control">
             <p class="help-block">
                 <small>@lang('ip.help_text_client_name')
                     <a href="javascript:void(0)" id="btn-show-unique-name"
@@ -22,7 +22,7 @@
     <div class="col-md-3" id="col-client-unique-name" style="display: none;">
         <div class="form-group">
             <label>* @lang('ip.unique_name'):</label>
-            {!! Form::text('unique_name', null, ['id' => 'unique_name', 'class' => 'form-control']) !!}
+            <input type="text" name="unique_name" value="{{ old('unique_name') }}" id="unique_name" class="form-control">
             <p class="help-block">
                 <small>@lang('ip.help_text_client_unique_name')</small>
             </p>
@@ -31,7 +31,7 @@
     <div class="col-md-4" id="col-client-email">
         <div class="form-group">
             <label>@lang('ip.email_address'): </label>
-            {!! Form::text('client_email', null, ['id' => 'client_email', 'class' => 'form-control']) !!}
+            <input type="text" name="client_email" value="{{ old('client_email') }}" id="client_email" class="form-control">
         </div>
     </div>
     <div class="col-md-4" id="col-client-active">
@@ -44,32 +44,32 @@
 
 <div class="form-group">
     <label>@lang('ip.address'): </label>
-    {!! Form::textarea('address', null, ['id' => 'address', 'class' => 'form-control', 'rows' => 4]) !!}
+    <textarea name="address" id="address" class="form-control" rows="4">{{ old('address') }}</textarea>
 </div>
 
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.city'): </label>
-            {!! Form::text('city', null, ['id' => 'city', 'class' => 'form-control']) !!}
+            <input type="text" name="city" value="{{ old('city') }}" id="city" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.state'): </label>
-            {!! Form::text('state', null, ['id' => 'state', 'class' => 'form-control']) !!}
+            <input type="text" name="state" value="{{ old('state') }}" id="state" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.postal_code'): </label>
-            {!! Form::text('zip', null, ['id' => 'zip', 'class' => 'form-control']) !!}
+            <input type="text" name="zip" value="{{ old('zip') }}" id="zip" class="form-control">
         </div>
     </div>
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.country'): </label>
-            {!! Form::text('country', null, ['id' => 'country', 'class' => 'form-control']) !!}
+            <input type="text" name="country" value="{{ old('country') }}" id="country" class="form-control">
         </div>
     </div>
 </div>
@@ -78,28 +78,28 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.phone_number'): </label>
-            {!! Form::text('phone', null, ['id' => 'phone', 'class' => 'form-control']) !!}
+            <input type="text" name="phone" value="{{ old('phone') }}" id="phone" class="form-control">
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.fax_number'): </label>
-            {!! Form::text('fax', null, ['id' => 'fax', 'class' => 'form-control']) !!}
+            <input type="text" name="fax" value="{{ old('fax') }}" id="fax" class="form-control">
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.mobile_number'): </label>
-            {!! Form::text('mobile', null, ['id' => 'mobile', 'class' => 'form-control']) !!}
+            <input type="text" name="mobile" value="{{ old('mobile') }}" id="mobile" class="form-control">
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.web_address'): </label>
-            {!! Form::text('web', null, ['id' => 'web', 'class' => 'form-control']) !!}
+            <input type="text" name="web" value="{{ old('web') }}" id="web" class="form-control">
         </div>
     </div>
 </div>

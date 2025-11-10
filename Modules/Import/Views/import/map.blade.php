@@ -11,7 +11,7 @@
         </h1>
 
         <div class="pull-right">
-            {!! Form::submit(trans('ip.submit'), ['class' => 'btn btn-primary']) !!}
+            <button type="submit" class="btn btn-primary">{{ trans('ip.submit' }}</button>
         </div>
         <div class="clearfix"></div>
     </section>

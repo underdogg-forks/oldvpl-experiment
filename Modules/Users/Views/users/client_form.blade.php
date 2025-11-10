@@ -59,13 +59,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('ip.name'): </label>
-                                    {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="text" name="name" value="{{ old('name', $editMode ? $user->name : '') }}" id="name" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('ip.email'): </label>
-                                    {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="text" name="email" value="{{ old('email', $editMode ? $user->email : '') }}" id="email" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
@@ -75,14 +75,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>@lang('ip.password'): </label>
-                                        {!! Form::password('password', ['id' => 'password', 'class' => 'form-control']) !!}
+                                        <input type="password" name="password" id="password" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>@lang('ip.password_confirmation'): </label>
-                                        {!! Form::password('password_confirmation', ['id' => 'password_confirmation',
-                                        'class' => 'form-control']) !!}
+                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                                     </div>
                                 </div>
                             </div>

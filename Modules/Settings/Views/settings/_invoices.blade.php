@@ -17,7 +17,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.invoices_due_after'): </label>
-            {!! Form::text('setting[invoicesDueAfter]', config('fi.invoicesDueAfter'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[invoicesDueAfter]" value="{{ old('setting[invoicesDueAfter]', config('fi.invoicesDueAfter') }}" class="form-control">
         </div>
     </div>
 
@@ -32,12 +32,12 @@
 
 <div class="form-group">
     <label>@lang('ip.default_terms'): </label>
-    {!! Form::textarea('setting[invoiceTerms]', config('fi.invoiceTerms'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[invoiceTerms]" class="form-control" rows="5">{{ old('setting[invoiceTerms]', config('fi.invoiceTerms') }}</textarea>
 </div>
 
 <div class="form-group">
     <label>@lang('ip.default_footer'): </label>
-    {!! Form::textarea('setting[invoiceFooter]', config('fi.invoiceFooter'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[invoiceFooter]" class="form-control" rows="5">{{ old('setting[invoiceFooter]', config('fi.invoiceFooter') }}</textarea>
 </div>
 
 <div class="row">

@@ -16,14 +16,14 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.client')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('client_name', $invoice->client->unique_name, ['id' => 'copy_client_name', 'class' => 'form-control client-lookup', 'autocomplete' => 'off']) !!}
+                            <input type="text" name="client_name" value="{{ old('client_name', $invoice->client->unique_name) }}" id="copy_client_name" class="form-control client-lookup" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.date')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('invoice_date', date(config('fi.dateFormat')), ['id' => 'copy_invoice_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="invoice_date" value="{{ old('invoice_date', date(config('fi.dateFormat') }}" id="copy_invoice_date" class="form-control">
                         </div>
                     </div>
 

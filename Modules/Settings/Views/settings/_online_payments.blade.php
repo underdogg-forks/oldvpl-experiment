@@ -12,7 +12,7 @@
                 <div class="form-group">
                     @if (!is_array($setting))
                         <label>{{ trans('ip.' . snake_case($setting)) }}</label>
-                        {!! Form::text('setting[' . $driver->getSettingKey($setting) . ']', config('fi.' . $driver->getSettingKey($setting)), ['class' => 'form-control']) !!}
+                        <input type="text" name="setting[" value="{{ old('setting[') }}" class="form-control">
                     @else
                         <label>{{ trans('ip.' . snake_case($key)) }}</label>
                         {!! Form::select('setting[' . $driver->getSettingKey($key) . ']', $setting, config('fi.' . $driver->getSettingKey($key)), ['class' => 'form-control']) !!}
@@ -23,7 +23,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>@lang('ip.payment_button_text')</label>
-                {!! Form::text('setting[' . $driver->getSettingKey('paymentButtonText') . ']', $driver->getSetting('paymentButtonText'), ['class' => 'form-control']) !!}
+                <input type="text" name="setting[" value="{{ old('setting[') }}" class="form-control">
             </div>
         </div>
     </div>

@@ -41,7 +41,7 @@
 
                         <div class="control-group">
                             <label>@lang('ip.payment_method'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" value="{{ old('name', $editMode ? $paymentMethod->name : '') }}" id="name" class="form-control">
                         </div>
 
                     </div>

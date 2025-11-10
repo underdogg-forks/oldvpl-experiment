@@ -20,7 +20,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label>@lang('ip.header_title_text'): </label>
-            {!! Form::text('setting[headerTitleText]', config('fi.headerTitleText'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[headerTitleText]" value="{{ old('setting[headerTitleText]', config('fi.headerTitleText') }}" class="form-control">
         </div>
     </div>
 
@@ -36,7 +36,7 @@
             <label>@lang('ip.version'): </label>
 
             <div class="input-group">
-                {!! Form::text('version', config('fi.version'), ['class' => 'form-control', 'disabled' => 'disabled']) !!}
+                <input type="text" name="version" value="{{ old('version', config('fi.version') }}" class="form-control">
                 <span class="input-group-btn">
 					<button class="btn btn-default" id="btn-check-update"
                             type="button">@lang('ip.check_for_update')</button>
@@ -127,7 +127,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.address_format'): </label>
-            {!! Form::textarea('setting[addressFormat]', config('fi.addressFormat'), ['class' => 'form-control', 'rows' => 5]) !!}
+            <textarea name="setting[addressFormat]" class="form-control" rows="5">{{ old('setting[addressFormat]', config('fi.addressFormat') }}</textarea>
         </div>
     </div>
 

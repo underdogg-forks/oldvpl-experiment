@@ -41,17 +41,17 @@
 
                         <div class="form-group">
                             <label class="">@lang('ip.name'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" value="{{ old('name', $editMode ? $itemLookup->name : '') }}" id="name" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label class="">@lang('ip.description'): </label>
-                            {!! Form::textarea('description', null, ['id' => 'description', 'class' => 'form-control']) !!}
+                            <textarea name="description" id="description" class="form-control">{{ old('description', $editMode ? $itemLookup->description : '') }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label class="">@lang('ip.price'): </label>
-                            {!! Form::text('price', (($editMode) ? $itemLookup->formatted_numeric_price: null), ['id' => 'price', 'class' => 'form-control']) !!}
+                            <input type="text" name="price" value="{{ old('price', (($editMode) }}" id="price" class="form-control">
                         </div>
 
                         <div class="form-group">

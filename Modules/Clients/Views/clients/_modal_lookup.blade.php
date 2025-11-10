@@ -20,8 +20,7 @@
                         <label class="col-sm-3 control-label">@lang('ip.client')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::text('client_name', null, ['id' => 'change_client_name', 'class' =>
-                            'form-control client-lookup', 'autocomplete' => 'off']) !!}
+                            <input type="text" name="client_name" value="{{ old('client_name') }}" id="change_client_name" class="form-control client-lookup" autocomplete="off">
                         </div>
                     </div>
 
