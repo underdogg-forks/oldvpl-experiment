@@ -12,7 +12,9 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['prefix' => 'notes', 'middleware' => ['web', 'auth'], 'namespace' => 'Modules\Notes\Controllers'], function () {
-    Route::post('create', ['uses' => 'NoteController@create', 'as' => 'notes.create']);
-    Route::post('delete', ['uses' => 'NoteController@delete', 'as' => 'notes.delete']);
+use Modules\Notes\Controllers\NoteController;
+
+Route::group(['prefix' => 'notes', 'middleware' => ['web', 'auth']], function () {
+    Route::post('create', [NoteController::class, 'create'])->name('notes.create');
+    Route::delete('delete', [NoteController::class, 'delete'])->name('notes.delete');
 });

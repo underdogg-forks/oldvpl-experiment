@@ -12,35 +12,41 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['prefix' => 'api', 'middleware' => 'web', 'namespace' => 'Modules\API\Controllers'], function () {
+use Modules\API\Controllers\ApiKeyController;
+use Modules\API\Controllers\ApiClientController;
+use Modules\API\Controllers\ApiQuoteController;
+use Modules\API\Controllers\ApiInvoiceController;
+use Modules\API\Controllers\ApiPaymentController;
+
+Route::group(['prefix' => 'api', 'middleware' => 'web'], function () {
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::post('generate_keys', ['uses' => 'ApiKeyController@generateKeys', 'as' => 'api.generateKeys']);
+        Route::post('generate_keys', [ApiKeyController::class, 'generateKeys'])->name('api.generateKeys');
     });
 
     Route::group(['middleware' => 'auth.api'], function () {
-        Route::post('clients/list', ['uses' => 'ApiClientController@lists']);
-        Route::post('clients/show', ['uses' => 'ApiClientController@show']);
-        Route::post('clients/store', ['uses' => 'ApiClientController@store']);
-        Route::post('clients/update', ['uses' => 'ApiClientController@update']);
-        Route::post('clients/delete', ['uses' => 'ApiClientController@delete']);
+        Route::post('clients/list', [ApiClientController::class, 'lists']);
+        Route::post('clients/show', [ApiClientController::class, 'show']);
+        Route::post('clients/store', [ApiClientController::class, 'store']);
+        Route::post('clients/update', [ApiClientController::class, 'update']);
+        Route::post('clients/delete', [ApiClientController::class, 'delete']);
 
-        Route::post('quotes/list', ['uses' => 'ApiQuoteController@lists']);
-        Route::post('quotes/show', ['uses' => 'ApiQuoteController@show']);
-        Route::post('quotes/store', ['uses' => 'ApiQuoteController@store']);
-        Route::post('quotes/items/add', ['uses' => 'ApiQuoteController@addItem']);
-        Route::post('quotes/delete', ['uses' => 'ApiQuoteController@delete']);
+        Route::post('quotes/list', [ApiQuoteController::class, 'lists']);
+        Route::post('quotes/show', [ApiQuoteController::class, 'show']);
+        Route::post('quotes/store', [ApiQuoteController::class, 'store']);
+        Route::post('quotes/items/add', [ApiQuoteController::class, 'addItem']);
+        Route::post('quotes/delete', [ApiQuoteController::class, 'delete']);
 
-        Route::post('invoices/list', ['uses' => 'ApiInvoiceController@lists']);
-        Route::post('invoices/show', ['uses' => 'ApiInvoiceController@show']);
-        Route::post('invoices/store', ['uses' => 'ApiInvoiceController@store']);
-        Route::post('invoices/items/add', ['uses' => 'ApiInvoiceController@addItem']);
-        Route::post('invoices/delete', ['uses' => 'ApiInvoiceController@delete']);
+        Route::post('invoices/list', [ApiInvoiceController::class, 'lists']);
+        Route::post('invoices/show', [ApiInvoiceController::class, 'show']);
+        Route::post('invoices/store', [ApiInvoiceController::class, 'store']);
+        Route::post('invoices/items/add', [ApiInvoiceController::class, 'addItem']);
+        Route::post('invoices/delete', [ApiInvoiceController::class, 'delete']);
 
-        Route::post('payments/list', ['uses' => 'ApiPaymentController@lists']);
-        Route::post('payments/show', ['uses' => 'ApiPaymentController@show']);
-        Route::post('payments/store', ['uses' => 'ApiPaymentController@store']);
-        Route::post('payments/items/add', ['uses' => 'ApiPaymentController@addItem']);
-        Route::post('payments/delete', ['uses' => 'ApiPaymentController@delete']);
+        Route::post('payments/list', [ApiPaymentController::class, 'lists']);
+        Route::post('payments/show', [ApiPaymentController::class, 'show']);
+        Route::post('payments/store', [ApiPaymentController::class, 'store']);
+        Route::post('payments/items/add', [ApiPaymentController::class, 'addItem']);
+        Route::post('payments/delete', [ApiPaymentController::class, 'delete']);
     });
 
 });

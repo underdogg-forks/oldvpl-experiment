@@ -12,21 +12,28 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['prefix' => 'client_center', 'middleware' => 'web', 'namespace' => 'Modules\ClientCenter\Controllers'], function () {
-    Route::get('/', ['uses' => 'ClientCenterDashboardController@redirectToLogin']);
-    Route::get('invoice/{invoiceKey}', ['uses' => 'ClientCenterPublicInvoiceController@show', 'as' => 'clientCenter.public.invoice.show']);
-    Route::get('invoice/{invoiceKey}/pdf', ['uses' => 'ClientCenterPublicInvoiceController@pdf', 'as' => 'clientCenter.public.invoice.pdf']);
-    Route::get('invoice/{invoiceKey}/html', ['uses' => 'ClientCenterPublicInvoiceController@html', 'as' => 'clientCenter.public.invoice.html']);
-    Route::get('quote/{quoteKey}', ['uses' => 'ClientCenterPublicQuoteController@show', 'as' => 'clientCenter.public.quote.show']);
-    Route::get('quote/{quoteKey}/pdf', ['uses' => 'ClientCenterPublicQuoteController@pdf', 'as' => 'clientCenter.public.quote.pdf']);
-    Route::get('quote/{quoteKey}/html', ['uses' => 'ClientCenterPublicQuoteController@html', 'as' => 'clientCenter.public.quote.html']);
-    Route::get('quote/{quoteKey}/approve', ['uses' => 'ClientCenterPublicQuoteController@approve', 'as' => 'clientCenter.public.quote.approve']);
-    Route::get('quote/{quoteKey}/reject', ['uses' => 'ClientCenterPublicQuoteController@reject', 'as' => 'clientCenter.public.quote.reject']);
+use Modules\ClientCenter\Controllers\ClientCenterDashboardController;
+use Modules\ClientCenter\Controllers\ClientCenterPublicInvoiceController;
+use Modules\ClientCenter\Controllers\ClientCenterPublicQuoteController;
+use Modules\ClientCenter\Controllers\ClientCenterInvoiceController;
+use Modules\ClientCenter\Controllers\ClientCenterQuoteController;
+use Modules\ClientCenter\Controllers\ClientCenterPaymentController;
+
+Route::group(['prefix' => 'client_center', 'middleware' => 'web'], function () {
+    Route::get('/', [ClientCenterDashboardController::class, 'redirectToLogin']);
+    Route::get('invoice/{invoiceKey}', [ClientCenterPublicInvoiceController::class, 'show'])->name('clientCenter.public.invoice.show');
+    Route::get('invoice/{invoiceKey}/pdf', [ClientCenterPublicInvoiceController::class, 'pdf'])->name('clientCenter.public.invoice.pdf');
+    Route::get('invoice/{invoiceKey}/html', [ClientCenterPublicInvoiceController::class, 'html'])->name('clientCenter.public.invoice.html');
+    Route::get('quote/{quoteKey}', [ClientCenterPublicQuoteController::class, 'show'])->name('clientCenter.public.quote.show');
+    Route::get('quote/{quoteKey}/pdf', [ClientCenterPublicQuoteController::class, 'pdf'])->name('clientCenter.public.quote.pdf');
+    Route::get('quote/{quoteKey}/html', [ClientCenterPublicQuoteController::class, 'html'])->name('clientCenter.public.quote.html');
+    Route::get('quote/{quoteKey}/approve', [ClientCenterPublicQuoteController::class, 'approve'])->name('clientCenter.public.quote.approve');
+    Route::get('quote/{quoteKey}/reject', [ClientCenterPublicQuoteController::class, 'reject'])->name('clientCenter.public.quote.reject');
 
     Route::group(['middleware' => 'auth.clientCenter'], function () {
-        Route::get('dashboard', ['uses' => 'ClientCenterDashboardController@index', 'as' => 'clientCenter.dashboard']);
-        Route::get('invoices', ['uses' => 'ClientCenterInvoiceController@index', 'as' => 'clientCenter.invoices']);
-        Route::get('quotes', ['uses' => 'ClientCenterQuoteController@index', 'as' => 'clientCenter.quotes']);
-        Route::get('payments', ['uses' => 'ClientCenterPaymentController@index', 'as' => 'clientCenter.payments']);
+        Route::get('dashboard', [ClientCenterDashboardController::class, 'index'])->name('clientCenter.dashboard');
+        Route::get('invoices', [ClientCenterInvoiceController::class, 'index'])->name('clientCenter.invoices');
+        Route::get('quotes', [ClientCenterQuoteController::class, 'index'])->name('clientCenter.quotes');
+        Route::get('payments', [ClientCenterPaymentController::class, 'index'])->name('clientCenter.payments');
     });
 });

@@ -12,10 +12,12 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\Import\Controllers'], function () {
-    Route::get('import', ['uses' => 'ImportController@index', 'as' => 'import.index']);
-    Route::get('import/map/{import_type}', ['uses' => 'ImportController@mapImport', 'as' => 'import.map']);
+use Modules\Import\Controllers\ImportController;
 
-    Route::post('import/upload', ['uses' => 'ImportController@upload', 'as' => 'import.upload']);
-    Route::post('import/map/{import_type}', ['uses' => 'ImportController@mapImportSubmit', 'as' => 'import.map.submit']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('import', [ImportController::class, 'index'])->name('import.index');
+    Route::get('import/map/{import_type}', [ImportController::class, 'mapImport'])->name('import.map');
+
+    Route::post('import/upload', [ImportController::class, 'upload'])->name('import.upload');
+    Route::post('import/map/{import_type}', [ImportController::class, 'mapImportSubmit'])->name('import.map.submit');
 });
