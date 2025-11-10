@@ -8,7 +8,7 @@
 
     // Creates the invoice
     $('#btn-quote-to-invoice-submit').click(function () {
-      $.post('{{ route('quoteToInvoice.store') }}', {
+      $.post('{{ route('quote-to-invoice.store') }}', {
         quote_id: {{ $quote_id }},
         client_id: {{ $client_id }},
         invoice_date: $('#to_invoice_date').val(),

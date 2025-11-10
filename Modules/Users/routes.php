@@ -12,19 +12,22 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\Users\Controllers'], function () {
-    Route::get('users', ['uses' => 'UserController@index', 'as' => 'users.index']);
+use Modules\Users\Controllers\UserController;
+use Modules\Users\Controllers\UserPasswordController;
 
-    Route::get('users/create/{userType}', ['uses' => 'UserController@create', 'as' => 'users.create']);
-    Route::post('users/create/{userType}', ['uses' => 'UserController@store', 'as' => 'users.store']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
 
-    Route::get('users/{id}/edit/{userType}', ['uses' => 'UserController@edit', 'as' => 'users.edit']);
-    Route::post('users/{id}/edit/{userType}', ['uses' => 'UserController@update', 'as' => 'users.update']);
+    Route::get('users/create/{userType}', [UserController::class, 'create'])->name('users.create');
+    Route::post('users/create/{userType}', [UserController::class, 'store'])->name('users.store');
 
-    Route::get('users/{id}/delete', ['uses' => 'UserController@delete', 'as' => 'users.delete']);
+    Route::get('users/{id}/edit/{userType}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('users/{id}/edit/{userType}', [UserController::class, 'update'])->name('users.update');
 
-    Route::get('users/{id}/password/edit', ['uses' => 'UserPasswordController@edit', 'as' => 'users.password.edit']);
-    Route::post('users/{id}/password/edit', ['uses' => 'UserPasswordController@update', 'as' => 'users.password.update']);
+    Route::delete('users/{id}', [UserController::class, 'delete'])->name('users.delete');
 
-    Route::post('users/client', ['uses' => 'UserController@getClientInfo', 'as' => 'users.clientInfo']);
+    Route::get('users/{id}/password/edit', [UserPasswordController::class, 'edit'])->name('users.password.edit');
+    Route::post('users/{id}/password/edit', [UserPasswordController::class, 'update'])->name('users.password.update');
+
+    Route::post('users/client', [UserController::class, 'getClientInfo'])->name('users.clientInfo');
 });

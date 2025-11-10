@@ -27,7 +27,7 @@
 
     // Creates the recurringInvoice
     $('#btn-copy-recurring-invoice-submit').click(function () {
-      $.post('{{ route('recurringInvoiceCopy.store') }}', {
+      $.post('{{ route('recurring-invoice-copy.store') }}', {
         recurring_invoice_id: {{ $recurringInvoice->id }},
         client_name: $('#copy_client_name').val(),
         company_profile_id: $('#copy_company_profile_id').val(),

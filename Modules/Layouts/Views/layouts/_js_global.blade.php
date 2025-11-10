@@ -57,7 +57,7 @@
     });
 
     $(document).on('click', '.email-quote', function () {
-      $('#modal-placeholder').load('{{ route('quoteMail.create') }}', {
+      $('#modal-placeholder').load('{{ route('quote-mail.create') }}', {
         quote_id: $(this).data('quote-id'),
         redirectTo: $(this).data('redirect-to')
       }, function (response, status, xhr) {

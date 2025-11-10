@@ -7,13 +7,13 @@
     autosize($('textarea'));
 
     $('#btn-copy-quote').click(function () {
-      $('#modal-placeholder').load('{{ route('quoteCopy.create') }}', {
+      $('#modal-placeholder').load('{{ route('quote-copy.create') }}', {
         quote_id: {{ $quote->id }}
       });
     });
 
     $('#btn-quote-to-invoice').click(function () {
-      $('#modal-placeholder').load('{{ route('quoteToInvoice.create') }}', {
+      $('#modal-placeholder').load('{{ route('quote-to-invoice.create') }}', {
         quote_id: {{ $quote->id }},
         client_id: {{ $quote->client_id }}
       });
@@ -38,7 +38,7 @@
     $('.btn-delete-quote-item').click(function () {
       if (!confirm('{!! trans('ip.delete_record_warning') !!}')) return false;
       id = $(this).data('item-id');
-      $.post('{{ route('quoteItem.delete') }}', {
+      $.post('{{ route('quote-item.delete') }}', {
         id: id
       }).done(function () {
         $('#tr-item-' + id).remove();

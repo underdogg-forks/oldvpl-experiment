@@ -12,12 +12,13 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\TaxRates\Controllers'], function () {
-    Route::get('tax_rates', ['uses' => 'TaxRateController@index', 'as' => 'taxRates.index']);
-    Route::get('tax_rates/create', ['uses' => 'TaxRateController@create', 'as' => 'taxRates.create']);
-    Route::get('tax_rates/{taxRate}/edit', ['uses' => 'TaxRateController@edit', 'as' => 'taxRates.edit']);
-    Route::get('tax_rates/{taxRate}/delete', ['uses' => 'TaxRateController@delete', 'as' => 'taxRates.delete']);
+use Modules\TaxRates\Controllers\TaxRateController;
 
-    Route::post('tax_rates', ['uses' => 'TaxRateController@store', 'as' => 'taxRates.store']);
-    Route::post('tax_rates/{taxRate}', ['uses' => 'TaxRateController@update', 'as' => 'taxRates.update']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('tax_rates', [TaxRateController::class, 'index'])->name('taxRates.index');
+    Route::get('tax_rates/create', [TaxRateController::class, 'create'])->name('taxRates.create');
+    Route::post('tax_rates', [TaxRateController::class, 'store'])->name('taxRates.store');
+    Route::get('tax_rates/{taxRate}/edit', [TaxRateController::class, 'edit'])->name('taxRates.edit');
+    Route::post('tax_rates/{taxRate}', [TaxRateController::class, 'update'])->name('taxRates.update');
+    Route::delete('tax_rates/{taxRate}', [TaxRateController::class, 'delete'])->name('taxRates.delete');
 });

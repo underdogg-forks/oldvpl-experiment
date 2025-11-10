@@ -18,7 +18,7 @@
         attachPdf = 1;
       }
 
-      $.post('{{ route('quoteMail.store') }}', {
+      $.post('{{ route('quote-mail.store') }}', {
         quote_id: {{ $quoteId }},
         to: $('#to').val(),
         cc: $('#cc').val(),
