@@ -18,11 +18,12 @@ class Application extends BaseApplication
      * In InvoicePlane, the public directory is at the base path
      * instead of the typical public subdirectory.
      *
+     * @param string $path Optionally, a path to append to the public path
      * @return string
      */
-    public function publicPath(): string
+    public function publicPath($path = ''): string
     {
-        return $this->basePath();
+        return $this->basePath($path);
     }
 
     /**

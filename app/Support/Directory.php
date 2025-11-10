@@ -22,7 +22,7 @@ class Directory
      * @param  string $path
      * @return array
      */
-    public static function listAssocContents($path)
+    public static function listAssocContents($path): array
     {
         $files = self::listContents($path);
 
@@ -35,9 +35,19 @@ class Directory
      * @param  string $path
      * @return array
      */
-    public static function listContents($path)
+    public static function listContents($path): array
     {
-        return array_diff(scandir($path), ['.', '..']);
+        if (!is_dir($path)) {
+            return [];
+        }
+
+        $contents = scandir($path);
+        
+        if ($contents === false) {
+            return [];
+        }
+
+        return array_diff($contents, ['.', '..']);
     }
 
     /**
@@ -46,12 +56,16 @@ class Directory
      * @param  string $path
      * @return array
      */
-    public static function listDirectories($path)
+    public static function listDirectories($path): array
     {
+        if (!is_dir($path)) {
+            return [];
+        }
+
         $directories = self::listContents($path);
 
         foreach ($directories as $key => $directory) {
-            if (!is_dir($path . '/' . $directory)) {
+            if (!is_dir($path . DIRECTORY_SEPARATOR . $directory)) {
                 unset($directories[$key]);
             }
         }
