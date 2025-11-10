@@ -20,11 +20,94 @@ More information can be found in [this announcement](https://community.invoicepl
 
 ### Quick Installation
 
-1. Download the latest version from the InvoicePlane website.
-2. Extract the package and copy all files to your webserver / webspace.
-3. Open the file config/database.php and set your database credentials in that file.
-4. Make sure that the storage folder and all containing folders are writable.
-5. Open http://your-invoiceplane-domain.com/index.php/setup and follow the instructions.
+#### Prerequisites
+
+- PHP >= 7.0.0
+- MySQL/MariaDB database
+- Composer
+- Node.js and npm
+- A web server (Apache/Nginx)
+
+#### Installation Steps
+
+1. **Clone or download the repository:**
+   ```bash
+   git clone https://github.com/InvoicePlane/InvoicePlane.git
+   cd InvoicePlane
+   ```
+
+2. **Install PHP dependencies:**
+   ```bash
+   composer install
+   ```
+
+3. **Install Node.js dependencies and build assets:**
+   ```bash
+   npm install
+   npm run production
+   ```
+   For development with auto-recompiling assets:
+   ```bash
+   npm run watch
+   ```
+
+4. **Configure your database:**
+   - Copy `.env.example` to `.env`
+   - Open `config/database.php` and set your database credentials
+   - Or configure database settings in `.env` file
+
+5. **Set up web server:**
+   - Configure your web server to point to the `public` directory
+   - For Apache, ensure mod_rewrite is enabled
+   - The `.htaccess` files are already configured
+
+6. **Set permissions:**
+   ```bash
+   chmod -R 755 storage
+   chmod -R 755 bootstrap/cache
+   ```
+
+7. **Run the setup:**
+   - Open `http://your-domain.com/index.php/setup` in your browser
+   - Follow the installation wizard
+
+---
+
+### Development
+
+#### Building Assets
+
+This project uses Laravel Mix for asset compilation:
+
+- **Development build:** `npm run dev`
+- **Production build:** `npm run production`
+- **Watch mode:** `npm run watch` (auto-recompiles on file changes)
+
+#### Asset Structure
+
+- Source assets are in `resources/assets/`
+- Compiled assets are output to `public/assets/`
+- JavaScript dependencies: `resources/assets/js/dependencies.js`
+- Stylesheets: `resources/assets/sass/`
+
+#### File Structure
+
+```
+InvoicePlane/
+├── app/                 # Application code
+├── bootstrap/           # Framework bootstrap
+├── config/              # Configuration files
+├── database/            # Database migrations and seeds
+├── public/              # Web server document root
+│   ├── assets/          # Compiled assets (CSS, JS, images)
+│   └── index.php        # Application entry point
+├── resources/           # Views and source assets
+│   ├── assets/          # Source SASS and JS files
+│   └── views/           # Blade templates
+├── storage/             # Application storage
+├── vendor/              # PHP dependencies
+└── webpack.mix.js       # Laravel Mix configuration
+```
 
 ---
 

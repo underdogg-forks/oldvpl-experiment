@@ -12,8 +12,13 @@
 // Import Bootstrap source files
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
 
-// Import core styles
+// Import all CoreUI variables from node_modules
+@import "../../../../node_modules/@coreui/coreui/scss/variables";
+
+// Import custom overrides for CoreUI variables
 @import "coreui-variables";
+
+// Import core styles
 @import "../../../../node_modules/@coreui/coreui/scss/mixins";
 
 // Animations
