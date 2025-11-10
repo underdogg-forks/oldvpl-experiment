@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Payments\Models\Payment;
+use Modules\Payments\Models\Payment;
 use Illuminate\Queue\SerializesModels;
 
 class PaymentCreated extends Event

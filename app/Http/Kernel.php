@@ -1,6 +1,6 @@
 <?php
 
-namespace IP\Http;
+namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -16,11 +16,11 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \IP\Http\Middleware\TrimStrings::class,
+        \App\Http\Middleware\TrimStrings::class,
         // \Illuminate\Foundation\Http\Middleware\ConvertEmptySringsToNull::class,
-        \IP\Http\Middleware\TrustProxies::class,
-        \IP\Http\Middleware\BeforeMiddleware::class,
-        \IP\Http\Middleware\AfterMiddleware::class,
+        \App\Http\Middleware\TrustProxies::class,
+        \App\Http\Middleware\BeforeMiddleware::class,
+        \App\Http\Middleware\AfterMiddleware::class,
     ];
 
     /**
@@ -30,12 +30,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \IP\Http\Middleware\EncryptCookies::class,
+            \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \IP\Http\Middleware\VerifyCsrfToken::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -54,13 +54,13 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.admin' => \IP\Http\Middleware\AuthenticateAdmin::class,
-        'auth.clientCenter' => \IP\Http\Middleware\AuthenticateClientCenter::class,
+        'auth.admin' => \App\Http\Middleware\AuthenticateAdmin::class,
+        'auth.clientCenter' => \App\Http\Middleware\AuthenticateClientCenter::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.api' => \IP\Http\Middleware\AuthenticateAPI::class,
+        'auth.api' => \App\Http\Middleware\AuthenticateAPI::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \IP\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

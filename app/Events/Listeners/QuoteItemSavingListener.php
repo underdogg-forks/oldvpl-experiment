@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\QuoteItemSaving;
-use IP\Modules\Quotes\Models\QuoteItem;
+use App\Events\QuoteItemSaving;
+use Modules\Quotes\Models\QuoteItem;
 
 class QuoteItemSavingListener
 {

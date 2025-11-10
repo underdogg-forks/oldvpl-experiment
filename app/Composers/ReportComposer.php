@@ -12,9 +12,9 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Composers;
+namespace App\Composers;
 
-use IP\Modules\CompanyProfiles\Models\CompanyProfile;
+use Modules\CompanyProfiles\Models\CompanyProfile;
 
 class ReportComposer
 {

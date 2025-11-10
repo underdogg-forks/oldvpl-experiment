@@ -1,6 +1,6 @@
 <?php
 
-namespace IP\Widgets\Dashboard\InvoiceSummary\Composers;
+namespace App\Widgets\Dashboard\InvoiceSummary\Composers;
 
 class InvoiceSummarySettingComposer
 {

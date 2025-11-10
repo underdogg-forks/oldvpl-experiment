@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Providers;
+namespace App\Providers;
 
-use IP\Modules\Addons\Models\Addon;
+use Modules\Addons\Models\Addon;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 

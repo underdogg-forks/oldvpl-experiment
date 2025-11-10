@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Settings\Models\Setting;
+use Modules\Settings\Models\Setting;
 use Illuminate\Queue\SerializesModels;
 
 class SettingSaving extends Event

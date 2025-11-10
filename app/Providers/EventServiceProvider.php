@@ -1,6 +1,6 @@
 <?php
 
-namespace IP\Providers;
+namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -12,184 +12,184 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'IP\Events\AttachmentCreating' => [
-            'IP\Events\Listeners\AttachmentCreatingListener',
+        'App\Events\AttachmentCreating' => [
+            'App\Events\Listeners\AttachmentCreatingListener',
         ],
 
-        'IP\Events\AttachmentDeleted' => [
-            'IP\Events\Listeners\AttachmentDeletedListener',
+        'App\Events\AttachmentDeleted' => [
+            'App\Events\Listeners\AttachmentDeletedListener',
         ],
 
-        'IP\Events\CheckAttachment' => [
-            'IP\Events\Listeners\CheckAttachmentListener',
+        'App\Events\CheckAttachment' => [
+            'App\Events\Listeners\CheckAttachmentListener',
         ],
 
-        'IP\Events\ClientCreated' => [
-            'IP\Events\Listeners\ClientCreatedListener',
+        'App\Events\ClientCreated' => [
+            'App\Events\Listeners\ClientCreatedListener',
         ],
 
-        'IP\Events\ClientCreating' => [
-            'IP\Events\Listeners\ClientCreatingListener',
+        'App\Events\ClientCreating' => [
+            'App\Events\Listeners\ClientCreatingListener',
         ],
 
-        'IP\Events\ClientDeleted' => [
-            'IP\Events\Listeners\ClientDeletedListener',
+        'App\Events\ClientDeleted' => [
+            'App\Events\Listeners\ClientDeletedListener',
         ],
 
-        'IP\Events\ClientSaving' => [
-            'IP\Events\Listeners\ClientSavingListener',
+        'App\Events\ClientSaving' => [
+            'App\Events\Listeners\ClientSavingListener',
         ],
 
-        'IP\Events\CompanyProfileCreated' => [
-            'IP\Events\Listeners\CompanyProfileCreatedListener',
+        'App\Events\CompanyProfileCreated' => [
+            'App\Events\Listeners\CompanyProfileCreatedListener',
         ],
 
-        'IP\Events\CompanyProfileCreating' => [
-            'IP\Events\Listeners\CompanyProfileCreatingListener',
+        'App\Events\CompanyProfileCreating' => [
+            'App\Events\Listeners\CompanyProfileCreatingListener',
         ],
 
-        'IP\Events\CompanyProfileDeleted' => [
-            'IP\Events\Listeners\CompanyProfileDeletedListener',
+        'App\Events\CompanyProfileDeleted' => [
+            'App\Events\Listeners\CompanyProfileDeletedListener',
         ],
 
-        'IP\Events\CompanyProfileSaving' => [
-            'IP\Events\Listeners\CompanyProfileSavingListener',
+        'App\Events\CompanyProfileSaving' => [
+            'App\Events\Listeners\CompanyProfileSavingListener',
         ],
 
-        'IP\Events\ExpenseCreated' => [
-            'IP\Events\Listeners\ExpenseCreatedListener',
+        'App\Events\ExpenseCreated' => [
+            'App\Events\Listeners\ExpenseCreatedListener',
         ],
 
-        'IP\Events\ExpenseDeleting' => [
-            'IP\Events\Listeners\ExpenseDeletingListener',
+        'App\Events\ExpenseDeleting' => [
+            'App\Events\Listeners\ExpenseDeletingListener',
         ],
 
-        'IP\Events\ExpenseSaved' => [],
+        'App\Events\ExpenseSaved' => [],
 
-        'IP\Events\ExpenseSaving' => [
-            'IP\Events\Listeners\ExpenseSavingListener',
+        'App\Events\ExpenseSaving' => [
+            'App\Events\Listeners\ExpenseSavingListener',
         ],
 
-        'IP\Events\InvoiceCreated' => [
-            'IP\Events\Listeners\InvoiceCreatedListener',
+        'App\Events\InvoiceCreated' => [
+            'App\Events\Listeners\InvoiceCreatedListener',
         ],
 
-        'IP\Events\InvoiceCreating' => [
-            'IP\Events\Listeners\InvoiceCreatingListener',
+        'App\Events\InvoiceCreating' => [
+            'App\Events\Listeners\InvoiceCreatingListener',
         ],
 
-        'IP\Events\InvoiceCreatedRecurring' => [
-            'IP\Events\Listeners\InvoiceCreatedRecurringListener',
+        'App\Events\InvoiceCreatedRecurring' => [
+            'App\Events\Listeners\InvoiceCreatedRecurringListener',
         ],
 
-        'IP\Events\InvoiceDeleted' => [
-            'IP\Events\Listeners\InvoiceDeletedListener',
+        'App\Events\InvoiceDeleted' => [
+            'App\Events\Listeners\InvoiceDeletedListener',
         ],
 
-        'IP\Events\InvoiceEmailing' => [
-            'IP\Events\Listeners\InvoiceEmailingListener',
+        'App\Events\InvoiceEmailing' => [
+            'App\Events\Listeners\InvoiceEmailingListener',
         ],
 
-        'IP\Events\InvoiceEmailed' => [
-            'IP\Events\Listeners\InvoiceEmailedListener',
+        'App\Events\InvoiceEmailed' => [
+            'App\Events\Listeners\InvoiceEmailedListener',
         ],
 
-        'IP\Events\InvoiceItemSaving' => [
-            'IP\Events\Listeners\InvoiceItemSavingListener',
+        'App\Events\InvoiceItemSaving' => [
+            'App\Events\Listeners\InvoiceItemSavingListener',
         ],
 
-        'IP\Events\InvoiceModified' => [
-            'IP\Events\Listeners\InvoiceModifiedListener',
+        'App\Events\InvoiceModified' => [
+            'App\Events\Listeners\InvoiceModifiedListener',
         ],
 
-        'IP\Events\InvoiceViewed' => [
-            'IP\Events\Listeners\InvoiceViewedListener',
+        'App\Events\InvoiceViewed' => [
+            'App\Events\Listeners\InvoiceViewedListener',
         ],
 
-        'IP\Events\NoteCreated' => [
-            'IP\Events\Listeners\NoteCreatedListener',
+        'App\Events\NoteCreated' => [
+            'App\Events\Listeners\NoteCreatedListener',
         ],
 
-        'IP\Events\OverdueNoticeEmailed' => [],
+        'App\Events\OverdueNoticeEmailed' => [],
 
-        'IP\Events\PaymentCreated' => [
-            'IP\Events\Listeners\PaymentCreatedListener',
+        'App\Events\PaymentCreated' => [
+            'App\Events\Listeners\PaymentCreatedListener',
         ],
 
-        'IP\Events\PaymentCreating' => [
-            'IP\Events\Listeners\PaymentCreatingListener',
+        'App\Events\PaymentCreating' => [
+            'App\Events\Listeners\PaymentCreatingListener',
         ],
 
-        'IP\Events\QuoteCreated' => [
-            'IP\Events\Listeners\QuoteCreatedListener',
+        'App\Events\QuoteCreated' => [
+            'App\Events\Listeners\QuoteCreatedListener',
         ],
 
-        'IP\Events\QuoteCreating' => [
-            'IP\Events\Listeners\QuoteCreatingListener',
+        'App\Events\QuoteCreating' => [
+            'App\Events\Listeners\QuoteCreatingListener',
         ],
 
-        'IP\Events\QuoteDeleted' => [
-            'IP\Events\Listeners\QuoteDeletedListener',
+        'App\Events\QuoteDeleted' => [
+            'App\Events\Listeners\QuoteDeletedListener',
         ],
 
-        'IP\Events\QuoteItemSaving' => [
-            'IP\Events\Listeners\QuoteItemSavingListener',
+        'App\Events\QuoteItemSaving' => [
+            'App\Events\Listeners\QuoteItemSavingListener',
         ],
 
-        'IP\Events\QuoteModified' => [
-            'IP\Events\Listeners\QuoteModifiedListener',
+        'App\Events\QuoteModified' => [
+            'App\Events\Listeners\QuoteModifiedListener',
         ],
 
-        'IP\Events\QuoteEmailed' => [
-            'IP\Events\Listeners\QuoteEmailedListener',
+        'App\Events\QuoteEmailed' => [
+            'App\Events\Listeners\QuoteEmailedListener',
         ],
 
-        'IP\Events\QuoteEmailing' => [
-            'IP\Events\Listeners\QuoteEmailingListener',
+        'App\Events\QuoteEmailing' => [
+            'App\Events\Listeners\QuoteEmailingListener',
         ],
 
-        'IP\Events\QuoteApproved' => [
-            'IP\Events\Listeners\QuoteApprovedListener',
+        'App\Events\QuoteApproved' => [
+            'App\Events\Listeners\QuoteApprovedListener',
         ],
 
-        'IP\Events\QuoteRejected' => [
-            'IP\Events\Listeners\QuoteRejectedListener',
+        'App\Events\QuoteRejected' => [
+            'App\Events\Listeners\QuoteRejectedListener',
         ],
 
-        'IP\Events\QuoteViewed' => [
-            'IP\Events\Listeners\QuoteViewedListener',
+        'App\Events\QuoteViewed' => [
+            'App\Events\Listeners\QuoteViewedListener',
         ],
 
-        'IP\Events\RecurringInvoiceCreated' => [
-            'IP\Events\Listeners\RecurringInvoiceCreatedListener',
+        'App\Events\RecurringInvoiceCreated' => [
+            'App\Events\Listeners\RecurringInvoiceCreatedListener',
         ],
 
-        'IP\Events\RecurringInvoiceCreating' => [
-            'IP\Events\Listeners\RecurringInvoiceCreatingListener',
+        'App\Events\RecurringInvoiceCreating' => [
+            'App\Events\Listeners\RecurringInvoiceCreatingListener',
         ],
 
-        'IP\Events\RecurringInvoiceDeleted' => [
-            'IP\Events\Listeners\RecurringInvoiceDeletedListener',
+        'App\Events\RecurringInvoiceDeleted' => [
+            'App\Events\Listeners\RecurringInvoiceDeletedListener',
         ],
 
-        'IP\Events\RecurringInvoiceItemSaving' => [
-            'IP\Events\Listeners\RecurringInvoiceItemSavingListener',
+        'App\Events\RecurringInvoiceItemSaving' => [
+            'App\Events\Listeners\RecurringInvoiceItemSavingListener',
         ],
 
-        'IP\Events\RecurringInvoiceModified' => [
-            'IP\Events\Listeners\RecurringInvoiceModifiedListener',
+        'App\Events\RecurringInvoiceModified' => [
+            'App\Events\Listeners\RecurringInvoiceModifiedListener',
         ],
 
-        'IP\Events\SettingSaving' => [
-            'IP\Events\Listeners\SettingSavingListener',
+        'App\Events\SettingSaving' => [
+            'App\Events\Listeners\SettingSavingListener',
         ],
 
-        'IP\Events\UserCreated' => [
-            'IP\Events\Listeners\UserCreatedListener',
+        'App\Events\UserCreated' => [
+            'App\Events\Listeners\UserCreatedListener',
         ],
 
-        'IP\Events\UserDeleted' => [
-            'IP\Events\Listeners\UserDeletedListener',
+        'App\Events\UserDeleted' => [
+            'App\Events\Listeners\UserDeletedListener',
         ],
     ];
 

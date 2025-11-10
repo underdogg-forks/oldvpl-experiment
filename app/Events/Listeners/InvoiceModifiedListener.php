@@ -1,9 +1,9 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\InvoiceModified;
-use IP\Modules\Invoices\Support\InvoiceCalculate;
+use App\Events\InvoiceModified;
+use Modules\Invoices\Support\InvoiceCalculate;
 
 class InvoiceModifiedListener
 {

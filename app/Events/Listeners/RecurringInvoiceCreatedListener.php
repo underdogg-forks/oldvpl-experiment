@@ -1,10 +1,10 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\RecurringInvoiceCreated;
-use IP\Modules\CustomFields\Models\RecurringInvoiceCustom;
-use IP\Modules\RecurringInvoices\Support\RecurringInvoiceCalculate;
+use App\Events\RecurringInvoiceCreated;
+use Modules\CustomFields\Models\RecurringInvoiceCustom;
+use Modules\RecurringInvoices\Support\RecurringInvoiceCalculate;
 
 class RecurringInvoiceCreatedListener
 {

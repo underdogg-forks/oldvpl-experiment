@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\UserDeleted;
+use App\Events\UserDeleted;
 
 class UserDeletedListener
 {

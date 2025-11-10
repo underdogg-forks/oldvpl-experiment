@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Expenses\Models\Expense;
+use Modules\Expenses\Models\Expense;
 use Illuminate\Queue\SerializesModels;
 
 class ExpenseSaved extends Event

@@ -12,7 +12,7 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Support\Calculators;
+namespace App\Support\Calculators;
 
 abstract class Calculator
 {

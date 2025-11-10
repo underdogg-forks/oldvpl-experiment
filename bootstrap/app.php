@@ -11,7 +11,7 @@
 |
 */
 
-$app = new IP\Application(
+$app = new App\Application(
     realpath(__DIR__.'/../')
 );
 
@@ -28,17 +28,17 @@ $app = new IP\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    IP\Http\Kernel::class
+    App\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    IP\Console\Kernel::class
+    App\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    IP\Exceptions\Handler::class
+    App\Exceptions\Handler::class
 );
 
 /*

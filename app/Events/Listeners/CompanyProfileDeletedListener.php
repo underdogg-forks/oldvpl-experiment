@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\CompanyProfileDeleted;
+use App\Events\CompanyProfileDeleted;
 
 class CompanyProfileDeletedListener
 {

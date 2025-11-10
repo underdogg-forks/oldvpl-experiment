@@ -12,12 +12,12 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-namespace IP\Composers;
+namespace App\Composers;
 
-use IP\Modules\Currencies\Models\Currency;
-use IP\Modules\Invoices\Support\InvoiceTemplates;
-use IP\Modules\Quotes\Support\QuoteTemplates;
-use IP\Support\Languages;
+use Modules\Currencies\Models\Currency;
+use Modules\Invoices\Support\InvoiceTemplates;
+use Modules\Quotes\Support\QuoteTemplates;
+use App\Support\Languages;
 
 class ClientFormComposer
 {

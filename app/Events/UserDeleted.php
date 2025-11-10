@@ -1,8 +1,8 @@
 <?php
 
-namespace IP\Events;
+namespace App\Events;
 
-use IP\Modules\Users\Models\User;
+use Modules\Users\Models\User;
 use Illuminate\Queue\SerializesModels;
 
 class UserDeleted extends Event

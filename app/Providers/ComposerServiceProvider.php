@@ -1,6 +1,6 @@
 <?php
 
-namespace IP\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,12 +13,12 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.master', 'IP\Composers\LayoutComposer');
-        view()->composer(['client_center.layouts.master', 'client_center.layouts.public', 'layouts.master', 'setup.master'], 'IP\Composers\SkinComposer');
-        view()->composer('clients._form', 'IP\Composers\ClientFormComposer');
-        view()->composer('invoices._table', 'IP\Composers\InvoiceTableComposer');
-        view()->composer('quotes._table', 'IP\Composers\QuoteTableComposer');
-        view()->composer('reports.options.*', 'IP\Composers\ReportComposer');
+        view()->composer('layouts.master', 'App\Composers\LayoutComposer');
+        view()->composer(['client_center.layouts.master', 'client_center.layouts.public', 'layouts.master', 'setup.master'], 'App\Composers\SkinComposer');
+        view()->composer('clients._form', 'App\Composers\ClientFormComposer');
+        view()->composer('invoices._table', 'App\Composers\InvoiceTableComposer');
+        view()->composer('quotes._table', 'App\Composers\QuoteTableComposer');
+        view()->composer('reports.options.*', 'App\Composers\ReportComposer');
     }
 
     /**

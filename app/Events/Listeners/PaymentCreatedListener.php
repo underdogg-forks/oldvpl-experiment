@@ -1,12 +1,12 @@
 <?php
 
-namespace IP\Events\Listeners;
+namespace App\Events\Listeners;
 
-use IP\Events\PaymentCreated;
-use IP\Modules\CustomFields\Models\PaymentCustom;
-use IP\Modules\MailQueue\Support\MailQueue;
-use IP\Support\Contacts;
-use IP\Support\Parser;
+use App\Events\PaymentCreated;
+use Modules\CustomFields\Models\PaymentCustom;
+use Modules\MailQueue\Support\MailQueue;
+use App\Support\Contacts;
+use App\Support\Parser;
 
 class PaymentCreatedListener
 {
