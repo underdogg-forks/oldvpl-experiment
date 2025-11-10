@@ -3,23 +3,26 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\Settings\Controllers'], function () {
-    Route::get('settings', ['uses' => 'SettingController@index', 'as' => 'settings.index']);
-    Route::post('settings', ['uses' => 'SettingController@update', 'as' => 'settings.update']);
-    Route::get('settings/update_check', ['uses' => 'SettingController@updateCheck', 'as' => 'settings.updateCheck']);
-    Route::get('settings/logo/delete', ['uses' => 'SettingController@logoDelete', 'as' => 'settings.logo.delete']);
-    Route::post('settings/save_tab', ['uses' => 'SettingController@saveTab', 'as' => 'settings.saveTab']);
+use Modules\Settings\Controllers\BackupController;
+use Modules\Settings\Controllers\SettingController;
 
-    if (!config('app.demo')) {
-        Route::get('backup/database', ['uses' => 'BackupController@database', 'as' => 'settings.backup.database']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('settings/update_check', [SettingController::class, 'updateCheck'])->name('settings.updateCheck');
+    Route::delete('settings/logo', [SettingController::class, 'logoDelete'])->name('settings.logo.delete');
+    Route::post('settings/save_tab', [SettingController::class, 'saveTab'])->name('settings.saveTab');
+
+    if (! config('app.demo')) {
+        Route::get('backup/database', [BackupController::class, 'database'])->name('settings.backup.database');
     }
 });

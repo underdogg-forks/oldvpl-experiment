@@ -18,7 +18,7 @@
         attachPdf = 1;
       }
 
-      $.post('{{ route('invoiceMail.store') }}', {
+      $.post('{{ route('invoice-mail.store') }}', {
         invoice_id: {{ $invoiceId }},
         to: $('#to').val(),
         cc: $('#cc').val(),

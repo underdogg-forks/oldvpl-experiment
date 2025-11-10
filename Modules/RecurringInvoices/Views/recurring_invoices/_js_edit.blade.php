@@ -7,7 +7,7 @@
     autosize($('textarea'));
 
     $('#btn-copy-recurring-invoice').click(function () {
-      $('#modal-placeholder').load('{{ route('recurringInvoiceCopy.create') }}', {
+      $('#modal-placeholder').load('{{ route('recurring-invoice-copy.create') }}', {
         recurring_invoice_id: {{ $recurringInvoice->id }}
       });
     });
@@ -31,7 +31,7 @@
     $('.btn-delete-recurring-invoice-item').click(function () {
       if (!confirm('{!! trans('ip.delete_record_warning') !!}')) return false;
       var id = $(this).data('item-id');
-      $.post('{{ route('recurringInvoiceItem.delete') }}', {
+      $.post('{{ route('recurring-invoice-item.delete') }}', {
         id: id
       }).done(function () {
         $('#tr-item-' + id).remove();

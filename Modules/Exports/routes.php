@@ -3,16 +3,18 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'export', 'namespace' => 'Modules\Exports\Controllers'], function () {
-    Route::get('/', ['uses' => 'ExportController@index', 'as' => 'export.index']);
-    Route::post('{export}', ['uses' => 'ExportController@export', 'as' => 'export.export']);
+use Modules\Exports\Controllers\ExportController;
+
+Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'export'], function () {
+    Route::get('/', [ExportController::class, 'index'])->name('export.index');
+    Route::post('{export}', [ExportController::class, 'export'])->name('export.export');
 });

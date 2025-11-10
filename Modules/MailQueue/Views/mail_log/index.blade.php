@@ -62,9 +62,14 @@
                                                 @lang('ip.options') <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="{{ route('mailLog.delete', [$mail->id]) }}"
-                                                       onclick="return confirm('@lang('ip.delete_record_warning')');"><i
-                                                                class="fa fa-trash-o"></i> @lang('ip.delete')</a>
+                                                <li>
+                                                    <a href="#" onclick="event.preventDefault(); if(confirm('@lang('ip.delete_record_warning')')) { document.getElementById('delete-form-{{ $mail->id }}').submit(); }">
+                                                        <i class="fa fa-trash-o"></i> @lang('ip.delete')
+                                                    </a>
+                                                    <form id="delete-form-{{ $mail->id }}" action="{{ route('mailLog.delete', [$mail->id]) }}" method="POST" style="display: none;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>

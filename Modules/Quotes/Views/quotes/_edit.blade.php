@@ -36,9 +36,15 @@
                 <li><a href="{{ route('clientCenter.public.quote.show', [$quote->url_key]) }}" target="_blank"><i
                                 class="fa fa-globe"></i> @lang('ip.public')</a></li>
                 <li class="divider"></li>
-                <li><a href="{{ route('quotes.delete', [$quote->id]) }}"
-                       onclick="return confirm('@lang('ip.delete_record_warning')');"><i
-                                class="fa fa-trash-o"></i> @lang('ip.delete')</a></li>
+                <li>
+                    <a href="#" onclick="event.preventDefault(); if(confirm('@lang('ip.delete_record_warning')')) { document.getElementById('delete-form-quote').submit(); }">
+                        <i class="fa fa-trash-o"></i> @lang('ip.delete')
+                    </a>
+                    <form id="delete-form-quote" action="{{ route('quotes.delete', [$quote->id]) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </li>
             </ul>
         </div>
 

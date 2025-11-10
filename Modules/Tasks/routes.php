@@ -1,3 +1,5 @@
 <?php
 
-Route::get('tasks/run', ['uses' => 'Modules\Tasks\Controllers\TaskController@run', 'as' => 'tasks.run']);
+use Modules\Tasks\Controllers\TaskController;
+
+Route::get('tasks/run', [TaskController::class, 'run'])->name('tasks.run');

@@ -26,7 +26,7 @@
 
     // Creates the invoice
     $('#btn-copy-invoice-submit').click(function () {
-      $.post('{{ route('invoiceCopy.store') }}', {
+      $.post('{{ route('invoice-copy.store') }}', {
         invoice_id: {{ $invoice->id }},
         client_name: $('#copy_client_name').val(),
         company_profile_id: $('#copy_company_profile_id').val(),

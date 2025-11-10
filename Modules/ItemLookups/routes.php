@@ -3,23 +3,25 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\ItemLookups\Controllers'], function () {
-    Route::get('item_lookups', ['uses' => 'ItemLookupController@index', 'as' => 'itemLookups.index']);
-    Route::get('item_lookups/create', ['uses' => 'ItemLookupController@create', 'as' => 'itemLookups.create']);
-    Route::get('item_lookups/{itemLookup}/edit', ['uses' => 'ItemLookupController@edit', 'as' => 'itemLookups.edit']);
-    Route::get('item_lookups/{itemLookup}/delete', ['uses' => 'ItemLookupController@delete', 'as' => 'itemLookups.delete']);
-    Route::get('item_lookups/ajax/item_lookup', ['uses' => 'ItemLookupController@ajaxItemLookup', 'as' => 'itemLookups.ajax.itemLookup']);
+use Modules\ItemLookups\Controllers\ItemLookupController;
 
-    Route::post('item_lookups', ['uses' => 'ItemLookupController@store', 'as' => 'itemLookups.store']);
-    Route::post('item_lookups/{itemLookup}', ['uses' => 'ItemLookupController@update', 'as' => 'itemLookups.update']);
-    Route::post('item_lookups/ajax/process', ['uses' => 'ItemLookupController@process', 'as' => 'itemLookups.ajax.process']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('item_lookups', [ItemLookupController::class, 'index'])->name('itemLookups.index');
+    Route::get('item_lookups/create', [ItemLookupController::class, 'create'])->name('itemLookups.create');
+    Route::post('item_lookups', [ItemLookupController::class, 'store'])->name('itemLookups.store');
+    Route::get('item_lookups/{itemLookup}/edit', [ItemLookupController::class, 'edit'])->name('itemLookups.edit');
+    Route::post('item_lookups/{itemLookup}', [ItemLookupController::class, 'update'])->name('itemLookups.update');
+    Route::delete('item_lookups/{itemLookup}', [ItemLookupController::class, 'delete'])->name('itemLookups.delete');
+    Route::get('item_lookups/ajax/item_lookup', [ItemLookupController::class, 'ajaxItemLookup'])->name('itemLookups.ajax.itemLookup');
+
+    Route::post('item_lookups/ajax/process', [ItemLookupController::class, 'process'])->name('itemLookups.ajax.process');
 });

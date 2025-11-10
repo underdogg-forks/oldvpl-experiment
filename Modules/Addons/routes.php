@@ -3,19 +3,21 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'addons', 'namespace' => 'Modules\Addons\Controllers'], function () {
-    Route::get('/', ['uses' => 'AddonController@index', 'as' => 'addons.index']);
+use Modules\Addons\Controllers\AddonController;
 
-    Route::get('install/{id}', ['uses' => 'AddonController@install', 'as' => 'addons.install']);
-    Route::get('uninstall/{id}', ['uses' => 'AddonController@uninstall', 'as' => 'addons.uninstall']);
-    Route::get('upgrade/{id}', ['uses' => 'AddonController@upgrade', 'as' => 'addons.upgrade']);
+Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'addons'], function () {
+    Route::get('/', [AddonController::class, 'index'])->name('addons.index');
+
+    Route::post('install/{id}', [AddonController::class, 'install'])->name('addons.install');
+    Route::delete('uninstall/{id}', [AddonController::class, 'uninstall'])->name('addons.uninstall');
+    Route::post('upgrade/{id}', [AddonController::class, 'upgrade'])->name('addons.upgrade');
 });

@@ -6,7 +6,7 @@
       $(function () {
 
         $('.email-payment-receipt').click(function () {
-          $('#modal-placeholder').load("{{ route('paymentMail.create') }}", {
+          $('#modal-placeholder').load("{{ route('payment-mail.create') }}", {
             payment_id: $(this).data('payment-id'),
             redirectTo: $(this).data('redirect-to')
           });

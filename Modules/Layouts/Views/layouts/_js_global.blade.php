@@ -57,7 +57,7 @@
     });
 
     $(document).on('click', '.email-quote', function () {
-      $('#modal-placeholder').load('{{ route('quoteMail.create') }}', {
+      $('#modal-placeholder').load('{{ route('quote-mail.create') }}', {
         quote_id: $(this).data('quote-id'),
         redirectTo: $(this).data('redirect-to')
       }, function (response, status, xhr) {
@@ -68,7 +68,7 @@
     });
 
     $(document).on('click', '.email-invoice', function () {
-      $('#modal-placeholder').load('{{ route('invoiceMail.create') }}', {
+      $('#modal-placeholder').load('{{ route('invoice-mail.create') }}', {
         invoice_id: $(this).data('invoice-id'),
         redirectTo: $(this).data('redirect-to')
       }, function (response, status, xhr) {

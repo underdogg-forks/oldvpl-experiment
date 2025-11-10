@@ -1,20 +1,26 @@
 <?php
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'expenses', 'namespace' => 'Modules\Expenses\Controllers'], function () {
-    Route::get('/', ['uses' => 'ExpenseController@index', 'as' => 'expenses.index']);
-    Route::get('create', ['uses' => 'ExpenseCreateController@create', 'as' => 'expenses.create']);
-    Route::post('create', ['uses' => 'ExpenseCreateController@store', 'as' => 'expenses.store']);
-    Route::get('{id}/edit', ['uses' => 'ExpenseEditController@edit', 'as' => 'expenses.edit']);
-    Route::post('{id}/edit', ['uses' => 'ExpenseEditController@update', 'as' => 'expenses.update']);
-    Route::get('{id}/delete', ['uses' => 'ExpenseController@delete', 'as' => 'expenses.delete']);
+use Modules\Expenses\Controllers\ExpenseBillController;
+use Modules\Expenses\Controllers\ExpenseController;
+use Modules\Expenses\Controllers\ExpenseCreateController;
+use Modules\Expenses\Controllers\ExpenseEditController;
+use Modules\Expenses\Controllers\ExpenseLookupController;
+
+Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'expenses'], function () {
+    Route::get('/', [ExpenseController::class, 'index'])->name('expenses.index');
+    Route::get('create', [ExpenseCreateController::class, 'create'])->name('expenses.create');
+    Route::post('create', [ExpenseCreateController::class, 'store'])->name('expenses.store');
+    Route::get('{id}/edit', [ExpenseEditController::class, 'edit'])->name('expenses.edit');
+    Route::post('{id}/edit', [ExpenseEditController::class, 'update'])->name('expenses.update');
+    Route::delete('{id}', [ExpenseController::class, 'delete'])->name('expenses.delete');
 
     Route::group(['prefix' => 'bill'], function () {
-        Route::post('create', ['uses' => 'ExpenseBillController@create', 'as' => 'expenseBill.create']);
-        Route::post('store', ['uses' => 'ExpenseBillController@store', 'as' => 'expenseBill.store']);
+        Route::post('create', [ExpenseBillController::class, 'create'])->name('expenseBill.create');
+        Route::post('store', [ExpenseBillController::class, 'store'])->name('expenseBill.store');
     });
 
-    Route::get('lookup/category', ['uses' => 'ExpenseLookupController@lookupCategory', 'as' => 'expenses.lookupCategory']);
-    Route::get('lookup/vendor', ['uses' => 'ExpenseLookupController@lookupVendor', 'as' => 'expenses.lookupVendor']);
+    Route::get('lookup/category', [ExpenseLookupController::class, 'lookupCategory'])->name('expenses.lookupCategory');
+    Route::get('lookup/vendor', [ExpenseLookupController::class, 'lookupVendor'])->name('expenses.lookupVendor');
 
-    Route::post('bulk/delete', ['uses' => 'ExpenseController@bulkDelete', 'as' => 'expenses.bulk.delete']);
+    Route::post('bulk/delete', [ExpenseController::class, 'bulkDelete'])->name('expenses.bulk.delete');
 });

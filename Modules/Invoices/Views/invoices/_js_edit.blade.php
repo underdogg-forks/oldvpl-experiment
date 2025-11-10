@@ -7,7 +7,7 @@
     autosize($('textarea'));
 
     $('#btn-copy-invoice').click(function () {
-      $('#modal-placeholder').load('{{ route('invoiceCopy.create') }}', {
+      $('#modal-placeholder').load('{{ route('invoice-copy.create') }}', {
         invoice_id: {{ $invoice->id }}
       });
     });
@@ -31,7 +31,7 @@
     $('.btn-delete-invoice-item').click(function () {
       if (!confirm('{!! trans('ip.delete_record_warning') !!}')) return false;
       var id = $(this).data('item-id');
-      $.post('{{ route('invoiceItem.delete') }}', {
+      $.post('{{ route('invoice-item.delete') }}', {
         id: id
       }).done(function () {
         $('#tr-item-' + id).remove();

@@ -3,28 +3,31 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\Payments\Controllers'], function () {
-    Route::get('payments', ['uses' => 'PaymentController@index', 'as' => 'payments.index']);
-    Route::post('payments/create', ['uses' => 'PaymentController@create', 'as' => 'payments.create']);
-    Route::post('payments/store', ['uses' => 'PaymentController@store', 'as' => 'payments.store']);
-    Route::get('payments/{payment}', ['uses' => 'PaymentController@edit', 'as' => 'payments.edit']);
-    Route::post('payments/{payment}', ['uses' => 'PaymentController@update', 'as' => 'payments.update']);
+use Modules\Payments\Controllers\PaymentController;
+use Modules\Payments\Controllers\PaymentMailController;
 
-    Route::get('payments/{payment}/delete', ['uses' => 'PaymentController@delete', 'as' => 'payments.delete']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
+    Route::post('payments/create', [PaymentController::class, 'create'])->name('payments.create');
+    Route::post('payments/store', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('payments/{payment}', [PaymentController::class, 'edit'])->name('payments.edit');
+    Route::post('payments/{payment}', [PaymentController::class, 'update'])->name('payments.update');
 
-    Route::post('bulk/delete', ['uses' => 'PaymentController@bulkDelete', 'as' => 'payments.bulk.delete']);
+    Route::delete('payments/{payment}', [PaymentController::class, 'delete'])->name('payments.delete');
+
+    Route::post('bulk/delete', [PaymentController::class, 'bulkDelete'])->name('payments.bulk.delete');
 
     Route::group(['prefix' => 'payment_mail'], function () {
-        Route::post('create', ['uses' => 'PaymentMailController@create', 'as' => 'paymentMail.create']);
-        Route::post('store', ['uses' => 'PaymentMailController@store', 'as' => 'paymentMail.store']);
+        Route::post('create', [PaymentMailController::class, 'create'])->name('payment-mail.create');
+        Route::post('store', [PaymentMailController::class, 'store'])->name('payment-mail.store');
     });
 });

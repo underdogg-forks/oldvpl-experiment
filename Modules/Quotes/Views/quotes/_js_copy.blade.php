@@ -26,7 +26,7 @@
 
     // Creates the quote
     $('#btn-copy-quote-submit').click(function () {
-      $.post('{{ route('quoteCopy.store') }}', {
+      $.post('{{ route('quote-copy.store') }}', {
         quote_id: {{ $quote->id }},
         client_name: $('#copy_client_name').val(),
         company_profile_id: $('#copy_company_profile_id').val(),

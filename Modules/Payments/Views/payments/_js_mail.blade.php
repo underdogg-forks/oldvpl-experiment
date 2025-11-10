@@ -18,7 +18,7 @@
         attachPdf = 1;
       }
 
-      $.post('{{ route('paymentMail.store') }}', {
+      $.post('{{ route('payment-mail.store') }}', {
         payment_id: {{ $paymentId }},
         to: $('#to').val(),
         cc: $('#cc').val(),
