@@ -12,8 +12,10 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['prefix' => 'mail_log', 'middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\MailQueue\Controllers'], function () {
-    Route::get('/', ['uses' => 'MailLogController@index', 'as' => 'mailLog.index']);
-    Route::post('content', ['uses' => 'MailLogController@content', 'as' => 'mailLog.content']);
-    Route::get('{id}/delete', ['uses' => 'MailLogController@delete', 'as' => 'mailLog.delete']);
+use Modules\MailQueue\Controllers\MailLogController;
+
+Route::group(['prefix' => 'mail_log', 'middleware' => ['web', 'auth.admin']], function () {
+    Route::get('/', [MailLogController::class, 'index'])->name('mailLog.index');
+    Route::post('content', [MailLogController::class, 'content'])->name('mailLog.content');
+    Route::delete('{id}', [MailLogController::class, 'delete'])->name('mailLog.delete');
 });

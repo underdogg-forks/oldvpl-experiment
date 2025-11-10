@@ -12,14 +12,15 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'namespace' => 'Modules\Currencies\Controllers'], function () {
-    Route::get('currencies', ['uses' => 'CurrencyController@index', 'as' => 'currencies.index']);
-    Route::get('currencies/create', ['uses' => 'CurrencyController@create', 'as' => 'currencies.create']);
-    Route::get('currencies/{id}/edit', ['uses' => 'CurrencyController@edit', 'as' => 'currencies.edit']);
-    Route::get('currencies/{id}/delete', ['uses' => 'CurrencyController@delete', 'as' => 'currencies.delete']);
+use Modules\Currencies\Controllers\CurrencyController;
 
-    Route::post('currencies', ['uses' => 'CurrencyController@store', 'as' => 'currencies.store']);
-    Route::post('currencies/get-exchange-rate', ['uses' => 'CurrencyController@getExchangeRate', 'as' => 'currencies.getExchangeRate']);
-    Route::post('currencies/{id}', ['uses' => 'CurrencyController@update', 'as' => 'currencies.update']);
+Route::group(['middleware' => ['web', 'auth.admin']], function () {
+    Route::get('currencies', [CurrencyController::class, 'index'])->name('currencies.index');
+    Route::get('currencies/create', [CurrencyController::class, 'create'])->name('currencies.create');
+    Route::post('currencies', [CurrencyController::class, 'store'])->name('currencies.store');
+    Route::get('currencies/{id}/edit', [CurrencyController::class, 'edit'])->name('currencies.edit');
+    Route::post('currencies/{id}', [CurrencyController::class, 'update'])->name('currencies.update');
+    Route::delete('currencies/{id}', [CurrencyController::class, 'delete'])->name('currencies.delete');
 
+    Route::post('currencies/get-exchange-rate', [CurrencyController::class, 'getExchangeRate'])->name('currencies.getExchangeRate');
 });

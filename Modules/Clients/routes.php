@@ -12,30 +12,33 @@
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
  */
 
-Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'clients', 'namespace' => 'Modules\Clients\Controllers'], function () {
-    Route::get('/', ['uses' => 'ClientController@index', 'as' => 'clients.index']);
-    Route::get('create', ['uses' => 'ClientController@create', 'as' => 'clients.create']);
-    Route::get('{id}/edit', ['uses' => 'ClientController@edit', 'as' => 'clients.edit']);
-    Route::get('{id}', ['uses' => 'ClientController@show', 'as' => 'clients.show']);
-    Route::get('{id}/delete', ['uses' => 'ClientController@delete', 'as' => 'clients.delete']);
-    Route::get('ajax/lookup', ['uses' => 'ClientController@ajaxLookup', 'as' => 'clients.ajax.lookup']);
+use Modules\Clients\Controllers\ClientController;
+use Modules\Clients\Controllers\ContactController;
 
-    Route::post('create', ['uses' => 'ClientController@store', 'as' => 'clients.store']);
-    Route::post('ajax/modal_edit', ['uses' => 'ClientController@ajaxModalEdit', 'as' => 'clients.ajax.modalEdit']);
-    Route::post('ajax/modal_lookup', ['uses' => 'ClientController@ajaxModalLookup', 'as' => 'clients.ajax.modalLookup']);
-    Route::post('ajax/modal_update/{id}', ['uses' => 'ClientController@ajaxModalUpdate', 'as' => 'clients.ajax.modalUpdate']);
-    Route::post('ajax/check_name', ['uses' => 'ClientController@ajaxCheckName', 'as' => 'clients.ajax.checkName']);
-    Route::post('ajax/check_duplicate_name', ['uses' => 'ClientController@ajaxCheckDuplicateName', 'as' => 'clients.ajax.checkDuplicateName']);
-    Route::post('{id}/edit', ['uses' => 'ClientController@update', 'as' => 'clients.update']);
+Route::group(['middleware' => ['web', 'auth.admin'], 'prefix' => 'clients'], function () {
+    Route::get('/', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('create', [ClientController::class, 'create'])->name('clients.create');
+    Route::post('create', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+    Route::post('{id}/edit', [ClientController::class, 'update'])->name('clients.update');
+    Route::get('{id}', [ClientController::class, 'show'])->name('clients.show');
+    Route::delete('{id}', [ClientController::class, 'delete'])->name('clients.delete');
+    Route::get('ajax/lookup', [ClientController::class, 'ajaxLookup'])->name('clients.ajax.lookup');
 
-    Route::post('bulk/delete', ['uses' => 'ClientController@bulkDelete', 'as' => 'clients.bulk.delete']);
+    Route::post('ajax/modal_edit', [ClientController::class, 'ajaxModalEdit'])->name('clients.ajax.modalEdit');
+    Route::post('ajax/modal_lookup', [ClientController::class, 'ajaxModalLookup'])->name('clients.ajax.modalLookup');
+    Route::post('ajax/modal_update/{id}', [ClientController::class, 'ajaxModalUpdate'])->name('clients.ajax.modalUpdate');
+    Route::post('ajax/check_name', [ClientController::class, 'ajaxCheckName'])->name('clients.ajax.checkName');
+    Route::post('ajax/check_duplicate_name', [ClientController::class, 'ajaxCheckDuplicateName'])->name('clients.ajax.checkDuplicateName');
+
+    Route::post('bulk/delete', [ClientController::class, 'bulkDelete'])->name('clients.bulk.delete');
 
     Route::group(['prefix' => '{clientId}/contacts'], function () {
-        Route::get('create', ['uses' => 'ContactController@create', 'as' => 'clients.contacts.create']);
-        Route::post('create', ['uses' => 'ContactController@store', 'as' => 'clients.contacts.store']);
-        Route::get('edit/{contactId}', ['uses' => 'ContactController@edit', 'as' => 'clients.contacts.edit']);
-        Route::post('edit/{contactId}', ['uses' => 'ContactController@update', 'as' => 'clients.contacts.update']);
-        Route::post('delete', ['uses' => 'ContactController@delete', 'as' => 'clients.contacts.delete']);
-        Route::post('default', ['uses' => 'ContactController@updateDefault', 'as' => 'clients.contacts.updateDefault']);
+        Route::get('create', [ContactController::class, 'create'])->name('clients.contacts.create');
+        Route::post('create', [ContactController::class, 'store'])->name('clients.contacts.store');
+        Route::get('edit/{contactId}', [ContactController::class, 'edit'])->name('clients.contacts.edit');
+        Route::post('edit/{contactId}', [ContactController::class, 'update'])->name('clients.contacts.update');
+        Route::delete('delete', [ContactController::class, 'delete'])->name('clients.contacts.delete');
+        Route::post('default', [ContactController::class, 'updateDefault'])->name('clients.contacts.updateDefault');
     });
 });
