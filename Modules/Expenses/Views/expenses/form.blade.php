@@ -24,7 +24,7 @@
         {!! Form::open(['route' => 'expenses.store', 'files' => true]) !!}
     @endif
 
-    {!! Form::hidden('user_id', auth()->user()->id) !!}
+    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
     <section class="content-header">
         <h1 class="pull-left">

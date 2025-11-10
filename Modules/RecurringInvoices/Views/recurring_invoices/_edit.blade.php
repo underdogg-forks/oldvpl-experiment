@@ -110,7 +110,7 @@
                                 <tbody>
                                 <tr id="new-item" style="display: none;">
                                     <td>
-                                        {!! Form::hidden('recurring_invoice_id', $recurringInvoice->id) !!}
+                                        <input type="hidden" name="recurring_invoice_id" value="{{ $recurringInvoice->id }}">
                                         {!! Form::hidden('id', '') !!}
                                         {!! Form::text('name', null, ['class' => 'form-control']) !!}<br>
                                         <label><input type="checkbox" name="save_item_as_lookup"
@@ -127,8 +127,8 @@
                                 @foreach ($recurringInvoice->items as $item)
                                     <tr class="item" id="tr-item-{{ $item->id }}">
                                         <td>
-                                            {!! Form::hidden('recurring_invoice_id', $recurringInvoice->id) !!}
-                                            {!! Form::hidden('id', $item->id) !!}
+                                            <input type="hidden" name="recurring_invoice_id" value="{{ $recurringInvoice->id }}">
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
                                             {!! Form::text('name', $item->name, ['class' => 'form-control item-lookup']) !!}
                                         </td>
                                         <td>{!! Form::textarea('description', $item->description, ['class' => 'form-control', 'rows' => 1]) !!}</td>
