@@ -35,7 +35,7 @@
 
         </div>
 
-        {!! Form::close() !!}
+        </form>
 
     </section>
 

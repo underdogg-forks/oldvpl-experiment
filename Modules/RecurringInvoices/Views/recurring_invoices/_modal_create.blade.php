@@ -22,7 +22,7 @@
                         <label class="col-sm-3 control-label">@lang('ip.client')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::text('client_name', null, ['id' => 'create_client_name', 'class' => 'form-control client-lookup', 'autocomplete' => 'off']) !!}
+                            <input type="text" name="client_name" value="{{ old('client_name') }}" id="create_client_name" class="form-control client-lookup" autocomplete="off">
                         </div>
                     </div>
 
@@ -30,8 +30,11 @@
                         <label class="col-sm-3 control-label">@lang('ip.company_profile')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::select('company_profile_id', $companyProfiles, config('fi.defaultCompanyProfile'),
-                            ['id' => 'company_profile_id', 'class' => 'form-control']) !!}
+                            <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id', config('ip.default_company_profile') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 
@@ -39,14 +42,18 @@
                         <label class="col-sm-3 control-label">@lang('ip.group')</label>
 
                         <div class="col-sm-9">
-                            {!! Form::select('group_id', $groups, config('fi.invoiceGroup'), ['id' => 'create_group_id', 'class' => 'form-control']) !!}
+                            <select name="group_id" id="create_group_id" class="form-control">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('group_id', config('ip.invoice_group') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.start_date')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('next_date', date(config('fi.dateFormat')), ['id' => 'create_next_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="next_date" value="{{ old('next_date', date(config('ip.date_format') }}" id="create_next_date" class="form-control">
                         </div>
                     </div>
 
@@ -55,10 +62,18 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    {!! Form::select('recurring_frequency', array_combine(range(1, 90), range(1, 90)), '1', ['id' => 'recurring_frequency', 'class' => 'form-control']) !!}
+                                    <select name="recurring_frequency" id="recurring_frequency" class="form-control">
+                                        @foreach(range(1, 90) as $num)
+                                            <option value="{{ $num }}" {{ old('recurring_frequency', 1) == $num ? 'selected' : '' }}>{{ $num }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-sm-9">
-                                    {!! Form::select('recurring_period', $frequencies, 3, ['id' => 'recurring_period', 'class' => 'form-control']) !!}
+                                    <select name="recurring_period" id="recurring_period" class="form-control">
+    @foreach($frequencies as $key => $value)
+        <option value="{{ $key }}" {{ old('recurring_period', 3) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +82,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.stop_date')</label>
                         <div class="col-sm-9">
-                            {!! Form::text('stop_date', null, ['id' => 'create_stop_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="stop_date" value="{{ old('stop_date') }}" id="create_stop_date" class="form-control">
                         </div>
                     </div>
 

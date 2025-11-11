@@ -29,14 +29,22 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.paper_size'): </label>
-            {!! Form::select('setting[paperSize]', $paperSizes, config('fi.paperSize'), ['class' => 'form-control']) !!}
+            <select name="setting[paperSize]" class="form-control">
+    @foreach($paperSizes as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[paperSize]', config('ip.paper_size') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
             <label>@lang('ip.paper_orientation'): </label>
-            {!! Form::select('setting[paperOrientation]', $paperOrientations, config('fi.paperOrientation'), ['class' => 'form-control']) !!}
+            <select name="setting[paperOrientation]" class="form-control">
+    @foreach($paperOrientations as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[paperOrientation]', config('ip.paper_orientation') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -44,10 +52,14 @@
 
 <div class="form-group">
     <label>@lang('ip.pdf_driver'): </label>
-    {!! Form::select('setting[pdfDriver]', $pdfDrivers, config('fi.pdfDriver'), ['id' => 'pdfDriver', 'class' => 'form-control']) !!}
+    <select name="setting[pdfDriver]" id="pdfDriver" class="form-control">
+    @foreach($pdfDrivers as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[pdfDriver]', config('ip.pdf_driver') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="form-group wkhtmltopdf-option">
     <label>@lang('ip.binary_path'): </label>
-    {!! Form::text('setting[pdfBinaryPath]', config('fi.pdfBinaryPath'), ['class' => 'form-control']) !!}
+    <input type="text" name="setting[pdfBinaryPath]" value="{{ old('setting[pdfBinaryPath]', config('ip.pdf_binary_path') }}" class="form-control">
 </div>

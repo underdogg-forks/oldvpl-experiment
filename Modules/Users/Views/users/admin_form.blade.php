@@ -21,9 +21,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($user, ['route' => ['users.update', $user->id, 'admin']]) !!}
+        <form method="POST" action="{{ route('users.update', $user->id, 'admin') }}">
+    @csrf
+    @method('PUT')
     @else
-        {!! Form::open(['route' => ['users.store', 'admin']]) !!}
+        <form method="POST" action="{{ route('users.store', 'admin') }}">
+    @csrf
     @endif
 
     <section class="content-header">
@@ -52,13 +55,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('ip.name'): </label>
-                                    {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                                    <input type="text" name="name" value="{{ old('name', $editMode ? $user->name : '') }}" id="name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('ip.email'): </label>
-                                    {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control']) !!}
+                                    <input type="text" name="email" value="{{ old('email', $editMode ? $user->email : '') }}" id="email" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -66,13 +69,12 @@
                         @if (!$editMode)
                             <div class="form-group">
                                 <label>@lang('ip.password'): </label>
-                                {!! Form::password('password', ['id' => 'password', 'class' => 'form-control']) !!}
+                                <input type="password" name="password" id="password" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label>@lang('ip.password_confirmation'): </label>
-                                {!! Form::password('password_confirmation', ['id' => 'password_confirmation',
-                                'class' => 'form-control']) !!}
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                             </div>
                         @endif
 
@@ -80,13 +82,13 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.api_public_key'): </label>
-                                    {!! Form::text('api_public_key', null, ['id' => 'api_public_key', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="text" name="api_public_key" value="{{ old('api_public_key', $editMode ? $user->api_public_key : '') }}" id="api_public_key" class="form-control" readonly>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.api_secret_key'): </label>
-                                    {!! Form::text('api_secret_key', null, ['id' => 'api_secret_key', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="text" name="api_secret_key" value="{{ old('api_secret_key', $editMode ? $user->api_secret_key : '') }}" id="api_secret_key" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
@@ -121,5 +123,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

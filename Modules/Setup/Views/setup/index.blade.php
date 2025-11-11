@@ -8,7 +8,8 @@
 
     <section class="content">
 
-        {!! Form::open() !!}
+        <form method="POST">
+    @csrf
 
         <div class="row">
             <div class="col-md-12">
@@ -18,7 +19,7 @@
 
                         <p>@lang('ip.setup_welcome')</p>
 
-                        {!! Form::submit(trans('ip.continue'), ['class' => 'btn btn-primary']) !!}
+                        <button type="submit" class="btn btn-primary">{{ trans('ip.continue' }}</button>
 
                     </div>
                 </div>
@@ -26,7 +27,7 @@
             </div>
         </div>
 
-        {!! Form::close() !!}
+        </form>
 
     </section>
 

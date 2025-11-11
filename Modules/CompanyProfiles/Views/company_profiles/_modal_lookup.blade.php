@@ -16,7 +16,11 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.company_profile')</label>
                         <div class="col-sm-9">
-                            {!! Form::select('change_company_profile_id', $companyProfiles, null, ['id' => 'change_company_profile_id', 'class' => 'form-control']) !!}
+                            <select name="change_company_profile_id" id="change_company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('change_company_profile_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 

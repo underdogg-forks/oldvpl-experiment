@@ -13,10 +13,18 @@
 
         <div class="pull-right">
             <div class="btn-group">
-                {!! Form::open(['method' => 'GET', 'id' => 'filter']) !!}
-                {!! Form::select('company_profile', $companyProfiles, request('company_profile'), ['class' => 'recurring_invoice_filter_options form-control inline']) !!}
-                {!! Form::select('status', $statuses, request('status'), ['class' => 'recurring_invoice_filter_options form-control inline']) !!}
-                {!! Form::close() !!}
+                <form method="GET" id="filter">
+                <select name="company_profile" class="recurring_invoice_filter_options form-control inline">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile', request('company_profile') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
+                <select name="status" class="recurring_invoice_filter_options form-control inline">
+    @foreach($statuses as $key => $value)
+        <option value="{{ $key }}" {{ old('status', request('status') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
+                </form>
             </div>
             <a href="javascript:void(0)" class="btn btn-primary create-recurring-invoice"><i
                         class="fa fa-plus"></i> @lang('ip.new')</a>

@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($paymentMethod, ['route' => ['paymentMethods.update', $paymentMethod->id]]) !!}
+        <form method="POST" action="{{ route('paymentMethods.update', $paymentMethod->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'paymentMethods.store']) !!}
+        <form method="POST" action="{{ route('paymentMethods.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">
@@ -38,7 +41,7 @@
 
                         <div class="control-group">
                             <label>@lang('ip.payment_method'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" value="{{ old('name', $editMode ? $paymentMethod->name : '') }}" id="name" class="form-control">
                         </div>
 
                     </div>
@@ -51,5 +54,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

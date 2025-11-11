@@ -67,7 +67,11 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.company_profile'):</label>
-                                    {!! Form::select('company_profile_id', $companyProfiles, null, ['id' => 'company_profile_id', 'class' => 'form-control'])  !!}
+                                    <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>
@@ -76,9 +80,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.date_range'):</label>
-                                    {!! Form::hidden('from_date', null, ['id' => 'from_date']) !!}
-                                    {!! Form::hidden('to_date', null, ['id' => 'to_date']) !!}
-                                    {!! Form::text('date_range', null, ['id' => 'date_range', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="hidden" name="from_date" value="" id="from_date">
+                                    <input type="hidden" name="to_date" value="" id="to_date">
+                                    <input type="text" name="date_range" value="{{ old('date_range') }}" id="date_range" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>

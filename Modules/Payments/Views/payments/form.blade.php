@@ -10,12 +10,15 @@
 @section('content')
 
     @if ($editMode == true)
-        {!! Form::model($payment, ['route' => ['payments.update', $payment->id]]) !!}
+        <form method="POST" action="{{ route('payments.update', $payment->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'payments.store']) !!}
+        <form method="POST" action="{{ route('payments.store') }}">
+            @csrf
     @endif
 
-    {!! Form::hidden('invoice_id') !!}
+    <input type="hidden" name="invoice_id" value="{{ old('invoice_id') }}">
 
     <section class="content-header">
         <h1 class="pull-left">
@@ -24,7 +27,7 @@
 
         <div class="pull-right">
             <a href="{{ route('payments.index') }}" class="btn btn-default">Cancel</a>
-            {!! Form::submit(trans('ip.save'), ['class' => 'btn btn-primary']) !!}
+            <button type="submit" class="btn btn-primary">{{ trans('ip.save' }}</button>
         </div>
         <div class="clearfix"></div>
     </section>
@@ -43,25 +46,26 @@
 
                         <div class="form-group">
                             <label>@lang('ip.amount'): </label>
-                            {!! Form::text('amount', $payment->formatted_numeric_amount, ['id' => 'amount',
-                            'class' => 'form-control']) !!}
+                            <input type="text" name="amount" value="{{ old('amount', $payment->formatted_numeric_amount) }}" id="amount" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.payment_date'): </label>
-                            {!! Form::text('paid_at', $payment->formatted_paid_at, ['id' => 'paid_at', 'class'
-                            => 'form-control']) !!}
+                            <input type="text" name="paid_at" value="{{ old('paid_at', $payment->formatted_paid_at) }}" id="paid_at" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.payment_method')</label>
-                            {!! Form::select('payment_method_id', $paymentMethods, null, ['id' =>
-                            'payment_method_id', 'class' => 'form-control']) !!}
+                            <select name="payment_method_id" id="payment_method_id" class="form-control">
+    @foreach($paymentMethods as $key => $value)
+        <option value="{{ $key }}" {{ old('payment_method_id', $editMode ? $payment->payment_method_id : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.note')</label>
-                            {!! Form::textarea('note', null, ['id' => 'note', 'class' => 'form-control']) !!}
+                            <textarea name="note" id="note" class="form-control">{{ old('note', $editMode ? $payment->note : '') }}</textarea>
                         </div>
 
                         @if ($customFields->count())
@@ -78,7 +82,7 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 
     <section class="content">
         @include('notes._notes', ['object' => $payment, 'model' => 'Modules\Payments\Models\Payment', 'showPrivateCheckbox' => true])

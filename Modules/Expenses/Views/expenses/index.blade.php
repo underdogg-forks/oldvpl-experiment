@@ -48,12 +48,28 @@
                         class="fa fa-trash"></i> @lang('ip.delete')</a>
 
             <div class="btn-group">
-                {!! Form::open(['method' => 'GET', 'id' => 'filter']) !!}
-                {!! Form::select('company_profile', $companyProfiles, request('company_profile'), ['class' => 'expense_filter_options form-control inline']) !!}
-                {!! Form::select('status', $statuses, request('status'), ['class' => 'expense_filter_options form-control inline']) !!}
-                {!! Form::select('category', $categories, request('category'), ['class' => 'expense_filter_options form-control inline']) !!}
-                {!! Form::select('vendor', $vendors, request('vendor'), ['class' => 'expense_filter_options form-control inline']) !!}
-                {!! Form::close() !!}
+                <form method="GET" id="filter">
+                <select name="company_profile" class="expense_filter_options form-control inline">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile', request('company_profile') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
+                <select name="status" class="expense_filter_options form-control inline">
+    @foreach($statuses as $key => $value)
+        <option value="{{ $key }}" {{ old('status', request('status') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
+                <select name="category" class="expense_filter_options form-control inline">
+    @foreach($categories as $key => $value)
+        <option value="{{ $key }}" {{ old('category', request('category') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
+                <select name="vendor" class="expense_filter_options form-control inline">
+    @foreach($vendors as $key => $value)
+        <option value="{{ $key }}" {{ old('vendor', request('vendor') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
+                </form>
             </div>
             <a href="{{ route('expenses.create') }}" class="btn btn-primary"><i
                         class="fa fa-plus"></i> @lang('ip.new')</a>

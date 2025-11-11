@@ -30,16 +30,20 @@
 
 <div class="form-group">
     <label>@lang('ip.dashboard_totals_option'): </label>
-    {!! Form::select('setting[widgetInvoiceSummaryDashboardTotals]', $dashboardTotalOptions, config('fi.widgetInvoiceSummaryDashboardTotals'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting']) !!}
+    <select name="setting[widgetInvoiceSummaryDashboardTotals]" id="invoice-dashboard-total-setting" class="form-control">
+    @foreach($dashboardTotalOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[widgetInvoiceSummaryDashboardTotals]', config('ip.widget_invoice_summary_dashboard_totals') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="row" id="div-invoice-dashboard-totals-date-range">
     <div class="col-md-2">
         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-        {!! Form::text('setting[widgetInvoiceSummaryDashboardTotalsFromDate]', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-from-date']) !!}
+        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsFromDate]', config('ip.widget_invoice_summary_dashboard_totals_from_date') }}" id="invoice-dashboard-total-setting-from-date" class="form-control">
     </div>
     <div class="col-md-2">
         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-        {!! Form::text('setting[widgetInvoiceSummaryDashboardTotalsToDate]', config('fi.widgetInvoiceSummaryDashboardTotalsToDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-to-date']) !!}
+        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsToDate]', config('ip.widget_invoice_summary_dashboard_totals_to_date') }}" id="invoice-dashboard-total-setting-to-date" class="form-control">
     </div>
 </div>

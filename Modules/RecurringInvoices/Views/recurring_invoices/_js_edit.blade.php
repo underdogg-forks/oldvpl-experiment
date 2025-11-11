@@ -2,8 +2,8 @@
 
   $(function () {
 
-    $('#next_date').datepicker({format: '{{ config('fi.datepickerFormat') }}', autoclose: true});
-    $('#stop_date').datepicker({format: '{{ config('fi.datepickerFormat') }}', autoclose: true});
+    $('#next_date').datepicker({format: '{{ config('ip.datepicker_format') }}', autoclose: true});
+    $('#stop_date').datepicker({format: '{{ config('ip.datepicker_format') }}', autoclose: true});
     autosize($('textarea'));
 
     $('#btn-copy-recurring-invoice').click(function () {

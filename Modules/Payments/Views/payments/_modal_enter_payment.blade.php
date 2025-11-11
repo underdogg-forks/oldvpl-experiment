@@ -21,7 +21,7 @@
                         <label class="col-sm-4 control-label">@lang('ip.amount')</label>
 
                         <div class="col-sm-8">
-                            {!! Form::text('payment_amount', $balance, ['id' => 'payment_amount', 'class' => 'form-control']) !!}
+                            <input type="text" name="payment_amount" value="{{ old('payment_amount', $balance) }}" id="payment_amount" class="form-control">
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
                         <label class="col-sm-4 control-label">@lang('ip.payment_date')</label>
 
                         <div class="col-sm-8">
-                            {!! Form::text('payment_date', $date, ['id' => 'payment_date', 'class' => 'form-control']) !!}
+                            <input type="text" name="payment_date" value="{{ old('payment_date', $date) }}" id="payment_date" class="form-control">
                         </div>
                     </div>
 
@@ -37,7 +37,11 @@
                         <label class="col-sm-4 control-label">@lang('ip.payment_method')</label>
 
                         <div class="col-sm-8">
-                            {!! Form::select('payment_method_id', $paymentMethods, null, ['id' => 'payment_method_id', 'class' => 'form-control']) !!}
+                            <select name="payment_method_id" id="payment_method_id" class="form-control">
+    @foreach($paymentMethods as $key => $value)
+        <option value="{{ $key }}" {{ old('payment_method_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
                     </div>
 
@@ -45,16 +49,16 @@
                         <label class="col-sm-4 control-label">@lang('ip.note')</label>
 
                         <div class="col-sm-8">
-                            {!! Form::textarea('payment_note', null, ['id' => 'payment_note', 'class' => 'form-control', 'rows' => 4]) !!}
+                            <textarea name="payment_note" id="payment_note" class="form-control" rows="4">{{ old('payment_note') }}</textarea>
                         </div>
                     </div>
 
-                    @if (config('fi.mailConfigured') and $client->email)
+                    @if (config('ip.mail_configured') and $client->email)
                         <div class="form-group">
                             <label class="col-sm-4 control-label">@lang('ip.email_payment_receipt')</label>
 
                             <div class="col-sm-8">
-                                {!! Form::checkbox('email_payment_receipt', 1, config('fi.automaticEmailPaymentReceipts'), ['id' => 'email_payment_receipt']) !!}
+                                <input type="checkbox" name="email_payment_receipt" value="1" {{ old('email_payment_receipt', config('ip.automatic_email_payment_receipts') ? 'checked' : '' }} id="email_payment_receipt">
                             </div>
                         </div>
                     @endif

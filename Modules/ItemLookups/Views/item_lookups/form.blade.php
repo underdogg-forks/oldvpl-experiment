@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($itemLookup, ['route' => ['itemLookups.update', $itemLookup->id]]) !!}
+        <form method="POST" action="{{ route('itemLookups.update', $itemLookup->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'itemLookups.store']) !!}
+        <form method="POST" action="{{ route('itemLookups.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">
@@ -38,27 +41,35 @@
 
                         <div class="form-group">
                             <label class="">@lang('ip.name'): </label>
-                            {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) !!}
+                            <input type="text" name="name" value="{{ old('name', $editMode ? $itemLookup->name : '') }}" id="name" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label class="">@lang('ip.description'): </label>
-                            {!! Form::textarea('description', null, ['id' => 'description', 'class' => 'form-control']) !!}
+                            <textarea name="description" id="description" class="form-control">{{ old('description', $editMode ? $itemLookup->description : '') }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label class="">@lang('ip.price'): </label>
-                            {!! Form::text('price', (($editMode) ? $itemLookup->formatted_numeric_price: null), ['id' => 'price', 'class' => 'form-control']) !!}
+                            <input type="text" name="price" value="{{ old('price', (($editMode) }}" id="price" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label class="">{{ trans('ip.tax_1') }}: </label>
-                            {!! Form::select('tax_rate_id', $taxRates, null, ['class' => 'form-control']) !!}
+                            <select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', $editMode ? $itemLookup->tax_rate_id : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">
                             <label class="">{{ trans('ip.tax_2') }}: </label>
-                            {!! Form::select('tax_rate_2_id', $taxRates, null, ['class' => 'form-control']) !!}
+                            <select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', $editMode ? $itemLookup->tax_rate_2_id : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                     </div>
@@ -71,5 +82,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

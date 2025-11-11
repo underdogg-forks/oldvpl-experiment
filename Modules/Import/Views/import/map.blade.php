@@ -2,7 +2,8 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['import.map.submit', $importType], 'class' => 'form-horizontal']) !!}
+    <form method="POST" action="{{ route('import.map.submit', $importType) }}" class="form-horizontal">
+    @csrf
 
     <section class="content-header">
         <h1 class="pull-left">
@@ -10,7 +11,7 @@
         </h1>
 
         <div class="pull-right">
-            {!! Form::submit(trans('ip.submit'), ['class' => 'btn btn-primary']) !!}
+            <button type="submit" class="btn btn-primary">{{ trans('ip.submit' }}</button>
         </div>
         <div class="clearfix"></div>
     </section>
@@ -31,7 +32,12 @@
                             @foreach ($importFields as $key => $field)
                                 <tr>
                                     <td style="width: 20%;">{{ $field }}</td>
-                                    <td>{!! Form::select($key, $fileFields, (is_numeric(array_search($key, $fileFields)) ? array_search($key, $fileFields) : null), ['class' => 'form-control']) !!}
+                                    <td>
+                                        <select name="{{ $key }}" class="form-control">
+                                            @foreach($fileFields as $fileKey => $fileValue)
+                                                <option value="{{ $fileKey }}" {{ (is_numeric(array_search($key, $fileFields)) ? array_search($key, $fileFields) : null) == $fileKey ? 'selected' : '' }}>{{ $fileValue }}</option>
+                                            @endforeach
+                                        </select>
                                     </td>
                                 </tr>
                             @endforeach
@@ -47,5 +53,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

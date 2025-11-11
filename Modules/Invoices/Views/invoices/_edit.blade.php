@@ -18,7 +18,7 @@
 
         <a href="{{ route('invoices.pdf', [$invoice->id]) }}" target="_blank" id="btn-pdf-invoice"
            class="btn btn-default"><i class="fa fa-print"></i> @lang('ip.pdf')</a>
-        @if (config('fi.mailConfigured'))
+        @if (config('ip.mail_configured'))
             <a href="javascript:void(0)" id="btn-email-invoice" class="btn btn-default email-invoice"
                data-invoice-id="{{ $invoice->id }}" data-redirect-to="{{ route('invoices.edit', [$invoice->id]) }}"><i
                         class="fa fa-envelope"></i> @lang('ip.email')</a>
@@ -29,7 +29,7 @@
                 @lang('ip.other') <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                @if ($invoice->isPayable or config('fi.allowPaymentsWithoutBalance'))
+                @if ($invoice->isPayable or config('ip.allow_payments_without_balance'))
                     <li><a href="javascript:void(0)" id="btn-enter-payment" class="enter-payment"
                            data-invoice-id="{{ $invoice->id }}"
                            data-invoice-balance="{{ $invoice->amount->formatted_numeric_balance }}"
@@ -86,7 +86,7 @@
                             <h3 class="box-title">@lang('ip.summary')</h3>
                         </div>
                         <div class="box-body">
-                            {!! Form::text('summary', $invoice->summary, ['id' => 'summary', 'class' => 'form-control']) !!}
+                            <input type="text" name="summary" value="{{ old('summary', $invoice->summary) }}" id="summary" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -138,32 +138,48 @@
                                 <tbody>
                                 <tr id="new-item" style="display: none;">
                                     <td>
-                                        {!! Form::hidden('invoice_id', $invoice->id) !!}
-                                        {!! Form::hidden('id', '') !!}
-                                        {!! Form::text('name', null, ['class' => 'form-control']) !!}<br>
+                                        <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                        <input type="hidden" name="id" value="">
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control"><br>
                                         <label><input type="checkbox" name="save_item_as_lookup"
                                                       tabindex="999"> @lang('ip.save_item_as_lookup')</label>
                                     </td>
-                                    <td>{!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 1]) !!}</td>
-                                    <td>{!! Form::text('quantity', null, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::text('price', null, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::select('tax_rate_id', $taxRates, config('fi.itemTaxRate'), ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::select('tax_rate_2_id', $taxRates, config('fi.itemTax2Rate'), ['class' => 'form-control']) !!}</td>
+                                    <td><textarea name="description" class="form-control" rows="1">{{ old('description') }}</textarea></td>
+                                    <td><input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control"></td>
+                                    <td><input type="text" name="price" value="{{ old('price') }}" class="form-control"></td>
+                                    <td><select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', config('ip.item_tax_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
+                                    <td><select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', config('ip.item_tax2_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 @foreach ($invoice->items as $item)
                                     <tr class="item" id="tr-item-{{ $item->id }}">
                                         <td>
-                                            {!! Form::hidden('invoice_id', $invoice->id) !!}
-                                            {!! Form::hidden('id', $item->id) !!}
-                                            {!! Form::text('name', $item->name, ['class' => 'form-control item-lookup']) !!}
+                                            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <input type="text" name="name" value="{{ old('name', $item->name) }}" class="form-control item-lookup">
                                         </td>
-                                        <td>{!! Form::textarea('description', $item->description, ['class' => 'form-control', 'rows' => 1]) !!}</td>
-                                        <td>{!! Form::text('quantity', $item->formatted_quantity, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::text('price', $item->formatted_numeric_price, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::select('tax_rate_id', $taxRates, $item->tax_rate_id, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::select('tax_rate_2_id', $taxRates, $item->tax_rate_2_id, ['class' => 'form-control']) !!}</td>
+                                        <td><textarea name="description" class="form-control" rows="1">{{ old('description', $item->description) }}</textarea></td>
+                                        <td><input type="text" name="quantity" value="{{ old('quantity', $item->formatted_quantity) }}" class="form-control"></td>
+                                        <td><input type="text" name="price" value="{{ old('price', $item->formatted_numeric_price) }}" class="form-control"></td>
+                                        <td><select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', $item->tax_rate_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
+                                        <td><select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', $item->tax_rate_2_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
                                         <td style="text-align: right; padding-right: 25px;">{{ $item->amount->formatted_subtotal }}</td>
                                         <td>
                                             <a class="btn btn-xs btn-default btn-delete-invoice-item"
@@ -201,14 +217,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>@lang('ip.terms_and_conditions')</label>
-                                            {!! Form::textarea('terms', $invoice->terms, ['id' => 'terms', 'class' => 'form-control', 'rows' => 5]) !!}
+                                            <textarea name="terms" id="terms" class="form-control" rows="5">{{ old('terms', $invoice->terms) }}</textarea>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>@lang('ip.footer')</label>
-                                            {!! Form::textarea('footer', $invoice->footer, ['id' => 'footer', 'class' => 'form-control', 'rows' => 5]) !!}
+                                            <textarea name="footer" id="footer" class="form-control" rows="5">{{ old('footer', $invoice->footer) }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -285,43 +301,41 @@
 
                     <div class="form-group">
                         <label>@lang('ip.invoice') #</label>
-                        {!! Form::text('number', $invoice->number, ['id' => 'number', 'class' =>
-                        'form-control
-                        input-sm']) !!}
+                        <input type="text" name="number" value="{{ old('number', $invoice->number) }}" id="number" class="form-control
+                        input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.date')</label>
-                        {!! Form::text('invoice_date', $invoice->formatted_invoice_date, ['id' =>
-                        'invoice_date', 'class' => 'form-control input-sm']) !!}
+                        <input type="text" name="invoice_date" value="{{ old('invoice_date', $invoice->formatted_invoice_date) }}" id="invoice_date" class="form-control input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.due_date')</label>
-                        {!! Form::text('due_at', $invoice->formatted_due_at, ['id' => 'due_at', 'class'
-                        => 'form-control input-sm']) !!}
+                        <input type="text" name="due_at" value="{{ old('due_at', $invoice->formatted_due_at) }}" id="due_at" class="form-control input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.discount')</label>
                         <div class="input-group">
-                            {!! Form::text('discount', $invoice->formatted_numeric_discount, ['id' =>
-                            'discount', 'class' => 'form-control input-sm']) !!}
+                            <input type="text" name="discount" value="{{ old('discount', $invoice->formatted_numeric_discount) }}" id="discount" class="form-control input-sm">
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.currency')</label>
-                        {!! Form::select('currency_code', $currencies, $invoice->currency_code, ['id' =>
-                        'currency_code', 'class' => 'form-control input-sm']) !!}
+                        <select name="currency_code" id="currency_code" class="form-control input-sm">
+    @foreach($currencies as $key => $value)
+        <option value="{{ $key }}" {{ old('currency_code', $invoice->currency_code) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.exchange_rate')</label>
                         <div class="input-group">
-                            {!! Form::text('exchange_rate', $invoice->exchange_rate, ['id' =>
-                            'exchange_rate', 'class' => 'form-control input-sm']) !!}
+                            <input type="text" name="exchange_rate" value="{{ old('exchange_rate', $invoice->exchange_rate) }}" id="exchange_rate" class="form-control input-sm">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm" id="btn-update-exchange-rate" type="button"
                                         data-toggle="tooltip" data-placement="left"
@@ -333,14 +347,20 @@
 
                     <div class="form-group">
                         <label>@lang('ip.status')</label>
-                        {!! Form::select('invoice_status_id', $statuses, $invoice->invoice_status_id,
-                        ['id' => 'invoice_status_id', 'class' => 'form-control input-sm']) !!}
+                        <select name="invoice_status_id" id="invoice_status_id" class="form-control input-sm">
+    @foreach($statuses as $key => $value)
+        <option value="{{ $key }}" {{ old('invoice_status_id', $invoice->invoice_status_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.template')</label>
-                        {!! Form::select('template', $templates, $invoice->template,
-                        ['id' => 'template', 'class' => 'form-control input-sm']) !!}
+                        <select name="template" id="template" class="form-control input-sm">
+    @foreach($templates as $key => $value)
+        <option value="{{ $key }}" {{ old('template', $invoice->template) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                 </div>

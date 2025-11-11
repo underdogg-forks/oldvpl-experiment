@@ -67,7 +67,11 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.company_profile'):</label>
-                                    {!! Form::select('company_profile_id', $companyProfiles, null, ['id' => 'company_profile_id', 'class' => 'form-control'])  !!}
+                                    <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
                         </div>
@@ -76,9 +80,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.date_range'):</label>
-                                    {!! Form::hidden('from_date', null, ['id' => 'from_date']) !!}
-                                    {!! Form::hidden('to_date', null, ['id' => 'to_date']) !!}
-                                    {!! Form::text('date_range', null, ['id' => 'date_range', 'class' => 'form-control', 'readonly' => 'readonly']) !!}
+                                    <input type="hidden" name="from_date" value="" id="from_date">
+                                    <input type="hidden" name="to_date" value="" id="to_date">
+                                    <input type="text" name="date_range" value="{{ old('date_range') }}" id="date_range" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +91,10 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>@lang('ip.include_profit_based_on'):</label>
-                                    {!! Form::select('include_profit_based_on', ['invoice_date' => trans('ip.invoice_date'), 'payment_date' => trans('ip.payment_date')], null, ['id' => 'include_profit_based_on', 'class' => 'form-control'])  !!}
+                                    <select name="include_profit_based_on" id="include_profit_based_on" class="form-control">
+        <option value="invoice_date" {{ old('include_profit_based_on') == 'invoice_date' ? 'selected' : '' }}>{{ trans('ip.invoice_date') }}</option>
+        <option value="payment_date" {{ old('include_profit_based_on') == 'payment_date' ? 'selected' : '' }}>{{ trans('ip.payment_date') }}</option>
+    </select>
                                 </div>
                             </div>
                         </div>

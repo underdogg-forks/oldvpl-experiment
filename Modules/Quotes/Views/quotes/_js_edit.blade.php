@@ -2,8 +2,8 @@
 
   $(function () {
 
-    $('#quote_date').datepicker({format: '{{ config('fi.datepickerFormat') }}', autoclose: true});
-    $('#expires_at').datepicker({format: '{{ config('fi.datepickerFormat') }}', autoclose: true});
+    $('#quote_date').datepicker({format: '{{ config('ip.datepicker_format') }}', autoclose: true});
+    $('#expires_at').datepicker({format: '{{ config('ip.datepicker_format') }}', autoclose: true});
     autosize($('textarea'));
 
     $('#btn-copy-quote').click(function () {

@@ -1,6 +1,8 @@
 @include('clients._js_subedit')
 
-{!! Form::model($client, ['route' => ['clients.ajax.modalUpdate', $client->id], 'id' => 'form-edit-client']) !!}
+<form method="POST" action="{{ route('clients.ajax.modalUpdate', $client->id) }}" id="form-edit-client">
+    @csrf
+    @method('PUT')
 <div class="modal" id="modal-edit-client">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -22,4 +24,4 @@
         </div>
     </div>
 </div>
-{!! Form::close() !!}
+</form>

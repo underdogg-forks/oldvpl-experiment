@@ -46,23 +46,27 @@
                     @if ($invoices)
                         <div class="form-group">
                             <label class="control-label">* @lang('ip.label_invoice'):</label>
-                            {!! Form::select('invoice_id', $invoices, null, ['id' => 'invoice_id', 'class' => 'form-control']) !!}
+                            <select name="invoice_id" id="invoice_id" class="form-control">
+    @foreach($invoices as $key => $value)
+        <option value="{{ $key }}" {{ old('invoice_id') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">{!! Form::radio('add_line_item', 1, true, ['class' => 'add-line-item']) !!} @lang('ip.add_line_item_to_invoice')</label><br>
-                            <label class="control-label">{!! Form::radio('add_line_item', 0, false, ['class' => 'add-line-item']) !!} @lang('ip.do_not_add_line_item_to_invoice')</label>
+                            <label class="control-label"><input type="radio" name="add_line_item" value="1" {{ old('add_line_item', '1') == '1' ? 'checked' : '' }} class="add-line-item"> @lang('ip.add_line_item_to_invoice')</label><br>
+                            <label class="control-label"><input type="radio" name="add_line_item" value="0" {{ old('add_line_item') == '0' ? 'checked' : '' }} class="add-line-item"> @lang('ip.do_not_add_line_item_to_invoice')</label>
                         </div>
 
                         <div id="line-item-options">
                             <div class="form-group">
                                 <label class="control-label">* @lang('ip.label_item_name'):</label>
-                                {!! Form::text('item_name', $expense->category->name, ['id' => 'item_name', 'class' => 'form-control']) !!}
+                                <input type="text" name="item_name" value="{{ old('item_name', $expense->category->name) }}" id="item_name" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">@lang('ip.label_item_description'):</label>
-                                {!! Form::textarea('item_description', $expense->description, ['id' => 'item_description', 'class' => 'form-control']) !!}
+                                <textarea name="item_description" id="item_description" class="form-control">{{ old('item_description', $expense->description) }}</textarea>
                             </div>
                         </div>
                     @else

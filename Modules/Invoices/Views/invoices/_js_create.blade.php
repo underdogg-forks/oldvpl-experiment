@@ -9,7 +9,7 @@
       $('#create_client_name').typeahead('val', clientName);
     });
 
-    $('#create_invoice_date').datepicker({format: '{{ config('fi.datepickerFormat') }}', autoclose: true});
+    $('#create_invoice_date').datepicker({format: '{{ config('ip.datepicker_format') }}', autoclose: true});
 
     $('#invoice-create-confirm').click(function () {
 

@@ -42,11 +42,11 @@ class CurrencyController extends Controller
         $this->setReturnUrl();
 
         $currencies = Currency::sortable(['name' => 'asc'])
-            ->paginate(config('fi.resultsPerPage'));
+            ->paginate(config('ip.results_per_page'));
 
         return view('currencies.index', [
             'currencies' => $currencies,
-            'baseCurrency' => config('fi.baseCurrency'),
+            'baseCurrency' => config('ip.base_currency'),
         ]);
     }
 
@@ -139,7 +139,7 @@ class CurrencyController extends Controller
     public function getExchangeRate()
     {
         $currencyConverter = CurrencyConverterFactory::create();
-        $baseCurrency = config('fi.baseCurrency');
+        $baseCurrency = config('ip.base_currency');
         $targetCurrency = request('currency_code');
 
         return $currencyConverter->convert($baseCurrency, $targetCurrency);

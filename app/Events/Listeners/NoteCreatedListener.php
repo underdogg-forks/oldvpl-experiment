@@ -16,11 +16,11 @@ class NoteCreatedListener
     {
         $mail = $this->mailQueue->create($event->note->notable, [
             'to' => [$event->note->notable->user->email],
-            'cc' => [config('fi.mailDefaultCc')],
-            'bcc' => [config('fi.mailDefaultBcc')],
+            'cc' => [config('ip.mail_default_cc')],
+            'bcc' => [config('ip.mail_default_bcc')],
             'subject' => trans('ip.note_notification'),
             'body' => $event->note->formatted_note,
-            'attach_pdf' => config('fi.attachPdf'),
+            'attach_pdf' => config('ip.attach_pdf'),
         ]);
 
         $this->mailQueue->send($mail->id);

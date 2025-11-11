@@ -8,7 +8,8 @@
 
     <section class="content">
 
-        {!! Form::open(['route' => 'setup.postDbconfig', 'class' => 'form-install']) !!}
+        <form method="POST" action="{{ route('setup.postDbconfig') }}" class="form-install">
+    @csrf
 
         <div class="row">
             <div class="col-md-12">
@@ -27,44 +28,32 @@
 
                                 <div class="form-group">
                                     <label for="db_host">@lang('ip.database_host')</label>
-                                    {!! Form::text('db_host', old('db_host') ?: 'localhost', [
-                                        'class' => 'form-control', 'placeholder' => trans('ip.database_host')
-                                    ]) !!}
+                                    <input type="text" name="db_host" value="{{ old('db_host', old('db_host') }}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="db_port">@lang('ip.database_port')</label>
-                                    {!! Form::text('db_port', old('db_port') ?: '3306', [
-                                        'class' => 'form-control', 'placeholder' => trans('ip.database_port')
-                                    ]) !!}
+                                    <input type="text" name="db_port" value="{{ old('db_port', old('db_port') }}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="db_database">@lang('ip.database_database')</label>
-                                    {!! Form::text('db_database', old('db_database'), [
-                                        'class' => 'form-control', 'placeholder' => trans('ip.database_database')
-                                    ]) !!}
+                                    <input type="text" name="db_database" value="{{ old('db_database', old('db_database') }}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="db_username">@lang('ip.database_user')</label>
-                                    {!! Form::text('db_username', old('db_username'), [
-                                        'class' => 'form-control', 'placeholder' => trans('ip.database_user')
-                                    ]) !!}
+                                    <input type="text" name="db_username" value="{{ old('db_username', old('db_username') }}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="db_password">@lang('ip.database_pass')</label>
-                                    {!! Form::password('db_password', [
-                                        'class' => 'form-control', 'placeholder' => trans('ip.database_pass')
-                                    ]) !!}
+                                    <input type="password" name="db_password" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="db_prefix">@lang('ip.database_prefix')</label>
-                                    {!! Form::text('db_prefix', old('db_prefix'), [
-                                        'class' => 'form-control', 'placeholder' => trans('ip.database_prefix')
-                                    ]) !!}
+                                    <input type="text" name="db_prefix" value="{{ old('db_prefix', old('db_prefix') }}" class="form-control">
                                 </div>
 
                             </div>
@@ -80,7 +69,7 @@
 
         </div>
 
-        {!! Form::close() !!}
+        </form>
 
     </section>
 

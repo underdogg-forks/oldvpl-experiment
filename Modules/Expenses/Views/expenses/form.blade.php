@@ -11,7 +11,7 @@
 @section('javascript')
     <script type="text/javascript">
       $(function () {
-        $('#expense_date').datepicker({format: '{{ config('fi.datepickerFormat') }}', autoclose: true});
+        $('#expense_date').datepicker({format: '{{ config('ip.datepicker_format') }}', autoclose: true});
       });
     </script>
 @stop
@@ -19,12 +19,15 @@
 @section('content')
 
     @if ($editMode == true)
-        {!! Form::model($expense, ['route' => ['expenses.update', $expense->id], 'files' => true]) !!}
+        <form method="POST" action="{{ route('expenses.update', $expense->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'expenses.store', 'files' => true]) !!}
+        <form method="POST" action="{{ route('expenses.store') }}" enctype="multipart/form-data">
+            @csrf
     @endif
 
-    {!! Form::hidden('user_id', auth()->user()->id) !!}
+    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
     <section class="content-header">
         <h1 class="pull-left">
@@ -53,21 +56,25 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>* @lang('ip.company_profile'): </label>
-                                    {!! Form::select('company_profile_id', $companyProfiles, (($editMode) ? $expense->company_profile_id : config('fi.defaultCompanyProfile')), ['id' => 'company_profile_id', 'class' => 'form-control']) !!}
+                                    <select name="company_profile_id" id="company_profile_id" class="form-control">
+    @foreach($companyProfiles as $key => $value)
+        <option value="{{ $key }}" {{ old('company_profile_id', (($editMode) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>* @lang('ip.date'): </label>
-                                    {!! Form::text('expense_date', (($editMode) ? $expense->formatted_expense_date : $currentDate), ['id' => 'expense_date', 'class' => 'form-control']) !!}
+                                    <input type="text" name="expense_date" value="{{ old('expense_date', (($editMode) }}" id="expense_date" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>* @lang('ip.category'): </label>
-                                    {!! Form::text('category_name', null, ['id' => 'category_name', 'class' => 'form-control category-lookup']) !!}
+                                    <input type="text" name="category_name" value="{{ old('category_name', $editMode ? $expense->category_name : '') }}" id="category_name" class="form-control category-lookup">
                                 </div>
                             </div>
 
@@ -78,28 +85,28 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>* @lang('ip.amount'): </label>
-                                    {!! Form::text('amount', (($editMode) ? $expense->formatted_numeric_amount : null), ['id' => 'amount', 'class' => 'form-control']) !!}
+                                    <input type="text" name="amount" value="{{ old('amount', (($editMode) }}" id="amount" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>@lang('ip.tax'): </label>
-                                    {!! Form::text('tax', (($editMode) ? $expense->formatted_numeric_tax : null), ['id' => 'amount', 'class' => 'form-control']) !!}
+                                    <input type="text" name="tax" value="{{ old('tax', (($editMode) }}" id="amount" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('ip.vendor'): </label>
-                                    {!! Form::text('vendor_name', null, ['id' => 'vendor_name', 'class' => 'form-control vendor-lookup']) !!}
+                                    <input type="text" name="vendor_name" value="{{ old('vendor_name', $editMode ? $expense->vendor_name : '') }}" id="vendor_name" class="form-control vendor-lookup">
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('ip.client'): </label>
-                                    {!! Form::text('client_name', null, ['id' => 'client_name', 'class' => 'form-control client-lookup']) !!}
+                                    <input type="text" name="client_name" value="{{ old('client_name', $editMode ? $expense->client_name : '') }}" id="client_name" class="form-control client-lookup">
                                 </div>
                             </div>
 
@@ -107,7 +114,7 @@
 
                         <div class="form-group">
                             <label>@lang('ip.description'): </label>
-                            {!! Form::textarea('description', null, ['id' => 'description', 'class' => 'form-control']) !!}
+                            <textarea name="description" id="description" class="form-control">{{ old('description', $editMode ? $expense->description : '') }}</textarea>
                         </div>
 
                         @if ($customFields->count())
@@ -118,7 +125,7 @@
                             @if (!config('app.demo'))
                                 <div class="form-group">
                                     <label>@lang('ip.attach_files'): </label>
-                                    {!! Form::file('attachments[]', ['id' => 'attachments', 'class' => 'form-control', 'multiple' => 'multiple']) !!}
+                                    <input type="file" name="attachments[]" id="attachments" class="form-control">
                                 </div>
                             @endif
                         @else
@@ -134,5 +141,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

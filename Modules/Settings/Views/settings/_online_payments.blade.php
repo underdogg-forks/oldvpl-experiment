@@ -4,7 +4,10 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>@lang('ip.enabled')</label>
-                {!! Form::select('setting[' . $driver->getSettingKey('enabled') . ']', [0=>trans('ip.no'),1=>trans('ip.yes')], $driver->getSetting('enabled'), ['class' => 'form-control']) !!}
+                <select name="{{ 'setting[' . $driver->getSettingKey('enabled') . ']' }}" class="form-control">
+        <option value="0" {{ old('setting.' . $driver->getSettingKey('enabled'), $driver->getSetting('enabled')) == 0 ? 'selected' : '' }}> {{ trans('ip.no') }}</option>
+        <option value="1" {{ old('setting.' . $driver->getSettingKey('enabled'), $driver->getSetting('enabled')) == 1 ? 'selected' : '' }}> {{ trans('ip.yes') }}</option>
+</select>
             </div>
         </div>
         @foreach ($driver->getSettings() as $key => $setting)
@@ -12,10 +15,14 @@
                 <div class="form-group">
                     @if (!is_array($setting))
                         <label>{{ trans('ip.' . snake_case($setting)) }}</label>
-                        {!! Form::text('setting[' . $driver->getSettingKey($setting) . ']', config('fi.' . $driver->getSettingKey($setting)), ['class' => 'form-control']) !!}
+                        <input type="text" name="setting[" value="{{ old('setting[') }}" class="form-control">
                     @else
                         <label>{{ trans('ip.' . snake_case($key)) }}</label>
-                        {!! Form::select('setting[' . $driver->getSettingKey($key) . ']', $setting, config('fi.' . $driver->getSettingKey($key)), ['class' => 'form-control']) !!}
+                        <select name="{{ 'setting[' . $driver->getSettingKey($key) . ']' }}" class="form-control">
+    @foreach($setting as $opt_key => $opt_value)
+        <option value="{{ $opt_key }}" {{ old('setting.' . $driver->getSettingKey($key), config('ip.' . $driver->getSettingKey($key))) == $opt_key ? 'selected' : '' }}>{{ $opt_value }</option>
+    @endforeach
+</select>
                     @endif
                 </div>
             </div>
@@ -23,7 +30,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>@lang('ip.payment_button_text')</label>
-                {!! Form::text('setting[' . $driver->getSettingKey('paymentButtonText') . ']', $driver->getSetting('paymentButtonText'), ['class' => 'form-control']) !!}
+                <input type="text" name="setting[" value="{{ old('setting[') }}" class="form-control">
             </div>
         </div>
     </div>

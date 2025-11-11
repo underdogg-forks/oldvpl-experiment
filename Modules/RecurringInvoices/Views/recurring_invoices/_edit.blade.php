@@ -58,7 +58,7 @@
                             <h3 class="box-title">@lang('ip.summary')</h3>
                         </div>
                         <div class="box-body">
-                            {!! Form::text('summary', $recurringInvoice->summary, ['id' => 'summary', 'class' => 'form-control']) !!}
+                            <input type="text" name="summary" value="{{ old('summary', $recurringInvoice->summary) }}" id="summary" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -110,32 +110,48 @@
                                 <tbody>
                                 <tr id="new-item" style="display: none;">
                                     <td>
-                                        {!! Form::hidden('recurring_invoice_id', $recurringInvoice->id) !!}
-                                        {!! Form::hidden('id', '') !!}
-                                        {!! Form::text('name', null, ['class' => 'form-control']) !!}<br>
+                                        <input type="hidden" name="recurring_invoice_id" value="{{ $recurringInvoice->id }}">
+                                        <input type="hidden" name="id" value="">
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control"><br>
                                         <label><input type="checkbox" name="save_item_as_lookup"
                                                       tabindex="999"> @lang('ip.save_item_as_lookup')</label>
                                     </td>
-                                    <td>{!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => 1]) !!}</td>
-                                    <td>{!! Form::text('quantity', null, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::text('price', null, ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::select('tax_rate_id', $taxRates, config('fi.itemTaxRate'), ['class' => 'form-control']) !!}</td>
-                                    <td>{!! Form::select('tax_rate_2_id', $taxRates, config('fi.itemTax2Rate'), ['class' => 'form-control']) !!}</td>
+                                    <td><textarea name="description" class="form-control" rows="1">{{ old('description') }}</textarea></td>
+                                    <td><input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control"></td>
+                                    <td><input type="text" name="price" value="{{ old('price') }}" class="form-control"></td>
+                                    <td><select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', config('ip.item_tax_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
+                                    <td><select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', config('ip.item_tax2_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                                 @foreach ($recurringInvoice->items as $item)
                                     <tr class="item" id="tr-item-{{ $item->id }}">
                                         <td>
-                                            {!! Form::hidden('recurring_invoice_id', $recurringInvoice->id) !!}
-                                            {!! Form::hidden('id', $item->id) !!}
-                                            {!! Form::text('name', $item->name, ['class' => 'form-control item-lookup']) !!}
+                                            <input type="hidden" name="recurring_invoice_id" value="{{ $recurringInvoice->id }}">
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <input type="text" name="name" value="{{ old('name', $item->name) }}" class="form-control item-lookup">
                                         </td>
-                                        <td>{!! Form::textarea('description', $item->description, ['class' => 'form-control', 'rows' => 1]) !!}</td>
-                                        <td>{!! Form::text('quantity', $item->formatted_quantity, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::text('price', $item->formatted_numeric_price, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::select('tax_rate_id', $taxRates, $item->tax_rate_id, ['class' => 'form-control']) !!}</td>
-                                        <td>{!! Form::select('tax_rate_2_id', $taxRates, $item->tax_rate_2_id, ['class' => 'form-control']) !!}</td>
+                                        <td><textarea name="description" class="form-control" rows="1">{{ old('description', $item->description) }}</textarea></td>
+                                        <td><input type="text" name="quantity" value="{{ old('quantity', $item->formatted_quantity) }}" class="form-control"></td>
+                                        <td><input type="text" name="price" value="{{ old('price', $item->formatted_numeric_price) }}" class="form-control"></td>
+                                        <td><select name="tax_rate_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_id', $item->tax_rate_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
+                                        <td><select name="tax_rate_2_id" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', $item->tax_rate_2_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select></td>
                                         <td style="text-align: right; padding-right: 25px;">{{ $item->amount->formatted_subtotal }}</td>
                                         <td>
                                             <a class="btn btn-xs btn-default btn-delete-recurring-invoice-item"
@@ -170,14 +186,14 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>@lang('ip.terms_and_conditions')</label>
-                                            {!! Form::textarea('terms', $recurringInvoice->terms, ['id' => 'terms', 'class' => 'form-control', 'rows' => 5]) !!}
+                                            <textarea name="terms" id="terms" class="form-control" rows="5">{{ old('terms', $recurringInvoice->terms) }}</textarea>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>@lang('ip.footer')</label>
-                                            {!! Form::textarea('footer', $recurringInvoice->footer, ['id' => 'footer', 'class' => 'form-control', 'rows' => 5]) !!}
+                                            <textarea name="footer" id="footer" class="form-control" rows="5">{{ old('footer', $recurringInvoice->footer) }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -213,45 +229,55 @@
 
                     <div class="form-group">
                         <label>@lang('ip.next_date')</label>
-                        {!! Form::text('next_date', $recurringInvoice->formatted_next_date, ['id' => 'next_date', 'class' => 'form-control input-sm']) !!}
+                        <input type="text" name="next_date" value="{{ old('next_date', $recurringInvoice->formatted_next_date) }}" id="next_date" class="form-control input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.every')</label>
                         <div class="row">
                             <div class="col-md-4">
-                                {!! Form::select('recurring_frequency', array_combine(range(1, 90), range(1, 90)), $recurringInvoice->recurring_frequency, ['id' => 'recurring_frequency', 'class' => 'form-control']) !!}
+                                <select name="recurring_frequency" id="recurring_frequency" class="form-control">
+                                    @foreach(range(1, 90) as $num)
+                                        <option value="{{ $num }}" {{ old('recurring_frequency', $recurringInvoice->recurring_frequency) == $num ? 'selected' : '' }}>{{ $num }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-8">
-                                {!! Form::select('recurring_period', $frequencies, $recurringInvoice->recurring_period, ['id' => 'recurring_period', 'class' => 'form-control']) !!}
+                                <select name="recurring_period" id="recurring_period" class="form-control">
+    @foreach($frequencies as $key => $value)
+        <option value="{{ $key }}" {{ old('recurring_period', $recurringInvoice->recurring_period) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.stop_date')</label>
-                        {!! Form::text('stop_date', $recurringInvoice->formatted_stop_date, ['id' => 'stop_date', 'class' => 'form-control input-sm']) !!}
+                        <input type="text" name="stop_date" value="{{ old('stop_date', $recurringInvoice->formatted_stop_date) }}" id="stop_date" class="form-control input-sm">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.discount')</label>
                         <div class="input-group">
-                            {!! Form::text('discount', $recurringInvoice->formatted_numeric_discount, ['id' =>
-                            'discount', 'class' => 'form-control input-sm']) !!}
+                            <input type="text" name="discount" value="{{ old('discount', $recurringInvoice->formatted_numeric_discount) }}" id="discount" class="form-control input-sm">
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.currency')</label>
-                        {!! Form::select('currency_code', $currencies, $recurringInvoice->currency_code, ['id' =>
-                        'currency_code', 'class' => 'form-control input-sm']) !!}
+                        <select name="currency_code" id="currency_code" class="form-control input-sm">
+    @foreach($currencies as $key => $value)
+        <option value="{{ $key }}" {{ old('currency_code', $recurringInvoice->currency_code) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.exchange_rate')</label>
                         <div class="input-group">
-                            {!! Form::text('exchange_rate', $recurringInvoice->exchange_rate, ['id' => 'exchange_rate', 'class' => 'form-control input-sm']) !!}
+                            <input type="text" name="exchange_rate" value="{{ old('exchange_rate', $recurringInvoice->exchange_rate) }}" id="exchange_rate" class="form-control input-sm">
                             <span class="input-group-btn">
                                 <button class="btn btn-default btn-sm" id="btn-update-exchange-rate" type="button"
                                         data-toggle="tooltip" data-placement="left"
@@ -264,12 +290,20 @@
 
                     <div class="form-group">
                         <label>@lang('ip.group')</label>
-                        {!! Form::select('group_id', $groups, $recurringInvoice->group_id, ['id' => 'group_id', 'class' => 'form-control input-sm']) !!}
+                        <select name="group_id" id="group_id" class="form-control input-sm">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('group_id', $recurringInvoice->group_id) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.template')</label>
-                        {!! Form::select('template', $templates, $recurringInvoice->template, ['id' => 'template', 'class' => 'form-control input-sm']) !!}
+                        <select name="template" id="template" class="form-control input-sm">
+    @foreach($templates as $key => $value)
+        <option value="{{ $key }}" {{ old('template', $recurringInvoice->template) == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                     </div>
 
                 </div>

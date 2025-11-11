@@ -3,28 +3,40 @@
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_quote_template'): </label>
-            {!! Form::select('setting[quoteTemplate]', $quoteTemplates, config('fi.quoteTemplate'), ['class' => 'form-control']) !!}
+            <select name="setting[quoteTemplate]" class="form-control">
+    @foreach($quoteTemplates as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[quoteTemplate]', config('ip.quote_template') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_group'): </label>
-            {!! Form::select('setting[quoteGroup]', $groups, config('fi.quoteGroup'), ['class' => 'form-control']) !!}
+            <select name="setting[quoteGroup]" class="form-control">
+    @foreach($groups as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[quoteGroup]', config('ip.quote_group') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.quotes_expire_after'): </label>
-            {!! Form::text('setting[quotesExpireAfter]', config('fi.quotesExpireAfter'), ['class' => 'form-control']) !!}
+            <input type="text" name="setting[quotesExpireAfter]" value="{{ old('setting[quotesExpireAfter]', config('ip.quotes_expire_after') }}" class="form-control">
         </div>
     </div>
 
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.default_status_filter'): </label>
-            {!! Form::select('setting[quoteStatusFilter]', $quoteStatuses, config('fi.quoteStatusFilter'), ['class' => 'form-control']) !!}
+            <select name="setting[quoteStatusFilter]" class="form-control">
+    @foreach($quoteStatuses as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[quoteStatusFilter]', config('ip.quote_status_filter') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
 
@@ -32,29 +44,41 @@
 
 <div class="form-group">
     <label>@lang('ip.convert_quote_when_approved'): </label>
-    {!! Form::select('setting[convertQuoteWhenApproved]', $yesNoArray, config('fi.convertQuoteWhenApproved'), ['class' => 'form-control']) !!}
+    <select name="setting[convertQuoteWhenApproved]" class="form-control">
+    @foreach($yesNoArray as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[convertQuoteWhenApproved]', config('ip.convert_quote_when_approved') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="form-group">
     <label>@lang('ip.convert_quote_setting'): </label>
-    {!! Form::select('setting[convertQuoteTerms]', $convertQuoteOptions, config('fi.convertQuoteTerms'), ['class' => 'form-control']) !!}
+    <select name="setting[convertQuoteTerms]" class="form-control">
+    @foreach($convertQuoteOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[convertQuoteTerms]', config('ip.convert_quote_terms') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="form-group">
     <label>@lang('ip.default_terms'): </label>
-    {!! Form::textarea('setting[quoteTerms]', config('fi.quoteTerms'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[quoteTerms]" class="form-control" rows="5">{{ old('setting[quoteTerms]', config('ip.quote_terms') }}</textarea>
 </div>
 
 <div class="form-group">
     <label>@lang('ip.default_footer'): </label>
-    {!! Form::textarea('setting[quoteFooter]', config('fi.quoteFooter'), ['class' => 'form-control', 'rows' => 5]) !!}
+    <textarea name="setting[quoteFooter]" class="form-control" rows="5">{{ old('setting[quoteFooter]', config('ip.quote_footer') }}</textarea>
 </div>
 
 <div class="row">
     <div class="col-md-3">
         <div class="form-group">
             <label>@lang('ip.if_quote_is_emailed_while_draft'): </label>
-            {!! Form::select('setting[resetQuoteDateEmailDraft]', $quoteWhenDraftOptions, config('fi.resetQuoteDateEmailDraft'), ['class' => 'form-control']) !!}
+            <select name="setting[resetQuoteDateEmailDraft]" class="form-control">
+    @foreach($quoteWhenDraftOptions as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[resetQuoteDateEmailDraft]', config('ip.reset_quote_date_email_draft') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
         </div>
     </div>
     <div class="col-md-6"></div>

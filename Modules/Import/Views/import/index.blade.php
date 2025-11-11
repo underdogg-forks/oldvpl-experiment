@@ -2,7 +2,8 @@
 
 @section('content')
 
-    {!! Form::open(['route' => 'import.upload', 'files' => true]) !!}
+    <form method="POST" action="{{ route('import.upload') }}" enctype="multipart/form-data">
+    @csrf
 
     <section class="content-header">
         <h1 class="pull-left">
@@ -10,7 +11,7 @@
         </h1>
         <div class="pull-right">
             @if (!config('app.demo'))
-                {!! Form::submit(trans('ip.submit'), ['class' => 'btn btn-primary']) !!}
+                <button type="submit" class="btn btn-primary">{{ trans('ip.submit' }}</button>
             @endif
         </div>
         <div class="clearfix"></div>
@@ -30,13 +31,17 @@
 
                         <div class="form-group">
                             <label>@lang('ip.what_to_import')</label>
-                            {!! Form::select('import_type', $importTypes, null, ['class' => 'form-control']) !!}
+                            <select name="import_type" class="form-control">
+    @foreach($importTypes as $key => $value)
+        <option value="{{ $key }}" {{ old('import_type') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.select_file_to_import')</label>
                             @if (!config('app.demo'))
-                                {!! Form::file('import_file') !!}
+                                <input type="file" name="import_file">
                             @else
                                 Imports are disabled in the demo.
                             @endif
@@ -52,5 +57,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

@@ -21,74 +21,109 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab-clients" class="tab-pane active">
-                            {!! Form::open(['route' => ['export.export', 'Clients'], 'id' => 'client-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Clients') }}" id="client-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_clients')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-quotes" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Quotes'], 'id' => 'quote-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Quotes') }}" id="quote-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_quotes')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-quote-items" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'QuoteItems'], 'id' => 'quote-item-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'QuoteItems') }}" id="quote-item-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_quote_items')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-invoices" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Invoices'], 'id' => 'invoice-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Invoices') }}" id="invoice-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_invoices')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-invoice-items" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'InvoiceItems'], 'id' => 'invoice-item-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'InvoiceItems') }}" id="invoice-item-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_invoice_items')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-payments" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Payments'], 'id' => 'payment-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Payments') }}" id="payment-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_payments')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                         <div id="tab-expenses" class="tab-pane">
-                            {!! Form::open(['route' => ['export.export', 'Expenses'], 'id' => 'export-export-form', 'target' => '_blank']) !!}
+                            <form method="POST" action="{{ route('export.export', 'Expenses') }}" id="export-export-form" target="_blank">
+    @csrf
                             <div class="form-group">
                                 <label>@lang('ip.format'):</label>
-                                {!! Form::select('writer', $writers, null, ['class' => 'form-control']) !!}
+                                <select name="writer" class="form-control">
+    @foreach($writers as $key => $value)
+        <option value="{{ $key }}" {{ old('writer') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             </div>
                             <button class="btn btn-primary"><i
                                         class="fa fa-download"></i> @lang('ip.export_expenses')</button>
-                            {!! Form::close() !!}
+                            </form>
                         </div>
                     </div>
                 </div>

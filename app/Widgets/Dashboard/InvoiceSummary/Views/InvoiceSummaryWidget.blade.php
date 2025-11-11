@@ -34,7 +34,7 @@
                 <i class="fa fa-file-text mr-2"></i> @lang('ip.invoice_summary')
             </span>
             <div class="float-right">
-                <span class="text-muted mr-2">{{ $invoiceDashboardTotalOptions[config('fi.widgetInvoiceSummaryDashboardTotals')] }}</span>
+                <span class="text-muted mr-2">{{ $invoiceDashboardTotalOptions[config('ip.widget_invoice_summary_dashboard_totals')] }}</span>
                 <div class="dropdown d-inline-block">
                     <span class="clickable text-muted dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -42,7 +42,7 @@
                     </span>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">
-                            <i class="fa fa-calendar mr-2"></i> {{ $invoiceDashboardTotalOptions[config('fi.widgetInvoiceSummaryDashboardTotals')] }}
+                            <i class="fa fa-calendar mr-2"></i> {{ $invoiceDashboardTotalOptions[config('ip.widget_invoice_summary_dashboard_totals')] }}
                         </h6>
                         @foreach ($invoiceDashboardTotalOptions as $key => $option)
                             <li>
@@ -116,12 +116,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-                        {!! Form::text('setting_widgetInvoiceSummaryDashboardTotalsFromDate', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-from-date']) !!}
+                        <input type="text" name="setting_widgetInvoiceSummaryDashboardTotalsFromDate" value="{{ old('setting_widgetInvoiceSummaryDashboardTotalsFromDate', config('ip.widget_invoice_summary_dashboard_totals_from_date') }}" id="invoice-dashboard-total-setting-from-date" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-                        {!! Form::text('setting_widgetInvoiceSummaryDashboardTotalsToDate', config('fi.widgetInvoiceSummaryDashboardTotalsToDate'), ['class' => 'form-control', 'id' => 'invoice-dashboard-total-setting-to-date']) !!}
+                        <input type="text" name="setting_widgetInvoiceSummaryDashboardTotalsToDate" value="{{ old('setting_widgetInvoiceSummaryDashboardTotalsToDate', config('ip.widget_invoice_summary_dashboard_totals_to_date') }}" id="invoice-dashboard-total-setting-to-date" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">

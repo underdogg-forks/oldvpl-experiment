@@ -24,13 +24,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('quotes.index', ['status' => config('fi.quoteStatusFilter')]) }}">
+                <a class="nav-link" href="{{ route('quotes.index', ['status' => config('ip.quote_status_filter')]) }}">
                     <i class="nav-icon fa fa-file-text-o"></i> <span>@lang('ip.quotes')</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                        href="{{ route('invoices.index', ['status' => config('fi.invoiceStatusFilter')]) }}">
+                        href="{{ route('invoices.index', ['status' => config('ip.invoice_status_filter')]) }}">
                     <i class="nav-icon fa fa-file-text"></i> <span>@lang('ip.invoices')</span>
                 </a>
             </li>
@@ -89,14 +89,14 @@
                             @lang('ip.tax_summary')
                         </a>
                     </li>
-                    @foreach (config('fi.menus.reports') as $report)
+                    @foreach (config('ip.menus.reports') as $report)
                         @if (view()->exists($report))
                             @include($report)
                         @endif
                     @endforeach
                 </ul>
             </li>
-            @foreach (config('fi.menus.navigation') as $menu)
+            @foreach (config('ip.menus.navigation') as $menu)
                 @if (view()->exists($menu))
                     @include($menu)
                 @endif

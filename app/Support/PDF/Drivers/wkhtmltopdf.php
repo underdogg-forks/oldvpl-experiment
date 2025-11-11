@@ -40,7 +40,7 @@ class wkhtmltopdf extends PDFAbstract
 
     private function getPdf()
     {
-        $pdf = new Pdf(config('fi.pdfBinaryPath'));
+        $pdf = new Pdf(config('ip.pdf_binary_path'));
         $pdf->setOption('orientation', $this->paperOrientation);
         $pdf->setOption('page-size', $this->paperSize);
         $pdf->setOption('viewport-size', '1024x768');

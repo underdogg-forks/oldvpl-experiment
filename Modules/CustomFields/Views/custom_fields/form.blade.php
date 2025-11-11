@@ -9,9 +9,12 @@
     </script>
 
     @if ($editMode == true)
-        {!! Form::model($customField, ['route' => ['customFields.update', $customField->id]]) !!}
+        <form method="POST" action="{{ route('customFields.update', $customField->id) }}">
+            @csrf
+            @method('PUT')
     @else
-        {!! Form::open(['route' => 'customFields.store']) !!}
+        <form method="POST" action="{{ route('customFields.store') }}">
+            @csrf
     @endif
 
     <section class="content-header">
@@ -39,25 +42,33 @@
                         <div class="form-group">
                             <label>@lang('ip.table_name'): </label>
                             @if ($editMode == true)
-                                {!! Form::text('tbl_name', $tableNames[$customField->tbl_name], ['id' => 'tbl_name', 'readonly' => 'readonly', 'class' => 'form-control']) !!}
+                                <input type="text" name="tbl_name" value="{{ old('tbl_name', $tableNames[$customField->tbl_name]) }}" id="tbl_name" class="form-control" readonly>
                             @else
-                                {!! Form::select('tbl_name', $tableNames, null, ['id' => 'tbl_name', 'class' => 'form-control']) !!}
+                                <select name="tbl_name" id="tbl_name" class="form-control">
+    @foreach($tableNames as $key => $value)
+        <option value="{{ $key }}" {{ old('tbl_name', $editMode ? $customField->tbl_name : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                             @endif
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.field_label'): </label>
-                            {!! Form::text('field_label', null, ['id' => 'field_label', 'class' => 'form-control']) !!}
+                            <input type="text" name="field_label" value="{{ old('field_label', $editMode ? $customField->field_label : '') }}" id="field_label" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.field_type'): </label>
-                            {!! Form::select('field_type', $fieldTypes, null, ['id' => 'field_type', 'class' => 'form-control']) !!}
+                            <select name="field_type" id="field_type" class="form-control">
+    @foreach($fieldTypes as $key => $value)
+        <option value="{{ $key }}" {{ old('field_type', $editMode ? $customField->field_type : '') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-group">
                             <label>@lang('ip.field_meta'): </label>
-                            {!! Form::text('field_meta', null, ['id' => 'field_meta', 'class' => 'form-control']) !!}
+                            <input type="text" name="field_meta" value="{{ old('field_meta', $editMode ? $customField->field_meta : '') }}" id="field_meta" class="form-control">
                             <span class="help-block">@lang('ip.field_meta_description')</span>
                         </div>
 
@@ -71,5 +82,5 @@
 
     </section>
 
-    {!! Form::close() !!}
+    </form>
 @stop

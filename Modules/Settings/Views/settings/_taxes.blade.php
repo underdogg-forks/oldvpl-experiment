@@ -1,9 +1,17 @@
 <div class="form-group">
     <label>@lang('ip.default_item_tax_rate'): </label>
-    {!! Form::select('setting[itemTaxRate]', $taxRates, config('fi.itemTaxRate'), ['class' => 'form-control']) !!}
+    <select name="setting[itemTaxRate]" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[itemTaxRate]', config('ip.item_tax_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>
 
 <div class="form-group">
     <label>{{ trans('ip.default_item_tax_2_rate') }}: </label>
-    {!! Form::select('setting[itemTax2Rate]', $taxRates, config('fi.itemTax2Rate'), ['class' => 'form-control']) !!}
+    <select name="setting[itemTax2Rate]" class="form-control">
+    @foreach($taxRates as $key => $value)
+        <option value="{{ $key }}" {{ old('setting[itemTax2Rate]', config('ip.item_tax2_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+    @endforeach
+</select>
 </div>

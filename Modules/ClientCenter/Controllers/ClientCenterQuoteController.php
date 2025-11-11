@@ -35,7 +35,7 @@ class ClientCenterQuoteController extends Controller
             ->orderBy('created_at', 'DESC')
             ->orderBy(DB::raw('length(number)'), 'DESC')
             ->orderBy('number', 'DESC')
-            ->paginate(config('fi.resultsPerPage'));
+            ->paginate(config('ip.results_per_page'));
 
         return view('client_center.quotes.index')
             ->with('quotes', $quotes)

@@ -14,7 +14,6 @@
 
 namespace App\Support;
 
-use Collective\Html\FormFacade;
 use Modules\Clients\Models\Client;
 
 class Contacts
@@ -31,9 +30,16 @@ class Contacts
     public function contactDropdownTo()
     {
         $allContacts = $this->getAllContacts();
-        $selectedContacts = $this->getSelectedContactsTo();
+        $selectedContacts = $this->getSelectedContactsTo()->toArray();
 
-        return FormFacade::select('to', $allContacts, $selectedContacts, ['id' => 'to', 'multiple' => 'multiple', 'class' => 'form-control']);
+        $html = '<select name="to" id="to" multiple class="form-control">';
+        foreach ($allContacts as $email => $label) {
+            $selected = in_array($email, $selectedContacts) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($email) . '"' . $selected . '>' . htmlspecialchars($label) . '</option>';
+        }
+        $html .= '</select>';
+        
+        return $html;
     }
 
     private function getAllContacts()
@@ -46,12 +52,12 @@ class Contacts
 
         $contacts[$this->user->email] = $this->getFormattedContact($this->user->name, $this->user->email);
 
-        if (config('fi.mailDefaultCc')) {
-            $contacts[config('fi.mailDefaultCc')] = config('fi.mailDefaultCc');
+        if (config('ip.mail_default_cc')) {
+            $contacts[config('ip.mail_default_cc')] = config('ip.mail_default_cc');
         }
 
-        if (config('fi.mailDefaultBcc')) {
-            $contacts[config('fi.mailDefaultBcc')] = config('fi.mailDefaultBcc');
+        if (config('ip.mail_default_bcc')) {
+            $contacts[config('ip.mail_default_bcc')] = config('ip.mail_default_bcc');
         }
 
         return $contacts;
@@ -72,7 +78,14 @@ class Contacts
         $allContacts = $this->getAllContacts();
         $selectedContacts = $this->getSelectedContactsCc();
 
-        return FormFacade::select('cc', $allContacts, $selectedContacts, ['id' => 'cc', 'multiple' => 'multiple', 'class' => 'form-control']);
+        $html = '<select name="cc" id="cc" multiple class="form-control">';
+        foreach ($allContacts as $email => $label) {
+            $selected = in_array($email, $selectedContacts) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($email) . '"' . $selected . '>' . htmlspecialchars($label) . '</option>';
+        }
+        $html .= '</select>';
+        
+        return $html;
     }
 
     public function getSelectedContactsCc()
@@ -82,8 +95,8 @@ class Contacts
             ->pluck('email')
             ->toArray();
 
-        if (config('fi.mailDefaultCc')) {
-            $contacts = array_merge($contacts, [config('fi.mailDefaultCc')]);
+        if (config('ip.mail_default_cc')) {
+            $contacts = array_merge($contacts, [config('ip.mail_default_cc')]);
         }
 
         return $contacts;
@@ -94,7 +107,14 @@ class Contacts
         $allContacts = $this->getAllContacts();
         $selectedContacts = $this->getSelectedContactsBcc();
 
-        return FormFacade::select('bcc', $allContacts, $selectedContacts, ['id' => 'bcc', 'multiple' => 'multiple', 'class' => 'form-control']);
+        $html = '<select name="bcc" id="bcc" multiple class="form-control">';
+        foreach ($allContacts as $email => $label) {
+            $selected = in_array($email, $selectedContacts) ? ' selected' : '';
+            $html .= '<option value="' . htmlspecialchars($email) . '"' . $selected . '>' . htmlspecialchars($label) . '</option>';
+        }
+        $html .= '</select>';
+        
+        return $html;
     }
 
     public function getSelectedContactsBcc()
@@ -104,8 +124,8 @@ class Contacts
             ->pluck('email')
             ->toArray();
 
-        if (config('fi.mailDefaultBcc')) {
-            $contacts = array_merge($contacts, [config('fi.mailDefaultBcc')]);
+        if (config('ip.mail_default_bcc')) {
+            $contacts = array_merge($contacts, [config('ip.mail_default_bcc')]);
         }
 
         return $contacts;

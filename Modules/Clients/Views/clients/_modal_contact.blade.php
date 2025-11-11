@@ -41,14 +41,14 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.name'):</label>
                         <div class="col-sm-9">
-                            {!! Form::text('contact_name', ($editMode) ? $contact->name : null, ['class' => 'form-control', 'id' => 'contact_name']) !!}
+                            <input type="text" name="contact_name" value="{{ old('contact_name', ($editMode) }}" id="contact_name" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.email'):</label>
                         <div class="col-sm-9">
-                            {!! Form::text('contact_email', ($editMode) ? $contact->email : null, ['class' => 'form-control', 'id' => 'contact_email']) !!}
+                            <input type="text" name="contact_email" value="{{ old('contact_email', ($editMode) }}" id="contact_email" class="form-control">
                         </div>
                     </div>
 

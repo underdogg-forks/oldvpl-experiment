@@ -676,9 +676,9 @@ class V200Alpha2 extends Migration
         }
 
         // Add base payment methods
-        PaymentMethod::create(['name' => trans('fi.cash')]);
-        PaymentMethod::create(['name' => trans('fi.credit_card')]);
-        PaymentMethod::create(['name' => trans('fi.online_payment')]);
+        PaymentMethod::create(['name' => trans('ip.cash')]);
+        PaymentMethod::create(['name' => trans('ip.credit_card')]);
+        PaymentMethod::create(['name' => trans('ip.online_payment')]);
 
         // Save new currencies
         Currency::create([

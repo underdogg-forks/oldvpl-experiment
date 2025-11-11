@@ -27,15 +27,15 @@ class QuoteCreatingListener
         }
 
         if (!$quote->expires_at) {
-            $quote->expires_at = DateFormatter::incrementDateByDays($quote->quote_date->format('Y-m-d'), config('fi.quotesExpireAfter'));
+            $quote->expires_at = DateFormatter::incrementDateByDays($quote->quote_date->format('Y-m-d'), config('ip.quotes_expire_after'));
         }
 
         if (!$quote->company_profile_id) {
-            $quote->company_profile_id = config('fi.defaultCompanyProfile');
+            $quote->company_profile_id = config('ip.default_company_profile');
         }
 
         if (!$quote->group_id) {
-            $quote->group_id = config('fi.quoteGroup');
+            $quote->group_id = config('ip.quote_group');
         }
 
         if (!$quote->number) {
@@ -43,11 +43,11 @@ class QuoteCreatingListener
         }
 
         if (!isset($quote->terms)) {
-            $quote->terms = config('fi.quoteTerms');
+            $quote->terms = config('ip.quote_terms');
         }
 
         if (!isset($quote->footer)) {
-            $quote->footer = config('fi.quoteFooter');
+            $quote->footer = config('ip.quote_footer');
         }
 
         if (!$quote->quote_status_id) {
@@ -62,11 +62,11 @@ class QuoteCreatingListener
             $quote->template = $quote->companyProfile->quote_template;
         }
 
-        if ($quote->currency_code == config('fi.baseCurrency')) {
+        if ($quote->currency_code == config('ip.base_currency')) {
             $quote->exchange_rate = 1;
         } elseif (!$quote->exchange_rate) {
             $currencyConverter = CurrencyConverterFactory::create();
-            $quote->exchange_rate = $currencyConverter->convert(config('fi.baseCurrency'), $quote->currency_code);
+            $quote->exchange_rate = $currencyConverter->convert(config('ip.base_currency'), $quote->currency_code);
         }
 
         $quote->url_key = str_random(32);

@@ -58,7 +58,8 @@
 
         @include('layouts._alerts')
 
-        {!! Form::open(['route' => 'settings.update', 'files' => true, 'id' => 'form-settings']) !!}
+        <form method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data" id="form-settings">
+    @csrf
 
         <div class="row">
             <div class="col-md-12">
@@ -110,7 +111,7 @@
 
         </div>
 
-        {!! Form::close() !!}
+        </form>
 
     </section>
 
