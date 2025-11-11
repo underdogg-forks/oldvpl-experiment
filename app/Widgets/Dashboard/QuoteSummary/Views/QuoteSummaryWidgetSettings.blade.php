@@ -32,7 +32,7 @@
     <label>@lang('ip.dashboard_totals_option'): </label>
     <select name="setting[widgetQuoteSummaryDashboardTotals]" id="quote-dashboard-total-setting" class="form-control">
     @foreach($dashboardTotalOptions as $key => $value)
-        <option value="{{ $key }}" {{ old('setting[widgetQuoteSummaryDashboardTotals]', config('fi.widgetQuoteSummaryDashboardTotals') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('setting[widgetQuoteSummaryDashboardTotals]', config('ip.widget_quote_summary_dashboard_totals') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select>
 </div>
@@ -40,10 +40,10 @@
 <div class="row" id="div-quote-dashboard-totals-date-range">
     <div class="col-md-2">
         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-        <input type="text" name="setting[widgetQuoteSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetQuoteSummaryDashboardTotalsFromDate]', config('fi.widgetQuoteSummaryDashboardTotalsFromDate') }}" id="quote-dashboard-total-setting-from-date" class="form-control">
+        <input type="text" name="setting[widgetQuoteSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetQuoteSummaryDashboardTotalsFromDate]', config('ip.widget_quote_summary_dashboard_totals_from_date') }}" id="quote-dashboard-total-setting-from-date" class="form-control">
     </div>
     <div class="col-md-2">
         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-        <input type="text" name="setting[widgetQuoteSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetQuoteSummaryDashboardTotalsToDate]', config('fi.widgetQuoteSummaryDashboardTotalsToDate') }}" id="quote-dashboard-total-setting-to-date" class="form-control">
+        <input type="text" name="setting[widgetQuoteSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetQuoteSummaryDashboardTotalsToDate]', config('ip.widget_quote_summary_dashboard_totals_to_date') }}" id="quote-dashboard-total-setting-to-date" class="form-control">
     </div>
 </div>

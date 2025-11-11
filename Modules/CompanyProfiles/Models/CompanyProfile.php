@@ -67,7 +67,7 @@ class CompanyProfile extends Model
             return true;
         }
 
-        if (config('fi.defaultCompanyProfile') == $id) {
+        if (config('ip.default_company_profile') == $id) {
             return true;
         }
 

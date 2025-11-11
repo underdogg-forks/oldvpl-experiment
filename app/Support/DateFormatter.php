@@ -96,10 +96,10 @@ class DateFormatter
         $date = new DateTime($date);
 
         if (!$includeTime) {
-            return $date->format(config('fi.dateFormat'));
+            return $date->format(config('ip.date_format'));
         }
 
-        return $date->format(config('fi.dateFormat') . (!config('fi.use24HourTimeFormat') ? ' g:i A' : ' H:i'));
+        return $date->format(config('ip.date_format') . (!config('ip.use24_hour_time_format') ? ' g:i A' : ' H:i'));
     }
 
     /**
@@ -111,7 +111,7 @@ class DateFormatter
     public static function unformat($userDate = null)
     {
         if ($userDate) {
-            $date = DateTime::createFromFormat(config('fi.dateFormat'), $userDate);
+            $date = DateTime::createFromFormat(config('ip.date_format'), $userDate);
 
             return $date->format('Y-m-d');
         }
@@ -185,6 +185,6 @@ class DateFormatter
     {
         $formats = self::formats();
 
-        return $formats[config('fi.dateFormat')]['datepicker'];
+        return $formats[config('ip.date_format')]['datepicker'];
     }
 }

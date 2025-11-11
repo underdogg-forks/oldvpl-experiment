@@ -32,7 +32,7 @@
                 <i class="fa fa-file-text-o mr-2"></i> @lang('ip.quote_summary')
             </span>
             <div class="float-right">
-                <span class="text-muted mr-2">{{ $quoteDashboardTotalOptions[config('fi.widgetQuoteSummaryDashboardTotals')] }}</span>
+                <span class="text-muted mr-2">{{ $quoteDashboardTotalOptions[config('ip.widget_quote_summary_dashboard_totals')] }}</span>
                 <div class="dropdown d-inline-block">
                     <span class="clickable text-muted dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -40,7 +40,7 @@
                     </span>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">
-                            <i class="fa fa-calendar mr-2"></i> {{ $quoteDashboardTotalOptions[config('fi.widgetQuoteSummaryDashboardTotals')] }}
+                            <i class="fa fa-calendar mr-2"></i> {{ $quoteDashboardTotalOptions[config('ip.widget_quote_summary_dashboard_totals')] }}
                         </h6>
                         @foreach ($quoteDashboardTotalOptions as $key => $option)
                             <li>
@@ -114,12 +114,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-                        <input type="text" name="setting_widgetQuoteSummaryDashboardTotalsFromDate" value="{{ old('setting_widgetQuoteSummaryDashboardTotalsFromDate', config('fi.widgetQuoteSummaryDashboardTotalsFromDate') }}" id="quote-dashboard-total-setting-from-date" class="form-control">
+                        <input type="text" name="setting_widgetQuoteSummaryDashboardTotalsFromDate" value="{{ old('setting_widgetQuoteSummaryDashboardTotalsFromDate', config('ip.widget_quote_summary_dashboard_totals_from_date') }}" id="quote-dashboard-total-setting-from-date" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-                        <input type="text" name="setting_widgetQuoteSummaryDashboardTotalsToDate" value="{{ old('setting_widgetQuoteSummaryDashboardTotalsToDate', config('fi.widgetQuoteSummaryDashboardTotalsToDate') }}" id="quote-dashboard-total-setting-to-date" class="form-control">
+                        <input type="text" name="setting_widgetQuoteSummaryDashboardTotalsToDate" value="{{ old('setting_widgetQuoteSummaryDashboardTotalsToDate', config('ip.widget_quote_summary_dashboard_totals_to_date') }}" id="quote-dashboard-total-setting-to-date" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">

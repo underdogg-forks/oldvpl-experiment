@@ -32,7 +32,7 @@ class CurrencyConverterFactory
      */
     public static function create(): object
     {
-        $driver = config('fi.currencyConversionDriver');
+        $driver = config('ip.currency_conversion_driver');
         
         if (empty($driver)) {
             throw new InvalidArgumentException('Currency conversion driver not configured');

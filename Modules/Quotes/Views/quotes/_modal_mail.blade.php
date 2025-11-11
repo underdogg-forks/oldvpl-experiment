@@ -60,7 +60,7 @@
                         <label class="col-sm-3 control-label">@lang('ip.attach_pdf')</label>
 
                         <div class="col-sm-9">
-                            <input type="checkbox" name="attach_pdf" value="1" {{ old('attach_pdf', config('fi.attachPdf') ? 'checked' : '' }} id="attach_pdf">
+                            <input type="checkbox" name="attach_pdf" value="1" {{ old('attach_pdf', config('ip.attach_pdf') ? 'checked' : '' }} id="attach_pdf">
                         </div>
                     </div>
 

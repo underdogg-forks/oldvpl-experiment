@@ -3,8 +3,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a href="{{ route('dashboard.index')}}" class="navbar-brand">
-        <span class="navbar-brand-full">{{ config('fi.headerTitleText') }}</span>
-        <img src="{{ asset('assets/img/ip_logo_1x1.svg') }}" alt="{{ config('fi.headerTitleText') }}"
+        <span class="navbar-brand-full">{{ config('ip.header_title_text') }}</span>
+        <img src="{{ asset('assets/img/ip_logo_1x1.svg') }}" alt="{{ config('ip.header_title_text') }}"
                 class="navbar-brand-minimized">
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -30,7 +30,7 @@
                 <a class="dropdown-item" href="{{ route('taxRates.index') }}">@lang('ip.tax_rates')</a>
                 <a class="dropdown-item" href="{{ route('users.index') }}">@lang('ip.user_accounts')</a>
                 <a class="dropdown-item" href="{{ route('settings.index') }}">@lang('ip.system_settings')</a>
-                @foreach (config('fi.menus.system') as $menu)
+                @foreach (config('ip.menus.system') as $menu)
                     @if (view()->exists($menu))
                         @include($menu)
                     @endif
@@ -40,7 +40,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle pr-3" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="true" aria-expanded="false">
-                @if (config('fi.displayProfileImage'))
+                @if (config('ip.display_profile_image'))
                     <img src="{{ $profileImageUrl }}" alt="User Image"/>
                 @else
                     {{ $userName }}

@@ -41,7 +41,7 @@ class SettingUpdateRequest extends FormRequest
             'setting.pdfBinaryPath' => ['required_if:setting.pdfDriver,wkhtmltopdf', new ValidFile],
         ];
 
-        foreach (config('fi.settingValidationRules') as $settingValidationRules) {
+        foreach (config('ip.setting_validation_rules') as $settingValidationRules) {
             $rules = array_merge($rules, $settingValidationRules['rules']);
         }
 

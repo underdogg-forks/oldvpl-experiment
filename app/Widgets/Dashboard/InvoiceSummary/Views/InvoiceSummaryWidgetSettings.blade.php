@@ -32,7 +32,7 @@
     <label>@lang('ip.dashboard_totals_option'): </label>
     <select name="setting[widgetInvoiceSummaryDashboardTotals]" id="invoice-dashboard-total-setting" class="form-control">
     @foreach($dashboardTotalOptions as $key => $value)
-        <option value="{{ $key }}" {{ old('setting[widgetInvoiceSummaryDashboardTotals]', config('fi.widgetInvoiceSummaryDashboardTotals') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('setting[widgetInvoiceSummaryDashboardTotals]', config('ip.widget_invoice_summary_dashboard_totals') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select>
 </div>
@@ -40,10 +40,10 @@
 <div class="row" id="div-invoice-dashboard-totals-date-range">
     <div class="col-md-2">
         <label>@lang('ip.from_date') (yyyy-mm-dd):</label>
-        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsFromDate]', config('fi.widgetInvoiceSummaryDashboardTotalsFromDate') }}" id="invoice-dashboard-total-setting-from-date" class="form-control">
+        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsFromDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsFromDate]', config('ip.widget_invoice_summary_dashboard_totals_from_date') }}" id="invoice-dashboard-total-setting-from-date" class="form-control">
     </div>
     <div class="col-md-2">
         <label>@lang('ip.to_date') (yyyy-mm-dd):</label>
-        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsToDate]', config('fi.widgetInvoiceSummaryDashboardTotalsToDate') }}" id="invoice-dashboard-total-setting-to-date" class="form-control">
+        <input type="text" name="setting[widgetInvoiceSummaryDashboardTotalsToDate]" value="{{ old('setting[widgetInvoiceSummaryDashboardTotalsToDate]', config('ip.widget_invoice_summary_dashboard_totals_to_date') }}" id="invoice-dashboard-total-setting-to-date" class="form-control">
     </div>
 </div>

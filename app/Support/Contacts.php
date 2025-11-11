@@ -52,12 +52,12 @@ class Contacts
 
         $contacts[$this->user->email] = $this->getFormattedContact($this->user->name, $this->user->email);
 
-        if (config('fi.mailDefaultCc')) {
-            $contacts[config('fi.mailDefaultCc')] = config('fi.mailDefaultCc');
+        if (config('ip.mail_default_cc')) {
+            $contacts[config('ip.mail_default_cc')] = config('ip.mail_default_cc');
         }
 
-        if (config('fi.mailDefaultBcc')) {
-            $contacts[config('fi.mailDefaultBcc')] = config('fi.mailDefaultBcc');
+        if (config('ip.mail_default_bcc')) {
+            $contacts[config('ip.mail_default_bcc')] = config('ip.mail_default_bcc');
         }
 
         return $contacts;
@@ -95,8 +95,8 @@ class Contacts
             ->pluck('email')
             ->toArray();
 
-        if (config('fi.mailDefaultCc')) {
-            $contacts = array_merge($contacts, [config('fi.mailDefaultCc')]);
+        if (config('ip.mail_default_cc')) {
+            $contacts = array_merge($contacts, [config('ip.mail_default_cc')]);
         }
 
         return $contacts;
@@ -124,8 +124,8 @@ class Contacts
             ->pluck('email')
             ->toArray();
 
-        if (config('fi.mailDefaultBcc')) {
-            $contacts = array_merge($contacts, [config('fi.mailDefaultBcc')]);
+        if (config('ip.mail_default_bcc')) {
+            $contacts = array_merge($contacts, [config('ip.mail_default_bcc')]);
         }
 
         return $contacts;

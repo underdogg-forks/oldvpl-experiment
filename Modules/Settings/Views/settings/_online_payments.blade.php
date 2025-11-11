@@ -20,7 +20,7 @@
                         <label>{{ trans('ip.' . snake_case($key)) }}</label>
                         <select name="{{ 'setting[' . $driver->getSettingKey($key) . ']' }}" class="form-control">
     @foreach($setting as $opt_key => $opt_value)
-        <option value="{{ $opt_key }}" {{ old('setting.' . $driver->getSettingKey($key), config('fi.' . $driver->getSettingKey($key))) == $opt_key ? 'selected' : '' }}>{{ $opt_value }</option>
+        <option value="{{ $opt_key }}" {{ old('setting.' . $driver->getSettingKey($key), config('ip.' . $driver->getSettingKey($key))) == $opt_key ? 'selected' : '' }}>{{ $opt_value }</option>
     @endforeach
 </select>
                     @endif

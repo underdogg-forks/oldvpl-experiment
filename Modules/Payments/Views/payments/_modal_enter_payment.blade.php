@@ -53,12 +53,12 @@
                         </div>
                     </div>
 
-                    @if (config('fi.mailConfigured') and $client->email)
+                    @if (config('ip.mail_configured') and $client->email)
                         <div class="form-group">
                             <label class="col-sm-4 control-label">@lang('ip.email_payment_receipt')</label>
 
                             <div class="col-sm-8">
-                                <input type="checkbox" name="email_payment_receipt" value="1" {{ old('email_payment_receipt', config('fi.automaticEmailPaymentReceipts') ? 'checked' : '' }} id="email_payment_receipt">
+                                <input type="checkbox" name="email_payment_receipt" value="1" {{ old('email_payment_receipt', config('ip.automatic_email_payment_receipts') ? 'checked' : '' }} id="email_payment_receipt">
                             </div>
                         </div>
                     @endif

@@ -2,7 +2,7 @@
 
 @section('sidebar')
 
-    @if (config('fi.displayProfileImage'))
+    @if (config('ip.display_profile_image'))
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="{{ profileImageUrl(auth()->user()) }}" alt="User Image"/>

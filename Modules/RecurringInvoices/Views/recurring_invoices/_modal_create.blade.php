@@ -32,7 +32,7 @@
                         <div class="col-sm-9">
                             <select name="company_profile_id" id="company_profile_id" class="form-control">
     @foreach($companyProfiles as $key => $value)
-        <option value="{{ $key }}" {{ old('company_profile_id', config('fi.defaultCompanyProfile') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('company_profile_id', config('ip.default_company_profile') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="col-sm-9">
                             <select name="group_id" id="create_group_id" class="form-control">
     @foreach($groups as $key => $value)
-        <option value="{{ $key }}" {{ old('group_id', config('fi.invoiceGroup') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('group_id', config('ip.invoice_group') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select>
                         </div>
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.start_date')</label>
                         <div class="col-sm-9">
-                            <input type="text" name="next_date" value="{{ old('next_date', date(config('fi.dateFormat') }}" id="create_next_date" class="form-control">
+                            <input type="text" name="next_date" value="{{ old('next_date', date(config('ip.date_format') }}" id="create_next_date" class="form-control">
                         </div>
                     </div>
 

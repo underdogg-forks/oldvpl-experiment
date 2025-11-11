@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@lang('ip.date')</label>
                         <div class="col-sm-9">
-                            <input type="text" name="invoice_date" value="{{ old('invoice_date', date(config('fi.dateFormat') }}" id="copy_invoice_date" class="form-control">
+                            <input type="text" name="invoice_date" value="{{ old('invoice_date', date(config('ip.date_format') }}" id="copy_invoice_date" class="form-control">
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
                         <div class="col-sm-9">
                             <select name="company_profile_id" id="copy_company_profile_id" class="form-control">
     @foreach($companyProfiles as $key => $value)
-        <option value="{{ $key }}" {{ old('company_profile_id', config('fi.defaultCompanyProfile') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('company_profile_id', config('ip.default_company_profile') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select>
                         </div>

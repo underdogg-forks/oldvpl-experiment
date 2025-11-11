@@ -16,7 +16,7 @@ class InvoiceCreatedRecurringListener
 
     public function handle(InvoiceCreatedRecurring $event)
     {
-        if (config('fi.automaticEmailOnRecur') and $event->invoice->client->email) {
+        if (config('ip.automatic_email_on_recur') and $event->invoice->client->email) {
             $parser = new Parser($event->invoice);
 
             if (!$event->invoice->is_overdue) {
@@ -29,11 +29,11 @@ class InvoiceCreatedRecurringListener
 
             $mail = $this->mailQueue->create($event->invoice, [
                 'to' => [$event->invoice->client->email],
-                'cc' => [config('fi.mailDefaultCc')],
-                'bcc' => [config('fi.mailDefaultBcc')],
+                'cc' => [config('ip.mail_default_cc')],
+                'bcc' => [config('ip.mail_default_bcc')],
                 'subject' => $subject,
                 'body' => $body,
-                'attach_pdf' => config('fi.attachPdf'),
+                'attach_pdf' => config('ip.attach_pdf'),
             ]);
 
             $this->mailQueue->send($mail->id);

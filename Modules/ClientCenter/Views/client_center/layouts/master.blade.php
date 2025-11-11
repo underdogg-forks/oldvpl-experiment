@@ -5,7 +5,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    <title>{{ config('fi.headerTitleText') }}</title>
+    <title>{{ config('ip.header_title_text') }}</title>
 
     @include('layouts._head')
 
@@ -23,7 +23,7 @@
     <header class="main-header">
 
         <a href="{{ route('clientCenter.dashboard')}}" class="logo">
-            <span class="logo-lg">{{ config('fi.headerTitleText') }}</span>
+            <span class="logo-lg">{{ config('ip.header_title_text') }}</span>
         </a>
 
         <nav class="navbar navbar-static-top" role="navigation">

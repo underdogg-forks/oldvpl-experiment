@@ -29,7 +29,7 @@
                         <div class="col-sm-9">
                             <select name="group_id" id="to_invoice_group_id" class="form-control">
     @foreach($groups as $key => $value)
-        <option value="{{ $key }}" {{ old('group_id', config('fi.invoiceGroup') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('group_id', config('ip.invoice_group') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select>
                         </div>

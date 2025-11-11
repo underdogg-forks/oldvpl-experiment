@@ -121,12 +121,12 @@
                                     <td><input type="text" name="price" value="{{ old('price') }}" class="form-control"></td>
                                     <td><select name="tax_rate_id" class="form-control">
     @foreach($taxRates as $key => $value)
-        <option value="{{ $key }}" {{ old('tax_rate_id', config('fi.itemTaxRate') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('tax_rate_id', config('ip.item_tax_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select></td>
                                     <td><select name="tax_rate_2_id" class="form-control">
     @foreach($taxRates as $key => $value)
-        <option value="{{ $key }}" {{ old('tax_rate_2_id', config('fi.itemTax2Rate') == $key ? 'selected' : '' }}>{{ $value }</option>
+        <option value="{{ $key }}" {{ old('tax_rate_2_id', config('ip.item_tax2_rate') == $key ? 'selected' : '' }}>{{ $value }</option>
     @endforeach
 </select></td>
                                     <td></td>
