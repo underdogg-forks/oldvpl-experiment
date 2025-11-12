@@ -8,7 +8,7 @@ trait Sortable
 {
     public static function link($col, $title = null, $requestMatches = null)
     {
-        if ($requestMatches and !request()->is($requestMatches)) {
+        if ($requestMatches and ! request()->is($requestMatches)) {
             return $title;
         }
 
@@ -26,14 +26,20 @@ trait Sortable
     public function scopeSortable($query, $defaultSort = [])
     {
         if (request()->has('s') and request()->has('o') and isset($this->sortable) and $this->sortIsAllowed()) {
+            // Validate sort order to prevent SQL injection
+            $order = strtolower(request('o'));
+            if (! in_array($order, ['asc', 'desc'])) {
+                $order = 'asc';
+            }
+
             if (in_array(request('s'), $this->sortable)) {
-                return $query->orderBy(request('s'), request('o'));
+                return $query->orderBy(request('s'), $order);
             } elseif (array_key_exists(request('s'), $this->sortable)) {
                 foreach ($this->sortable[request('s')] as $col) {
                     if (str_contains($col, '(')) {
-                        $query->orderBy(DB::raw($col), request('o'));
+                        $query->orderBy(DB::raw($col), $order);
                     } else {
-                        $query->orderBy($col, request('o'));
+                        $query->orderBy($col, $order);
                     }
                 }
 
@@ -41,10 +47,16 @@ trait Sortable
             }
         } elseif ($defaultSort) {
             foreach ($defaultSort as $col => $sort) {
+                // Validate sort order to prevent SQL injection
+                $validatedSort = strtolower($sort);
+                if (! in_array($validatedSort, ['asc', 'desc'])) {
+                    $validatedSort = 'asc';
+                }
+
                 if (str_contains($col, '(')) {
-                    $query->orderBy(DB::raw($col), $sort);
+                    $query->orderBy(DB::raw($col), $validatedSort);
                 } else {
-                    $query->orderBy($col, $sort);
+                    $query->orderBy($col, $validatedSort);
                 }
             }
 
@@ -57,7 +69,7 @@ trait Sortable
     private function sortIsAllowed()
     {
         // Sortable must be an array.
-        if (!is_array($this->sortable)) {
+        if (! is_array($this->sortable)) {
             return false;
         }
 
