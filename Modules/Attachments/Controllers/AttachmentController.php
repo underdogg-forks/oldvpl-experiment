@@ -3,10 +3,10 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
@@ -24,12 +24,23 @@ class AttachmentController extends Controller
     {
         $attachment = Attachment::where('url_key', $urlKey)->firstOrFail();
 
-        return response()->download($attachment->attachable->attachment_path . '/' . $attachment->filename);
+        return response()->download($attachment->attachable->attachment_path.'/'.$attachment->filename);
     }
 
     public function ajaxList()
     {
         $model = request('model');
+
+        // Whitelist allowed models to prevent arbitrary class instantiation
+        $allowedModels = [
+            'Modules\Invoices\Models\Invoice',
+            'Modules\Quotes\Models\Quote',
+            'Modules\Expenses\Models\Expense',
+        ];
+
+        if (! in_array($model, $allowedModels)) {
+            abort(403, 'Invalid model type');
+        }
 
         $object = $model::find(request('model_id'));
 
@@ -53,6 +64,17 @@ class AttachmentController extends Controller
     public function ajaxUpload()
     {
         $model = request('model');
+
+        // Whitelist allowed models to prevent arbitrary class instantiation
+        $allowedModels = [
+            'Modules\Invoices\Models\Invoice',
+            'Modules\Quotes\Models\Quote',
+            'Modules\Expenses\Models\Expense',
+        ];
+
+        if (! in_array($model, $allowedModels)) {
+            abort(403, 'Invalid model type');
+        }
 
         $object = $model::find(request('model_id'));
 
