@@ -3,10 +3,10 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
@@ -26,6 +26,7 @@ class ItemLookup extends Model
 
     /**
      * Guarded properties
+     *
      * @var array
      */
     protected $guarded = ['id'];
@@ -78,8 +79,9 @@ class ItemLookup extends Model
             foreach ($keywords as $keyword) {
                 if ($keyword) {
                     $keyword = strtolower($keyword);
+                    $searchTerm = "%$keyword%";
 
-                    $query->where(DB::raw("CONCAT_WS('^',LOWER(name),LOWER(description),price)"), 'LIKE', "%$keyword%");
+                    $query->where(DB::raw("CONCAT_WS('^',LOWER(name),LOWER(description),price)"), 'LIKE', $searchTerm);
                 }
             }
         }

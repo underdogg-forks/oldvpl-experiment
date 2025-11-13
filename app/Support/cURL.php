@@ -3,10 +3,10 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
@@ -25,10 +25,10 @@ class cURL
         }
 
         foreach ($postVars as $key => $value) {
-            $urlString .= $key . '=' . $value . '&';
+            $urlString .= $key.'='.$value.'&';
         }
 
-        rtrim($urlString, '&');
+        $urlString = rtrim($urlString, '&');
 
         $ch = curl_init();
 
@@ -36,6 +36,10 @@ class cURL
         curl_setopt($ch, CURLOPT_POST, count($postVars));
         curl_setopt($ch, CURLOPT_POSTFIELDS, $urlString);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Enable SSL certificate verification for security
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
         $result = curl_exec($ch);
 

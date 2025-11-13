@@ -3,10 +3,10 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
@@ -14,7 +14,6 @@
 
 namespace Modules\Quotes\Models;
 
-use Carbon\Carbon;
 use App\Events\QuoteCreated;
 use App\Events\QuoteCreating;
 use App\Events\QuoteDeleted;
@@ -25,6 +24,7 @@ use App\Support\HTML;
 use App\Support\NumberFormatter;
 use App\Support\Statuses\QuoteStatuses;
 use App\Traits\Sortable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -161,7 +161,7 @@ class Quote extends Model
 
     public function getAttachmentPathAttribute()
     {
-        return attachment_path('quotes/' . $this->id);
+        return attachment_path('quotes/'.$this->id);
     }
 
     public function getAttachmentPermissionOptionsAttribute()
@@ -248,8 +248,8 @@ class Quote extends Model
             if ($item->taxRate) {
                 $key = $item->taxRate->name;
 
-                if (!isset($taxes[$key])) {
-                    $taxes[$key] = new \stdClass();
+                if (! isset($taxes[$key])) {
+                    $taxes[$key] = new \stdClass;
                     $taxes[$key]->name = $item->taxRate->name;
                     $taxes[$key]->percent = $item->taxRate->formatted_percent;
                     $taxes[$key]->total = $item->amount->tax_1;
@@ -262,8 +262,8 @@ class Quote extends Model
             if ($item->taxRate2) {
                 $key = $item->taxRate2->name;
 
-                if (!isset($taxes[$key])) {
-                    $taxes[$key] = new \stdClass();
+                if (! isset($taxes[$key])) {
+                    $taxes[$key] = new \stdClass;
                     $taxes[$key]->name = $item->taxRate2->name;
                     $taxes[$key]->percent = $item->taxRate2->formatted_percent;
                     $taxes[$key]->total = $item->amount->tax_2;
@@ -358,8 +358,8 @@ class Quote extends Model
 
     public function scopeYearToDate($query)
     {
-        return $query->where('quote_date', '>=', date('Y') . '-01-01')
-            ->where('quote_date', '<=', date('Y') . '-12-31');
+        return $query->where('quote_date', '>=', date('Y').'-01-01')
+            ->where('quote_date', '<=', date('Y').'-12-31');
     }
 
     public function scopeThisQuarter($query)
@@ -378,13 +378,14 @@ class Quote extends Model
     {
         if ($keywords) {
             $keywords = strtolower($keywords);
+            $searchTerm = '%'.$keywords.'%';
 
-            $query->where(DB::raw('lower(number)'), 'like', '%' . $keywords . '%')
-                ->orWhere('quotes.quote_date', 'like', '%' . $keywords . '%')
-                ->orWhere('expires_at', 'like', '%' . $keywords . '%')
-                ->orWhere('summary', 'like', '%' . $keywords . '%')
-                ->orWhereIn('client_id', function ($query) use ($keywords) {
-                    $query->select('id')->from('clients')->where(DB::raw("CONCAT_WS('^',LOWER(name),LOWER(unique_name))"), 'like', '%' . $keywords . '%');
+            $query->where(DB::raw('lower(number)'), 'like', $searchTerm)
+                ->orWhere('quotes.quote_date', 'like', $searchTerm)
+                ->orWhere('expires_at', 'like', $searchTerm)
+                ->orWhere('summary', 'like', $searchTerm)
+                ->orWhereIn('client_id', function ($query) use ($searchTerm) {
+                    $query->select('id')->from('clients')->where(DB::raw("CONCAT_WS('^',LOWER(name),LOWER(unique_name))"), 'like', $searchTerm);
                 });
         }
 

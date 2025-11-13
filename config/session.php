@@ -164,7 +164,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => env('SESSION_SECURE_COOKIE', env('APP_ENV') === 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -186,12 +186,12 @@ return [
     |
     | This option determines how your cookies behave when cross-site requests
     | take place, and can be used to mitigate CSRF attacks. By default, we
-    | do not enable this as other CSRF protection services are in place.
+    | set this to "lax" to provide a good balance between security and usability.
     |
-    | Supported: "lax", "strict"
+    | Supported: "lax", "strict", "none"
     |
     */
 
-    'same_site' => null,
+    'same_site' => env('SESSION_SAME_SITE_COOKIE', 'lax'),
 
 ];

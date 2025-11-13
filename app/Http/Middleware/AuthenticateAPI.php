@@ -10,8 +10,7 @@ class AuthenticateAPI
     /**
      * Run the request filter.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -24,7 +23,7 @@ class AuthenticateAPI
 
         $user = User::where('api_public_key', $key)->first();
 
-        if (!$user) {
+        if (! $user) {
             return response()->json(['Unauthorized.'], 401);
         }
 
@@ -34,7 +33,8 @@ class AuthenticateAPI
 
         $serverSignature = hash_hmac('sha256', json_encode($content), $user->api_secret_key);
 
-        if ($signature !== $serverSignature) {
+        // Use hash_equals to prevent timing attacks
+        if (! hash_equals($serverSignature, (string) $signature)) {
             return response()->json(['Unauthorized.'], 401);
         }
 

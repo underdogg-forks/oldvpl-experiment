@@ -3,10 +3,10 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
@@ -39,32 +39,47 @@ class ImportController extends Controller
 
     public function upload(ImportRequest $request)
     {
-        $request->file('import_file')->move(storage_path(), $request->input('import_type') . '.csv');
+        // Validate import_type against allowed types to prevent path traversal
+        $allowedTypes = ['clients', 'quotes', 'quoteItems', 'invoices', 'invoiceItems', 'payments', 'expenses', 'itemLookups'];
+        $importType = $request->input('import_type');
 
-        return redirect()->route('import.map', [$request->input('import_type')]);
+        if (! in_array($importType, $allowedTypes)) {
+            abort(400, 'Invalid import type');
+        }
+
+        // Use storeAs with sanitized filename to prevent path traversal
+        $fileName = $importType.'.csv';
+        $path = $request->file('import_file')->storeAs('', $fileName, 'local');
+
+        return redirect()->route('import.map', [$importType]);
     }
 
     public function mapImport($importType)
     {
+        $allowedTypes = ['clients', 'quotes', 'quoteItems', 'invoices', 'invoiceItems', 'payments', 'expenses', 'itemLookups'];
+        if (! in_array($importType, $allowedTypes)) {
+            abort(400, 'Invalid import type');
+        }
+
         $importer = ImportFactory::create($importType);
 
         return view('import.map')
             ->with('importType', $importType)
             ->with('importFields', $importer->getFields($importType))
-            ->with('fileFields', $importer->getFileFields(storage_path($importType . '.csv')));
+            ->with('fileFields', $importer->getFileFields(storage_path($importType.'.csv')));
     }
 
     public function mapImportSubmit($importType)
     {
         $importer = ImportFactory::create($importType);
 
-        if (!$importer->validateMap(request()->all())) {
+        if (! $importer->validateMap(request()->all())) {
             return redirect()->route('import.map', [$importType])
                 ->withErrors($importer->errors())
                 ->withInput();
         }
 
-        if (!$importer->importData(request()->except('_token'))) {
+        if (! $importer->importData(request()->except('_token'))) {
             return redirect()->route('import.map', [$importType])
                 ->withErrors($importer->errors());
         }

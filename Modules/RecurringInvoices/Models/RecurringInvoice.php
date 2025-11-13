@@ -3,10 +3,10 @@
 /**
  * InvoicePlane
  *
- * @package     InvoicePlane
  * @author      InvoicePlane Developers & Contributors
  * @copyright   Copyright (C) 2014 - 2018 InvoicePlane
  * @license     https://invoiceplane.com/license
+ *
  * @link        https://invoiceplane.com
  *
  * Based on FusionInvoice by Jesse Terry (FusionInvoice, LLC)
@@ -121,7 +121,7 @@ class RecurringInvoice extends Model
 
     public function getFormattedNextDateAttribute()
     {
-        if ($this->attributes['next_date'] <> '0000-00-00') {
+        if ($this->attributes['next_date'] != '0000-00-00') {
             return DateFormatter::format($this->attributes['next_date']);
         }
 
@@ -135,7 +135,7 @@ class RecurringInvoice extends Model
 
     public function getFormattedStopDateAttribute()
     {
-        if ($this->attributes['stop_date'] <> '0000-00-00') {
+        if ($this->attributes['stop_date'] != '0000-00-00') {
             return DateFormatter::format($this->attributes['stop_date']);
         }
 
@@ -196,10 +196,11 @@ class RecurringInvoice extends Model
     {
         if ($keywords) {
             $keywords = strtolower($keywords);
+            $searchTerm = '%'.$keywords.'%';
 
-            $query->where('summary', 'like', '%' . $keywords . '%')
-                ->orWhereIn('client_id', function ($query) use ($keywords) {
-                    $query->select('id')->from('clients')->where(DB::raw("CONCAT_WS('^',LOWER(name),LOWER(unique_name))"), 'like', '%' . $keywords . '%');
+            $query->where('summary', 'like', $searchTerm)
+                ->orWhereIn('client_id', function ($query) use ($searchTerm) {
+                    $query->select('id')->from('clients')->where(DB::raw("CONCAT_WS('^',LOWER(name),LOWER(unique_name))"), 'like', $searchTerm);
                 });
         }
 
