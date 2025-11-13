@@ -49,13 +49,18 @@ class ImportController extends Controller
 
         // Use storeAs with sanitized filename to prevent path traversal
         $fileName = $importType.'.csv';
-        $request->file('import_file')->storeAs('', $fileName, 'local');
+        $path = $request->file('import_file')->storeAs('', $fileName, 'local');
 
         return redirect()->route('import.map', [$importType]);
     }
 
     public function mapImport($importType)
     {
+        $allowedTypes = ['clients', 'quotes', 'quoteItems', 'invoices', 'invoiceItems', 'payments', 'expenses', 'itemLookups'];
+        if (! in_array($importType, $allowedTypes)) {
+            abort(400, 'Invalid import type');
+        }
+
         $importer = ImportFactory::create($importType);
 
         return view('import.map')

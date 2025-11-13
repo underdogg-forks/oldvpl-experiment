@@ -32,7 +32,7 @@ class SessionController extends Controller
     public function attempt(SessionRequest $request)
     {
         // Rate limiting: max 5 attempts per minute per email
-        $throttleKey = 'login_attempt:'.strtolower($request->input('email'));
+        $throttleKey = 'login_attempt:'.strtolower($request->input('email')).'|'.$request->ip();
 
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
             $seconds = RateLimiter::availableIn($throttleKey);

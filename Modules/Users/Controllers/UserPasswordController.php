@@ -40,6 +40,10 @@ class UserPasswordController extends Controller
     {
         $user = User::find($id);
 
+        if (!$user) {
+            abort(404, 'User not found.');
+        }
+
         // Ensure users can only update their own password unless they're an admin
         if ($user->id !== auth()->id() && auth()->user()->client_id) {
             abort(403, 'Unauthorized action.');

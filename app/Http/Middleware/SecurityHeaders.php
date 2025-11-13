@@ -25,8 +25,8 @@ class SecurityHeaders
         // Content Security Policy - can be customized based on your needs
         // This is a basic policy that should work for most applications
         $csp = "default-src 'self'; ".
-               "script-src 'self' 'unsafe-inline' 'unsafe-eval'; ".
-               "style-src 'self' 'unsafe-inline'; ".
+               "script-src 'self'; ".
+               "style-src 'self'; ".
                "img-src 'self' data: https:; ".
                "font-src 'self' data:; ".
                "connect-src 'self'; ".

@@ -17,8 +17,9 @@ trait Sortable
             $title = ucfirst($title);
         }
 
-        $indicator = (request('s') == $col ? (request('o') === 'asc' ? '&uarr;' : '&darr;') : null);
-        $parameters = array_merge(request()->all(), ['s' => $col, 'o' => (request('o') === 'asc' ? 'desc' : 'asc')]);
+        $currentOrder = in_array(strtolower(request('o')), ['asc', 'desc']) ? strtolower(request('o')) : 'asc';
+        $indicator = (request('s') == $col ? ($currentOrder === 'asc' ? '&uarr;' : '&darr;') : null);
+        $parameters = array_merge(request()->all(), ['s' => $col, 'o' => ($currentOrder === 'asc' ? 'desc' : 'asc')]);
 
         return link_to_route(request()->route()->getName(), "$title $indicator", $parameters);
     }
@@ -79,7 +80,7 @@ trait Sortable
         }
 
         // If sortable contains "custom" and s=custom_*, it's allowed.
-        if ((array_key_exists('custom', $this->sortable) or in_array('custom', $this->sortable)) and substr(request('s'), 0, 7) == 'column_') {
+        if ((array_key_exists('custom', $this->sortable) or in_array('custom', $this->sortable)) and substr(request('s'), 0, 7) == 'custom_') {
             return true;
         }
 

@@ -28,7 +28,7 @@ class cURL
             $urlString .= $key.'='.$value.'&';
         }
 
-        rtrim($urlString, '&');
+        $urlString = rtrim($urlString, '&');
 
         $ch = curl_init();
 
